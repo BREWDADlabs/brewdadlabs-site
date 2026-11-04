@@ -28,3 +28,10 @@
 - **Deploy:** preview first, then production (`main`) at 5:08 PM ET, verified live (same checks on brewdadlabs.com, plus www, `/stinkdoku` 302 and the arcade). No DNS, zone or other-site changes. The only other 404 in the console is `/favicon.ico` (no favicon yet).
 - **Rollback:** redeploy the previous production deployment from the Pages dashboard, or revert this commit and redeploy `site/`.
 
+## 2026-11-04 6:27 PM ET, Websites bot (ARCADE footer link, preview)
+- **Goal:** two-way link between brewdadlabs.com and the arcade (Randy: "no clear way back to the main page").
+- **Files:** site/index.html, site/projects.html, docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md
+- **Summary:** added an ARCADE link to the homepage and /projects footers.
+- **Tests:** headless Chromium at 1280x800 and 390x844 on the preview: footer links correct, no third-party requests; only console error is the known /favicon.ico 404 on the homepage.
+- **Deploy:** preview branch only. No production deploy, no push.
+- **Rollback:** delete branch `arcade-nav`.
