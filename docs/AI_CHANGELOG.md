@@ -25,6 +25,6 @@
 - **Goal:** apply Randy's review of the Stage 2 project list and ship Stage 2.
 - **Summary:** removed App Chalk and Hevy integration from `site/projects.json`; rewrote StinkDoku (coming to the App Store, fully open source before it goes live there) and NewEarth Wildlife (Compsognathus and Stegosaurus, Java and Bedrock, public once it's working). 8 projects, 20 XP, still WORKSHOP LVL 3, so the unlocked commands (coffee, bananas) and locked ones (crt, fortune, party) are unchanged.
 - **Tests:** headless Chromium at 1280x800 and 390x844: 8 map nodes and 8 plain-list items, level and XP correct, unlocked commands run and locked ones say locked, `cat hevy`/`cat chalk` are gone, `/nope-xyz` returns 404 with a playable Gorillas game, no third-party requests, no console errors other than the expected 404.
-- **Deploy:** preview first, then production (`main`). No DNS, zone or other-site changes.
+- **Deploy:** preview first, then production (`main`) at 5:08 PM ET, verified live (same checks on brewdadlabs.com, plus www, `/stinkdoku` 302 and the arcade). No DNS, zone or other-site changes. The only other 404 in the console is `/favicon.ico` (no favicon yet).
 - **Rollback:** redeploy the previous production deployment from the Pages dashboard, or revert this commit and redeploy `site/`.
 

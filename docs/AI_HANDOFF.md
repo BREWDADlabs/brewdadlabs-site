@@ -20,11 +20,11 @@ _Last updated: 2026-11-04 (America/New_York), Stage 2 project wording approved b
 - Homepage: PROJECTS card now links to `/projects` (STATUS: GROWING), Arcade card says LIVE, footer has a PROJECTS link, and the log line now says the arcade shipped and is live.
 - `site/404.html`: Gorillas 404 in BrewDadLabs green on black. Reusable source in `shared/gorillas-404/`, demos in `site/gorillas-demo/` (noindex via meta tag and `_headers`).
 - Rollout to other domains: `docs/GORILLAS_404_ROLLOUT.md`. Nothing outside this site was changed.
-- Deployed to the preview branch only: https://preview.brewdadlabs-site.pages.dev
+- Live in production since 2026-11-04 5:08 PM ET (preview checked first at https://preview.brewdadlabs-site.pages.dev). Verified on brewdadlabs.com: `/`, `www`, `/projects` (8 nodes), `/nope-xyz` (404 + game), `/stinkdoku` still 302s to play.stinkdoku.com, arcade.brewdadlabs.com still 200.
+- Known: there is no favicon, so browsers log one 404 for `/favicon.ico` (served the 404 page). Harmless.
 - Randy's review (2026-11-04 5:03 and 5:05 PM ET): App Chalk and Hevy integration removed from the list. StinkDoku: free forever, ad-free, a gift for his wife, playable on the web now, fully open source before it goes live on the App Store (coming soon). NewEarth Wildlife: Compsognathus and Stegosaurus, Java and Bedrock, public once it's working; facts taken from the NewEarthWildlife repo README/main branch, nothing invented. Don't claim "no tracking/telemetry" for StinkDoku.
 - Self-hosted systems and Genealogy tools wording is unchanged from the draft.
 
 ## Next
-- Randy reviews the Stage 2 preview, then production deploy.
 - Gorillas 404 rollout per the rollout doc, one domain at a time with Randy's OK.
 - Workshop log seed entries will be updated by Randy as real work happens.
