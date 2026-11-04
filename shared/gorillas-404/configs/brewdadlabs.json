@@ -1,0 +1,15 @@
+{
+  "siteName": "BrewDadLabs",
+  "homeUrl": "/",
+  "tagline": "Built at home. People before profit.",
+  "links": [{"label": "PROJECTS", "href": "/projects"}, {"label": "ARCADE", "href": "https://arcade.brewdadlabs.com"}],
+  "quips": ["This page got hit by a banana.", "The gorilla ate this page.", "This bench is empty. Grab a banana.", "Kong threw this page into orbit.", "Not built yet. Or built and lost."],
+  "storageKey": "bdl-404-gorillas",
+  "fontFamily": "Share Tech Mono",
+  "fontUrl": "/fonts/ShareTechMono-Regular.woff2",
+  "colors": {"bg": "#020303", "text": "#d6e5df", "line": "#18352c", "title": "#00ff9c", "hi": "#00ff9c", "accent": "#00ff9c", "accentText": "#020303",
+             "accentShadow": "#00a878", "accentHover": "#7dffc8", "muted": "#81938b", "btn": "#101816", "bar": "#080d0c", "range": "#00ff9c",
+             "danger": "#0b3d2c", "link": "#00d9ff", "dim": "#4f5f58"},
+  "game": {"sky": "#020303", "bld": ["#0b3d2c", "#0f5c40", "#18352c"], "win": "#00ff9c", "dark": "#06281d", "sun": "#ffb86c", "gor": "#ffb86c",
+           "ban": "#ffe08a", "exp": "#ff5555", "exp2": "#aa2222", "white": "#d6e5df", "gray": "#81938b", "yellow": "#00ff9c", "cyan": "#00d9ff"}
+}

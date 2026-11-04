@@ -9,3 +9,6 @@ https://:project.pages.dev/*
 
 https://:version.:project.pages.dev/*
   X-Robots-Tag: noindex
+
+/gorillas-demo/*
+  X-Robots-Tag: noindex

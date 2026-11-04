@@ -1,0 +1,114 @@
+{
+  "about": "BrewDadLabs projects. To add one, add one entry to this list. Status is live, growing or workshop. Links are optional. Keep each line to one plain, true sentence.",
+  "projects": [
+    {
+      "id": "arcade",
+      "name": "The Arcade",
+      "description": "Four retro terminal games that run in your browser, free with no ads, trackers or accounts.",
+      "status": "live",
+      "links": [
+        {
+          "label": "Play",
+          "href": "https://arcade.brewdadlabs.com"
+        },
+        {
+          "label": "Source",
+          "href": "https://github.com/BREWDADlabs/arcade"
+        }
+      ],
+      "added": "2026-11-04"
+    },
+    {
+      "id": "stinkdoku",
+      "name": "StinkDoku",
+      "description": "A logic puzzle game I made as a gift for my wife, free forever, ad-free and with no monetization; open source is planned.",
+      "status": "live",
+      "links": [
+        {
+          "label": "Play",
+          "href": "https://play.stinkdoku.com"
+        },
+        {
+          "label": "Site",
+          "href": "https://stinkdoku.com"
+        }
+      ]
+    },
+    {
+      "id": "gorillas",
+      "name": "Gorillas 404",
+      "description": "A remake of the 1991 QBasic Gorillas game that turns a missing page into a banana fight; it is the 404 page on dixhome.com, and a reusable version for our other sites is on the way.",
+      "status": "live",
+      "links": [
+        {
+          "label": "Play (any missing page on dixhome.com)",
+          "href": "https://dixhome.com/bananas"
+        }
+      ]
+    },
+    {
+      "id": "wildlife",
+      "name": "NewEarth Wildlife",
+      "description": "A plug-in that brings dinosaur wildlife to the Lost World on our family Minecraft server, starting with the Compsognathus; first release in progress, more details coming.",
+      "status": "growing",
+      "links": [
+        {
+          "label": "NewEarth",
+          "href": "https://newearth.graphitenerd.com"
+        }
+      ]
+    },
+    {
+      "id": "newearth",
+      "name": "NewEarth",
+      "description": "Our family Minecraft server and its website.",
+      "status": "live",
+      "links": [
+        {
+          "label": "Visit",
+          "href": "https://newearth.graphitenerd.com"
+        }
+      ]
+    },
+    {
+      "id": "dixhome",
+      "name": "Dix Homeschool",
+      "description": "Our family homeschool learning site.",
+      "status": "live",
+      "links": [
+        {
+          "label": "Visit",
+          "href": "https://dixhome.com"
+        }
+      ]
+    },
+    {
+      "id": "selfhosted",
+      "name": "Self-hosted systems",
+      "description": "The home servers and network that run the workshop, including a self-hosted search engine and our own dynamic DNS.",
+      "status": "growing",
+      "links": []
+    },
+    {
+      "id": "hevy",
+      "name": "Hevy integration",
+      "description": "A personal helper that reads my workout history from the Hevy app through its API.",
+      "status": "workshop",
+      "links": []
+    },
+    {
+      "id": "genealogy",
+      "name": "Genealogy tools",
+      "description": "Scripts that import GEDCOM family-tree files into a local database for our family history research.",
+      "status": "workshop",
+      "links": []
+    },
+    {
+      "id": "chalk",
+      "name": "App Chalk",
+      "description": "In the workshop.",
+      "status": "workshop",
+      "links": []
+    }
+  ]
+}

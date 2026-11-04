@@ -60,21 +60,21 @@ footer{display:flex;flex-wrap:wrap;gap:12px 24px;font-size:14px;color:var(--mute
 </section>
 <h2 class="m">WORKSHOP // PICK A BENCH</h2>
 <div class="grid">
-<a class="card" style="--ac:var(--green)" href="https://arcade.brewdadlabs.com"><span class="tag">STATUS: PROTOTYPE</span><h3 class="m">THE ARCADE</h3><p>Play games. No ads. No nonsense.</p><span class="go m">ENTER →</span></a>
-<div class="card soon" style="--ac:var(--cyan)"><span class="tag">STATUS: PLANNED</span><h3 class="m">PROJECTS</h3><p>Things built in the workshop, with source and a link to try each one.</p><span class="go m">COMING SOON</span></div>
+<a class="card" style="--ac:var(--green)" href="https://arcade.brewdadlabs.com"><span class="tag">STATUS: LIVE</span><h3 class="m">THE ARCADE</h3><p>Play games. No ads. No nonsense.</p><span class="go m">ENTER →</span></a>
+<a class="card" style="--ac:var(--cyan)" href="/projects"><span class="tag">STATUS: GROWING</span><h3 class="m">PROJECTS</h3><p>Things built in the workshop, with source and a link to try each one.</p><span class="go m">OPEN THE MAP →</span></a>
 <div class="card soon" style="--ac:var(--amber)"><span class="tag">STATUS: PLANNED</span><h3 class="m">THE LAB</h3><p>Local AI, home servers, hardware and experiments.</p><span class="go m">COMING SOON</span></div>
 <div class="card soon" style="--ac:var(--purple)"><span class="tag">STATUS: PLANNED</span><h3 class="m">LEARN</h3><p>Code, tutorials and things worth knowing.</p><span class="go m">COMING SOON</span></div>
 </div>
 <h2 class="m">WORKSHOP LOG</h2>
 <div id="feed"></div>
 <p class="msg">I don’t need to sell your attention to make something worth your time.</p>
-<footer class="m"><a href="https://github.com/BrewDadLabs" rel="noopener">GITHUB</a><span>People before profit.</span></footer>
+<footer class="m"><a href="/projects">PROJECTS</a><a href="https://github.com/BrewDadLabs" rel="noopener">GITHUB</a><span>People before profit.</span></footer>
 </main>
 <script>
 (()=>{
 const $=s=>document.querySelector(s),RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 // Workshop log: edit by hand. Real events only, no simulated telemetry.
-const LOG=[["2026-11-04","Arcade prototype built: 4 games, untested"],["2026-11-04","Main site homepage drafted"]];
+const LOG=[["2026-11-04","Arcade shipped: 4 games, live at arcade.brewdadlabs.com"],["2026-11-04","Main site homepage drafted"]];
 $('#feed').innerHTML=LOG.map(e=>`<div><time>${e[0]}</time><span>${e[1]}</span></div>`).join('')+'<div class="w">_ awaiting next experiment <span class="cur"></span></div>';
 // boot
 const L=["BREWDADLABS // OHIO","INITIALIZING WORKSHOP...","<span class=ok>[OK]</span> SYSTEM ONLINE","<span class=ok>[OK]</span> ARCADE AVAILABLE","<span class=ok>[OK]</span> PROJECTS LOADED","<span class=wn>[OK] COFFEE STATUS: UNKNOWN</span>","WELCOME, HUMAN."];

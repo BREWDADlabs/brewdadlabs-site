@@ -1,0 +1,12 @@
+{
+  "siteName": "Stinky Dragon Productions",
+  "homeUrl": "https://stinkydragon.com/",
+  "tagline": "Fiber arts & handmade",
+  "quips": ["This page got tangled in the yarn.", "A dragon sat on this page.", "This page went bananas.", "Dropped a stitch. And a page."],
+  "storageKey": "stinkydragon-404-gorillas",
+  "colors": {"bg": "#1d1712", "text": "#fffaf0", "line": "#8a6a3b", "title": "#e3c99c", "hi": "#f6ecd8", "accent": "#4f6b2e", "accentText": "#fffaf0",
+             "accentShadow": "#3c5322", "accentHover": "#6a8a3e", "muted": "#e3c99c", "btn": "#5b4128", "bar": "#3a2a1c", "range": "#4f6b2e",
+             "danger": "#8a6a3b", "link": "#e3c99c", "dim": "#8a6a3b"},
+  "game": {"sky": "#f6ecd8", "bld": ["#8a6a3b", "#4f6b2e", "#5b4128"], "win": "#fffaf0", "dark": "#3c5322", "sun": "#e3a43b", "gor": "#1d1712",
+           "ban": "#e3a43b", "exp": "#c0392b", "exp2": "#7a2418", "white": "#1d1712", "gray": "#5b4128", "yellow": "#5b4128", "cyan": "#3c5322"}
+}
