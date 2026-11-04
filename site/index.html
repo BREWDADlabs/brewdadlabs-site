@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>BrewDadLabs — The Workshop</title>
+<style>@font-face{font-family:'Share Tech Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/ShareTechMono-Regular.woff2) format('woff2')}</style>
+<style>
+:root{--bg:#020303;--panel:#080d0c;--raised:#101816;--border:#18352c;--green:#00ff9c;--gd:#00a878;--cyan:#00d9ff;--amber:#ffb86c;--purple:#bd93f9;--red:#ff5555;--text:#d6e5df;--muted:#81938b;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{height:auto;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,sans-serif;overflow-x:hidden;
+background-image:linear-gradient(#0a1a15 1px,transparent 1px),linear-gradient(90deg,#0a1a15 1px,transparent 1px);background-size:44px 44px;background-position:-1px -1px}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 30%,transparent 40%,#020303 95%);z-index:0}
+.crt::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 1px,transparent 1px 3px)}
+.crt h1,.crt .glow{text-shadow:0 0 12px #00ff9c99}
+.m,button,h1,h2,h3,.tag{font-family:'Share Tech Mono',ui-monospace,Menlo,Consolas,monospace}
+main{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 18px 40px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--muted)}
+.top button{min-height:44px;padding:6px 12px;font-size:13px}
+button{background:var(--raised);color:var(--text);border:1px solid var(--border);cursor:pointer;border-radius:2px;font-size:15px}
+button:hover,button:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.hero{padding:44px 0 26px}
+.on{display:inline-flex;align-items:center;gap:8px;color:var(--green);font-size:14px;border:1px solid var(--border);padding:4px 10px;background:var(--panel)}
+.on i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pl 2.4s ease-in-out infinite}
+@keyframes pl{50%{opacity:.3}}
+h1{font-weight:400;font-size:clamp(38px,10vw,84px);line-height:1;margin:18px 0 6px;color:var(--green);letter-spacing:.02em}
+.sub{color:var(--amber);font-size:15px;margin:0 0 18px}
+.tl{font-size:clamp(20px,4.5vw,28px);line-height:1.25;margin:0 0 14px;font-weight:400;color:var(--text)}
+.lead{max-width:52ch;color:var(--muted);margin:0}
+h2{font-weight:400;font-size:16px;color:var(--muted);margin:34px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{display:flex;flex-direction:column;gap:8px;background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--ac);padding:16px;text-decoration:none;color:inherit;min-height:170px}
+.card h3{margin:0;font-weight:400;font-size:20px;color:var(--ac)}
+.card p{margin:0;color:var(--text);font-size:15px;flex:1}
+.go{font-size:15px;color:var(--ac)}
+a.card:hover,a.card:focus-visible{background:var(--raised);box-shadow:0 0 18px color-mix(in srgb,var(--ac) 30%,transparent)}
+.card.soon{opacity:.72}.card.soon .go{color:var(--muted)}
+.tag{font-size:12px;color:var(--muted)}
+#feed{background:var(--panel);border:1px solid var(--border);padding:16px;font:15px/1.8 'Share Tech Mono',ui-monospace,monospace}
+#feed div{display:flex;gap:14px;flex-wrap:wrap}#feed time{color:var(--cyan)}
+#feed .w{color:var(--muted);margin-top:8px}
+.cur{display:inline-block;width:.6em;height:1em;background:var(--green);vertical-align:-2px;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.msg{margin:44px 0 0;padding:22px 0;border-top:1px solid var(--border);font-size:clamp(18px,3.6vw,24px);max-width:36ch;color:var(--text)}
+footer{display:flex;flex-wrap:wrap;gap:12px 24px;font-size:14px;color:var(--muted)}footer a{color:var(--cyan)}
+#boot{position:fixed;inset:0;z-index:100;background:var(--bg);color:var(--green);padding:max(24px,env(safe-area-inset-top)) 24px 24px;font:clamp(15px,3.8vw,19px)/1.7 'Share Tech Mono',ui-monospace,monospace;white-space:pre-wrap;transition:opacity .5s}
+#boot.out{opacity:0;pointer-events:none}
+#boot button{position:absolute;right:16px;bottom:max(16px,env(safe-area-inset-bottom));min-height:44px;padding:8px 16px}
+.ok{color:var(--cyan)}.wn{color:var(--amber)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div id="boot" role="status" aria-live="polite"><span id="bt"></span><span class="cur"></span><button id="sk">SKIP</button></div>
+<main>
+<div class="top m"><span>BREWDADLABS // OHIO</span><button id="crt" aria-pressed="false">CRT MODE: OFF</button></div>
+<section class="hero">
+<span class="on m"><i></i>ONLINE</span>
+<h1 class="m">BREWDADLABS</h1>
+<p class="sub m">HOME WORKSHOP // EST. BY CURIOSITY</p>
+<p class="tl">Built at home. Tested in the real world.</p>
+<p class="lead">A home workshop for code, games, experiments, and things worth building. No ads, no trackers, no accounts.</p>
+</section>
+<h2 class="m">WORKSHOP // PICK A BENCH</h2>
+<div class="grid">
+<a class="card" style="--ac:var(--green)" href="https://arcade.brewdadlabs.com"><span class="tag">STATUS: PROTOTYPE</span><h3 class="m">THE ARCADE</h3><p>Play games. No ads. No nonsense.</p><span class="go m">ENTER →</span></a>
+<div class="card soon" style="--ac:var(--cyan)"><span class="tag">STATUS: PLANNED</span><h3 class="m">PROJECTS</h3><p>Things built in the workshop, with source and a link to try each one.</p><span class="go m">COMING SOON</span></div>
+<div class="card soon" style="--ac:var(--amber)"><span class="tag">STATUS: PLANNED</span><h3 class="m">THE LAB</h3><p>Local AI, home servers, hardware and experiments.</p><span class="go m">COMING SOON</span></div>
+<div class="card soon" style="--ac:var(--purple)"><span class="tag">STATUS: PLANNED</span><h3 class="m">LEARN</h3><p>Code, tutorials and things worth knowing.</p><span class="go m">COMING SOON</span></div>
+</div>
+<h2 class="m">WORKSHOP LOG</h2>
+<div id="feed"></div>
+<p class="msg">I don’t need to sell your attention to make something worth your time.</p>
+<footer class="m"><a href="https://github.com/BrewDadLabs" rel="noopener">GITHUB</a><span>People before profit.</span></footer>
+</main>
+<script>
+(()=>{
+const $=s=>document.querySelector(s),RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+// Workshop log: edit by hand. Real events only, no simulated telemetry.
+const LOG=[["2026-11-04","Arcade prototype built: 4 games, untested"],["2026-11-04","Main site homepage drafted"]];
+$('#feed').innerHTML=LOG.map(e=>`<div><time>${e[0]}</time><span>${e[1]}</span></div>`).join('')+'<div class="w">_ awaiting next experiment <span class="cur"></span></div>';
+// boot
+const L=["BREWDADLABS // OHIO","INITIALIZING WORKSHOP...","<span class=ok>[OK]</span> SYSTEM ONLINE","<span class=ok>[OK]</span> ARCADE AVAILABLE","<span class=ok>[OK]</span> PROJECTS LOADED","<span class=wn>[OK] COFFEE STATUS: UNKNOWN</span>","WELCOME, HUMAN."];
+const b=$('#boot');let i=0,t;
+const done=()=>{clearTimeout(t);b.classList.add('out');try{sessionStorage.setItem('bdl-boot','1')}catch(e){}setTimeout(()=>b.remove(),600)};
+let seen=false;try{seen=sessionStorage.getItem('bdl-boot')}catch(e){}
+if(RM||seen)b.remove();else{
+$('#sk').onclick=done;b.addEventListener('keydown',done);addEventListener('keydown',done,{once:true});
+(function n(){$('#bt').innerHTML=L.slice(0,++i).join('\n');t=setTimeout(i<L.length?n:done,i<L.length?330:700)})()}
+// CRT toggle (saved locally)
+const c=$('#crt');const setC=v=>{document.body.classList.toggle('crt',v);c.textContent='CRT MODE: '+(v?'ON':'OFF');c.setAttribute('aria-pressed',v);try{localStorage.setItem('bdl-crt',v?'1':'')}catch(e){}};
+let sv=false;try{sv=localStorage.getItem('bdl-crt')}catch(e){}setC(!!sv);c.onclick=()=>setC(!document.body.classList.contains('crt'));
+})();
+</script></body></html>
