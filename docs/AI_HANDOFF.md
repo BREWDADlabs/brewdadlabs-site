@@ -1,6 +1,6 @@
 # AI Handoff
 
-_Last updated: 2026-11-04 (America/New_York), Stage 2 preview_
+_Last updated: 2026-11-04 (America/New_York), Stage 2 project wording approved by Randy_
 
 ## Current state
 - Live: https://brewdadlabs.com and https://www.brewdadlabs.com, served by Cloudflare Pages project `brewdadlabs-site`.
@@ -15,13 +15,14 @@ _Last updated: 2026-11-04 (America/New_York), Stage 2 preview_
 ## Verified (2026-11-04)
 - Desktop (1280x800) and mobile (390x844) in headless Chromium: no console or CSP errors, only the site's own host contacted, font loads, CRT toggle works, arcade link goes to https://arcade.brewdadlabs.com.
 
-## Stage 2 (branch `stage2`, preview only, waiting for Randy's review)
-- `/projects`: workshop map built from `site/projects.json` (10 projects). Nodes boot with typed log lines, a mini shell (help, ls, cat, run, status, privacy, plus commands unlocked by level), clickable command buttons, an XP/level bar, per-project views at `/projects#id`, and an always-visible plain list. `<noscript>` points to `/projects.json`. Reduced motion skips the typing.
+## Stage 2 (branch `stage2`)
+- `/projects`: workshop map built from `site/projects.json` (8 projects: 5 live, 2 growing, 1 in the workshop = 20 XP, WORKSHOP LVL 3; `coffee` and `bananas` unlocked, `crt` at LVL 4, `fortune` at 5, `party` at 6 still locked). Nodes boot with typed log lines, a mini shell (help, ls, cat, run, status, privacy, plus commands unlocked by level), clickable command buttons, an XP/level bar, per-project views at `/projects#id`, and an always-visible plain list. `<noscript>` points to `/projects.json`. Reduced motion skips the typing.
 - Homepage: PROJECTS card now links to `/projects` (STATUS: GROWING), Arcade card says LIVE, footer has a PROJECTS link, and the log line now says the arcade shipped and is live.
 - `site/404.html`: Gorillas 404 in BrewDadLabs green on black. Reusable source in `shared/gorillas-404/`, demos in `site/gorillas-demo/` (noindex via meta tag and `_headers`).
 - Rollout to other domains: `docs/GORILLAS_404_ROLLOUT.md`. Nothing outside this site was changed.
 - Deployed to the preview branch only: https://preview.brewdadlabs-site.pages.dev
-- Needs Randy: project wording for App Chalk, Hevy integration, Self-hosted systems, Genealogy tools and NewEarth Wildlife; production deploy.
+- Randy's review (2026-11-04 5:03 and 5:05 PM ET): App Chalk and Hevy integration removed from the list. StinkDoku: free forever, ad-free, a gift for his wife, playable on the web now, fully open source before it goes live on the App Store (coming soon). NewEarth Wildlife: Compsognathus and Stegosaurus, Java and Bedrock, public once it's working; facts taken from the NewEarthWildlife repo README/main branch, nothing invented. Don't claim "no tracking/telemetry" for StinkDoku.
+- Self-hosted systems and Genealogy tools wording is unchanged from the draft.
 
 ## Next
 - Randy reviews the Stage 2 preview, then production deploy.

@@ -21,7 +21,7 @@
     {
       "id": "stinkdoku",
       "name": "StinkDoku",
-      "description": "A logic puzzle game I made as a gift for my wife, free forever, ad-free and with no monetization; open source is planned.",
+      "description": "A logic puzzle game I made as a gift for my wife, free forever and ad-free; it's playable on the web now, and it will be fully open source before it goes live on the App Store, which is coming soon.",
       "status": "live",
       "links": [
         {
@@ -49,7 +49,7 @@
     {
       "id": "wildlife",
       "name": "NewEarth Wildlife",
-      "description": "A plug-in that brings dinosaur wildlife to the Lost World on our family Minecraft server, starting with the Compsognathus; first release in progress, more details coming.",
+      "description": "A plug-in for our family Minecraft server that brings dinosaurs to the Lost World, starting with the Compsognathus and the Stegosaurus, which roam in small groups, react to nearby players and food, and show up for both Java and Bedrock players; the plug-in will be open and public once it's working.",
       "status": "growing",
       "links": [
         {
@@ -90,23 +90,9 @@
       "links": []
     },
     {
-      "id": "hevy",
-      "name": "Hevy integration",
-      "description": "A personal helper that reads my workout history from the Hevy app through its API.",
-      "status": "workshop",
-      "links": []
-    },
-    {
       "id": "genealogy",
       "name": "Genealogy tools",
       "description": "Scripts that import GEDCOM family-tree files into a local database for our family history research.",
-      "status": "workshop",
-      "links": []
-    },
-    {
-      "id": "chalk",
-      "name": "App Chalk",
-      "description": "In the workshop.",
       "status": "workshop",
       "links": []
     }
