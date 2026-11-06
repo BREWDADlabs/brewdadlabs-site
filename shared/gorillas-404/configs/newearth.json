@@ -2,11 +2,48 @@
   "siteName": "NewEarth",
   "homeUrl": "https://newearth.graphitenerd.com/",
   "tagline": "Our family Minecraft server",
-  "quips": ["A creeper got this page.", "This page fell in the Lost World.", "This page went bananas.", "Kong threw this page into the Nether."],
+  "quips": [
+    "A creeper got this page.",
+    "This page fell in the Lost World.",
+    "This page went bananas.",
+    "Kong threw this page into the Nether."
+  ],
   "storageKey": "newearth-404-gorillas",
-  "colors": {"bg": "#0d1a0d", "text": "#e8f5e0", "line": "#3d6b2e", "title": "#7cc142", "hi": "#ffd84d", "accent": "#7cc142", "accentText": "#0d1a0d",
-             "accentShadow": "#3d6b2e", "accentHover": "#a3e06a", "muted": "#a7b89c", "btn": "#24401c", "bar": "#1b2e16", "range": "#7cc142",
-             "danger": "#8b4513", "link": "#8fd3ff", "dim": "#55704a"},
-  "game": {"sky": "#6fa8dc", "bld": ["#7a5230", "#5d8a3a", "#8c8c8c"], "win": "#ffd84d", "dark": "#3b2a1a", "sun": "#ffd84d", "gor": "#3b2a1a",
-           "ban": "#ffd84d", "exp": "#ff5a1f", "exp2": "#b33a00", "white": "#ffffff", "gray": "#e0e0e0", "yellow": "#ffd84d", "cyan": "#1b2e16"}
+  "colors": {
+    "bg": "#fbf7ec",
+    "text": "#2a2a22",
+    "line": "#e2d7bf",
+    "title": "#2c5f1f",
+    "hi": "#3b7d2a",
+    "accent": "#3b7d2a",
+    "accentText": "#ffffff",
+    "accentShadow": "#2c5f1f",
+    "accentHover": "#8cc63f",
+    "muted": "#55544a",
+    "btn": "#f3ead6",
+    "bar": "#e7f3d9",
+    "range": "#3b7d2a",
+    "danger": "#a3271c",
+    "link": "#1d5f87",
+    "dim": "#7a4a24"
+  },
+  "game": {
+    "sky": "#7cc4ec",
+    "bld": [
+      "#7a4a24",
+      "#3b7d2a",
+      "#55544a"
+    ],
+    "win": "#f6c64a",
+    "dark": "#2c5f1f",
+    "sun": "#f6c64a",
+    "gor": "#7a4a24",
+    "ban": "#f6c64a",
+    "exp": "#ff5a1f",
+    "exp2": "#a3271c",
+    "white": "#2a2a22",
+    "gray": "#2c5f1f",
+    "yellow": "#2a2a22",
+    "cyan": "#1d5f87"
+  }
 }

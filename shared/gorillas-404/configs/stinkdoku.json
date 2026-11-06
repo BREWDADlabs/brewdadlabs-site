@@ -1,0 +1,60 @@
+{
+  "siteName": "StinkDoku",
+  "homeUrl": "https://stinkdoku.com/",
+  "tagline": "Revenge of the Stinky Dragons, by brewdad labs",
+  "links": [
+    {
+      "label": "PLAY",
+      "href": "https://play.stinkdoku.com/"
+    },
+    {
+      "label": "SUPPORT",
+      "href": "/support"
+    }
+  ],
+  "quips": [
+    "A stinky dragon sat on this page.",
+    "This page wandered off following a smell.",
+    "We sniffed every den. Not here.",
+    "This page went bananas.",
+    "Kong threw this page into orbit."
+  ],
+  "storageKey": "stinkdoku-404-gorillas",
+  "colors": {
+    "bg": "#163b38",
+    "text": "#fff9e8",
+    "line": "#23534b",
+    "title": "#ffcc70",
+    "hi": "#b6e8c6",
+    "accent": "#fec86d",
+    "accentText": "#284739",
+    "accentShadow": "#d69e48",
+    "accentHover": "#ffcc70",
+    "muted": "#b6e8c6",
+    "btn": "#23534b",
+    "bar": "#0f2a27",
+    "range": "#fec86d",
+    "danger": "#a3271c",
+    "link": "#b5e5c6",
+    "dim": "#4f6b64"
+  },
+  "game": {
+    "sky": "#d5ecda",
+    "bld": [
+      "#23534b",
+      "#1f6559",
+      "#4f6b64"
+    ],
+    "win": "#ffcc70",
+    "dark": "#0f2a27",
+    "sun": "#ffcc70",
+    "gor": "#163b38",
+    "ban": "#fec86d",
+    "exp": "#ff9d3c",
+    "exp2": "#a3271c",
+    "white": "#163b38",
+    "gray": "#4f6b64",
+    "yellow": "#163b38",
+    "cyan": "#1f6559"
+  }
+}

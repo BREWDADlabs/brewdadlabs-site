@@ -1,6 +1,6 @@
 # AI Handoff
 
-_Last updated: 2026-11-04 (America/New_York), Stage 2 project wording approved by Randy_
+_Last updated: 2026-11-05 (America/New_York): arcade footer link is live; Gorillas 404 builds prepared for the other domains_
 
 ## Current state
 - Live: https://brewdadlabs.com and https://www.brewdadlabs.com, served by Cloudflare Pages project `brewdadlabs-site`.
@@ -25,10 +25,16 @@ _Last updated: 2026-11-04 (America/New_York), Stage 2 project wording approved b
 - Randy's review (2026-11-04 5:03 and 5:05 PM ET): App Chalk and Hevy integration removed from the list. StinkDoku: free forever, ad-free, a gift for his wife, playable on the web now, fully open source before it goes live on the App Store (coming soon). NewEarth Wildlife: Compsognathus and Stegosaurus, Java and Bedrock, public once it's working; facts taken from the NewEarthWildlife repo README/main branch, nothing invented. Don't claim "no tracking/telemetry" for StinkDoku.
 - Self-hosted systems and Genealogy tools wording is unchanged from the draft.
 
-## Arcade link in footers (branch `arcade-nav`, preview only)
-- Homepage footer now starts with ARCADE (https://arcade.brewdadlabs.com); /projects footer is HOME, ARCADE, GITHUB. Companion to the arcade's new header/footer links back here (arcade repo branch `nav-home`).
-- Preview: https://preview.brewdadlabs-site.pages.dev. Not in production yet, not pushed.
+## Arcade link in footers (LIVE)
+- Homepage footer now starts with ARCADE (https://arcade.brewdadlabs.com); /projects footer is HOME, ARCADE, GITHUB. Companion to the arcade's header/footer links back here (arcade repo, now on `main`).
+- **Live in production** on brewdadlabs.com (and the arcade's links back are live on arcade.brewdadlabs.com). Rechecked 2026-11-05 8:10 PM ET: the served homepage is byte-identical to `site/index.html` on `main` (55ef3fa), and its footer has the ARCADE link. `main` is pushed (origin/main = 55ef3fa). The `arcade-nav` branch is merged and can be deleted.
+
+## Gorillas 404 for the other domains (prepared 2026-11-05, nothing deployed)
+- New configs in `shared/gorillas-404/configs/`: `arcade.json`, `stinkdoku.json`, `stinkdoku-play.json`. `newearth.json` now uses the NewEarth site's real cream/grass/sky palette (was a dark guess).
+- Built copies for each site are on the Mac at `/Users/test/sites/handoff/gorillas-404/<site>/` (and on the box at `/workspace/handoff/gorillas-404/`). Status and ship checklist per domain: `docs/GORILLAS_404_ROLLOUT.md`.
+- Tested locally (headless Chrome, 1280x800 and 390x844) under each site's real CSP: status 404, game loads, a throw runs, no CSP errors, no other hosts contacted. stinkydragon.com fails under its current `script-src 'none'` as expected and passes with the proposed `script-src 'self'`.
 
 ## Next
-- Gorillas 404 rollout per the rollout doc, one domain at a time with Randy's OK.
+- Gorillas 404 rollout per the rollout doc, one domain at a time with Randy's OK (builds are ready).
+- Favicon for brewdadlabs.com (Randy asked 2026-11-05); `/favicon.ico` still returns the 404 page.
 - Workshop log seed entries will be updated by Randy as real work happens.

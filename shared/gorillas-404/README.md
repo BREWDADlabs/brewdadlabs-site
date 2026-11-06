@@ -12,7 +12,7 @@ A remake of the 1991 QBasic *Gorillas* game as a "page not found" page. It start
 | File | What it is |
 |---|---|
 | `404.html` | The canonical page. Its config block is empty, so it brands itself from the hostname. |
-| `configs/*.json` | Per-site configs (brewdadlabs, dixhome, stinkydragon, newearth, default). |
+| `configs/*.json` | Per-site configs (brewdadlabs, arcade, dixhome, newearth, stinkdoku, stinkdoku-play, stinkydragon, default). |
 | `build.py` | Writes a configured copy. Pure Python 3, no dependencies. |
 
 ## Configure

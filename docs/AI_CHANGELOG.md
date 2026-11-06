@@ -35,3 +35,10 @@
 - **Tests:** headless Chromium at 1280x800 and 390x844 on the preview: footer links correct, no third-party requests; only console error is the known /favicon.ico 404 on the homepage.
 - **Deploy:** preview branch only. No production deploy, no push.
 - **Rollback:** delete branch `arcade-nav`.
+
+## 2026-11-05 8:25 PM ET, Websites bot (docs: arcade link live; Gorillas 404 builds for the other domains)
+- **Goal:** Randy: fix notes that still said the arcade nav was "preview only"; roll the Gorillas 404 out everywhere.
+- **Files:** docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md, docs/GORILLAS_404_ROLLOUT.md, shared/gorillas-404/README.md, shared/gorillas-404/configs/{arcade,stinkdoku,stinkdoku-play}.json (new), shared/gorillas-404/configs/newearth.json (real site palette).
+- **Summary:** the ARCADE footer link is live (served homepage matches `main` 55ef3fa). Built Gorillas 404 copies for arcade, NewEarth, stinkdoku.com, play.stinkdoku.com and stinkydragon.com; rollout doc now has a live 404 inventory and a ship checklist per domain.
+- **Tests:** headless Chrome 1280x800 and 390x844 under each site's CSP: 404 status, game loads and throws, no CSP errors, no other hosts. stinkydragon fails under `script-src 'none'` as expected.
+- **Deploy:** none. `site/` is unchanged.
