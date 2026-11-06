@@ -1,6 +1,6 @@
 # AI Handoff
 
-_Last updated: 2026-11-05 (America/New_York): arcade footer link is live; Gorillas 404 builds prepared for the other domains_
+_Last updated: 2026-11-05 (America/New_York): favicon shipped (preview then production)_
 
 ## Current state
 - Live: https://brewdadlabs.com and https://www.brewdadlabs.com, served by Cloudflare Pages project `brewdadlabs-site`.
@@ -21,9 +21,14 @@ _Last updated: 2026-11-05 (America/New_York): arcade footer link is live; Gorill
 - `site/404.html`: Gorillas 404 in BrewDadLabs green on black. Reusable source in `shared/gorillas-404/`, demos in `site/gorillas-demo/` (noindex via meta tag and `_headers`).
 - Rollout to other domains: `docs/GORILLAS_404_ROLLOUT.md`. Nothing outside this site was changed.
 - Live in production since 2026-11-04 5:08 PM ET (preview checked first at https://preview.brewdadlabs-site.pages.dev). Verified on brewdadlabs.com: `/`, `www`, `/projects` (8 nodes), `/nope-xyz` (404 + game), `/stinkdoku` still 302s to play.stinkdoku.com, arcade.brewdadlabs.com still 200.
-- Known: there is no favicon, so browsers log one 404 for `/favicon.ico` (served the 404 page). Harmless.
+- Favicon: `site/favicon.ico` (16/32/48), `favicon-32.png`, `apple-touch-icon.png` (180); linked from index, /projects, and 404.
 - Randy's review (2026-11-04 5:03 and 5:05 PM ET): App Chalk and Hevy integration removed from the list. StinkDoku: free forever, ad-free, a gift for his wife, playable on the web now, fully open source before it goes live on the App Store (coming soon). NewEarth Wildlife: Compsognathus and Stegosaurus, Java and Bedrock, public once it's working; facts taken from the NewEarthWildlife repo README/main branch, nothing invented. Don't claim "no tracking/telemetry" for StinkDoku.
 - Self-hosted systems and Genealogy tools wording is unchanged from the draft.
+
+## Favicon (LIVE)
+- Source: Randy-approved neon-green "b" face logo on `#020303` (`#00ff9c`).
+- Assets under `site/`: `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`. Linked from `index.html`, `projects.html`, and `404.html`.
+- `/favicon.ico` is a real image now (no longer falls through to the Gorillas 404 HTML).
 
 ## Arcade link in footers (LIVE)
 - Homepage footer now starts with ARCADE (https://arcade.brewdadlabs.com); /projects footer is HOME, ARCADE, GITHUB. Companion to the arcade's header/footer links back here (arcade repo, now on `main`).
@@ -36,5 +41,5 @@ _Last updated: 2026-11-05 (America/New_York): arcade footer link is live; Gorill
 
 ## Next
 - Gorillas 404 rollout per the rollout doc, one domain at a time with Randy's OK (builds are ready).
-- Favicon for brewdadlabs.com (Randy asked 2026-11-05); `/favicon.ico` still returns the 404 page.
+- Favicon is live (Randy thumbs-upped the draft 2026-11-05).
 - Workshop log seed entries will be updated by Randy as real work happens.

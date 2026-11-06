@@ -42,3 +42,12 @@
 - **Summary:** the ARCADE footer link is live (served homepage matches `main` 55ef3fa). Built Gorillas 404 copies for arcade, NewEarth, stinkdoku.com, play.stinkdoku.com and stinkydragon.com; rollout doc now has a live 404 inventory and a ship checklist per domain.
 - **Tests:** headless Chrome 1280x800 and 390x844 under each site's CSP: 404 status, game loads and throws, no CSP errors, no other hosts. stinkydragon fails under `script-src 'none'` as expected.
 - **Deploy:** none. `site/` is unchanged.
+
+## 2026-11-05 8:48 PM ET, Websites bot (favicon)
+- **Goal:** wire Randy's thumbs-upped favicon into the main site and ship it (he originally asked to create it on the main site).
+- **Files:** site/favicon.ico, site/favicon-32.png, site/apple-touch-icon.png (new); site/index.html, site/projects.html, site/404.html (link tags); docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md.
+- **Summary:** converted the approved JPG into multi-size ICO (16/32/48) plus 32 PNG and 180 apple-touch; linked them on the homepage, /projects (replaced the blank `data:,` icon), and 404. Preview deploy first, curl-verified `/favicon.ico` returns an image, then production.
+- **Tests:** `file` on assets; curl preview `/favicon.ico` (image, not 404 HTML); curl live `/favicon.ico` and homepage link tags after production.
+- **Deploy:** preview then production (Pages project `brewdadlabs-site`). No DNS/zone changes. Bundle for GitHub bot (do not push from here).
+- **Rollback:** redeploy previous production deployment, or remove the favicon files/link tags and redeploy `site/`.
+
