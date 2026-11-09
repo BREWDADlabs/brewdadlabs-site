@@ -51,3 +51,10 @@
 - **Deploy:** preview then production (Pages project `brewdadlabs-site`). No DNS/zone changes. Bundle for GitHub bot (do not push from here).
 - **Rollback:** redeploy previous production deployment, or remove the favicon files/link tags and redeploy `site/`.
 
+
+## 2026-11-09 5:58 PM ET, Websites bot (StinkDoku Android APK download)
+- **Goal:** make the StinkDoku Android APK (`com.brewdadlabs.stinkdoku`) downloadable from brewdadlabs.com with a direct link for Android phones, at Randy's request.
+- **Summary:** added `site/stinkdoku.apk` (9,817,282 bytes, sha256 `b908b8276d9ba4e8e3a55905d9a3f5f03a71e9ac86b0839f76879debaf6ea565`) and a `/stinkdoku.apk` rule in `site/_headers` (Content-Type `application/vnd.android.package-archive`, `Content-Disposition: attachment; filename="StinkDoku.apk"`, short cache). Site-wide headers unchanged. Kept at the root so it does not hit the `/stinkdoku/*` redirect rules.
+- **Tests:** preview and production: `/stinkdoku.apk` returns 200 with the APK content type, the attachment filename and the full file (hash matches) on brewdadlabs.com and www. `/stinkdoku` still 302s to play.stinkdoku.com; homepage still 200.
+- **Deploy:** preview, then production (`main`). No DNS, redirect-rule or other-site changes.
+- **Rollback:** delete `site/stinkdoku.apk` and its `_headers` block, then redeploy `site/`, or redeploy the previous production deployment from the Pages dashboard.

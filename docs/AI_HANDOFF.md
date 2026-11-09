@@ -1,6 +1,6 @@
 # AI Handoff
 
-_Last updated: 2026-11-05 (America/New_York): favicon shipped (preview then production)_
+_Last updated: 2026-11-09 (America/New_York): StinkDoku Android APK download live at /stinkdoku.apk_
 
 ## Current state
 - Live: https://brewdadlabs.com and https://www.brewdadlabs.com, served by Cloudflare Pages project `brewdadlabs-site`.
@@ -43,3 +43,8 @@ _Last updated: 2026-11-05 (America/New_York): favicon shipped (preview then prod
 - Gorillas 404 rollout per the rollout doc, one domain at a time with Randy's OK (builds are ready).
 - Favicon is live (Randy thumbs-upped the draft 2026-11-05).
 - Workshop log seed entries will be updated by Randy as real work happens.
+
+## StinkDoku Android APK (LIVE)
+- https://brewdadlabs.com/stinkdoku.apk (also on www): `site/stinkdoku.apk`, served as `application/vnd.android.package-archive` with `Content-Disposition: attachment; filename="StinkDoku.apk"` via `site/_headers`.
+- To ship a new build, replace `site/stinkdoku.apk` (keep the name), deploy preview then `main`, and recheck the headers with curl.
+- Kept at the site root on purpose: `/stinkdoku` and `/stinkdoku/*` are redirect rules to play.stinkdoku.com.
