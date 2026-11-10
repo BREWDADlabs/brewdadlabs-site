@@ -75,3 +75,10 @@
 - **Tests:** preview and production: `/stinkdoku.apk` returns 200 with the APK content type, the attachment filename and the full file (hash matches) on brewdadlabs.com and www. `/stinkdoku` still 302s to play.stinkdoku.com; homepage still 200.
 - **Deploy:** preview, then production (`main`). No DNS, redirect-rule or other-site changes.
 - **Rollback:** delete `site/stinkdoku.apk` and its `_headers` block, then redeploy `site/`, or redeploy the previous production deployment from the Pages dashboard.
+
+## 2026-11-10 3:35 PM ET, Websites bot (beta page → Android tester page, preview only)
+- **Goal:** point the StinkDoku beta page's Android card at the new Google Play tester page on play.stinkdoku.com (Randy approved the tester automation; preview only).
+- **Files:** site/stinkdoku-beta.html; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md.
+- **Summary:** Android card now says ANDROID // GOOGLE PLAY with a "BECOME AN ANDROID TESTER" button to `https://play.stinkdoku.com/android-tester`; the APK link is kept as a one-line sideload fallback. Meta description updated. No CSP or header change.
+- **Deploy:** Pages branch preview `android-tester` only. Production not deployed; `main` not pushed.
+- **Rollback:** drop the branch.

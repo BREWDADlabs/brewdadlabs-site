@@ -54,3 +54,8 @@ _Last updated: 2026-11-09 (America/New_York): StinkDoku beta tester page live at
 - https://brewdadlabs.com/stinkdoku.apk (also on www): `site/stinkdoku.apk`, served as `application/vnd.android.package-archive` with `Content-Disposition: attachment; filename="StinkDoku.apk"` via `site/_headers`.
 - To ship a new build, replace `site/stinkdoku.apk` (keep the name), deploy preview then `main`, and recheck the headers with curl.
 - Kept at the site root on purpose: `/stinkdoku` and `/stinkdoku/*` are redirect rules to play.stinkdoku.com.
+
+## StinkDoku beta page → Google Play tester page (PREVIEW ONLY, 2026-11-10)
+- Branch `feature/android-tester-link` (local commit, not pushed). Android card on `site/stinkdoku-beta.html` now sends testers to `https://play.stinkdoku.com/android-tester` (Google Group → Become a tester → install from Play; same Google account; 14 days in a row). The APK download stays as a small "Can't use Google Play?" sideload fallback.
+- Preview: https://android-tester.brewdadlabs-site.pages.dev/stinkdoku-beta (Pages branch preview `android-tester`). Production (`main`, live `/stinkdoku-beta`) is unchanged.
+- **Ship order:** the play.stinkdoku.com tester page (stinky-dragons branch `feature/android-tester-page`) must be live first, otherwise this button 404s. Then, with Randy's OK, merge this branch and deploy `--branch main`.
