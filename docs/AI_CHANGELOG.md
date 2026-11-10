@@ -1,5 +1,14 @@
 # AI Changelog
 
+## 2026-11-09 7:36 PM ET, Websites bot (StinkDoku beta tester landing page — preview only)
+- **Goal:** replace the bare APK link for testers with a short beta landing page that has iOS TestFlight + Android APK download instructions, matching the homepage look (Randy).
+- **Files:** site/stinkdoku-beta.html (new); docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md.
+- **Summary:** added `/stinkdoku-beta` (pretty URL from `stinkdoku-beta.html`) with homepage CSS/colors/typography, a short intro, iOS TestFlight link (`https://testflight.apple.com/join/M6JnK4b1`), and Android download to `/stinkdoku.apk` plus install steps. Did not touch `/stinkdoku` redirects, DNS, the APK file, or `_headers` (existing APK headers still apply). Page has `noindex` meta.
+- **Tests:** curl preview `/stinkdoku-beta` (200, contains TestFlight URL and `/stinkdoku.apk` link); curl preview `/stinkdoku.apk` still 200; production left alone.
+- **Deploy:** preview branch only. No production deploy, no git push, no DNS/redirect changes.
+- **Rollback:** delete `site/stinkdoku-beta.html` and redeploy preview, or leave until Randy approves production.
+
+
 ## 2026-11-04
 - Stage 1 homepage added at `site/index.html`; self-hosted Share Tech Mono in `site/fonts/` (OFL) instead of Google Fonts.
 - Added `site/_headers` (CSP, nosniff, Referrer-Policy, X-Frame-Options DENY; noindex on `*.pages.dev` only).
