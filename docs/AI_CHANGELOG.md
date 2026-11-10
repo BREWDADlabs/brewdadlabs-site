@@ -1,5 +1,13 @@
 # AI Changelog
 
+## 2026-11-09 7:38 PM ET, Websites bot (StinkDoku beta page → production)
+- **Goal:** Randy approved ("Perfect, go") — ship `/stinkdoku-beta` to production.
+- **Files:** docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md (mark live); site unchanged from preview `5f23e84`.
+- **Summary:** production-deployed `site/` to Cloudflare Pages `brewdadlabs-site` branch `main`; pushed local commits to GitHub. `/stinkdoku-beta` live with TestFlight + APK download. APK, `/stinkdoku` redirects, DNS untouched.
+- **Tests:** curl live `/stinkdoku-beta` 200 (TestFlight URL + `/stinkdoku.apk` link); `/stinkdoku.apk` 200 with APK headers; `/stinkdoku` 302; homepage 200; www same.
+- **Deploy:** production (`main`). No DNS/redirect/other-site changes.
+- **Rollback:** redeploy previous production deployment from Pages dashboard, or remove `stinkdoku-beta.html` and redeploy.
+
 ## 2026-11-09 7:36 PM ET, Websites bot (StinkDoku beta tester landing page — preview only)
 - **Goal:** replace the bare APK link for testers with a short beta landing page that has iOS TestFlight + Android APK download instructions, matching the homepage look (Randy).
 - **Files:** site/stinkdoku-beta.html (new); docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md.
