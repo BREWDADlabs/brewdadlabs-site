@@ -1,11 +1,11 @@
 # AI Handoff
 
-_Last updated: 2026-11-10 ~10:47 PM ET (America/New_York): StinkDoku tester page is live at https://brewdadlabs.com/beta/
+_Last updated: 2026-11-10 ~11:13 PM ET (America/New_York): beta.brewdadlabs.com points at the StinkDoku tester page_
 
 ## Current state
 - Live: https://brewdadlabs.com and https://www.brewdadlabs.com, served by Cloudflare Pages project `brewdadlabs-site`.
 - Preview: https://preview.brewdadlabs-site.pages.dev (noindex).
-- DNS: apex and `www` are proxied CNAMEs to the Pages project. Before this, the apex was a placeholder record used only so the `/stinkdoku` redirect rules work; `www` did not exist.
+- DNS: apex, `www`, and `beta` are proxied CNAMEs to the Pages project (`brewdadlabs-site.pages.dev`). Before this, the apex was a placeholder record used only so the `/stinkdoku` redirect rules work; `www` did not exist.
 - The `/stinkdoku`, `/stinkdoku/privacy`, `/stinkdoku/support` redirects to play.stinkdoku.com still work.
 - Deploy: direct upload with Wrangler from `site/`. Not git-connected.
 
@@ -66,14 +66,14 @@ _Last updated: 2026-11-10 ~10:47 PM ET (America/New_York): StinkDoku tester page
   - Header mascot remains `public/art/mascot-head.webp` from `stinky-dragons` `origin/main`. The old static `dragon-04` / `dragon-06` files were removed from `/beta/` on this branch.
 - Email signup was removed (Randy, 10:44 PM ET: he doesn't want the email that badly). `functions/api/tester-signup.js` is gone, so `/api/tester-signup` should 404. The D1 databases `stinkdoku-android-testers` and `stinkdoku-android-testers-preview` still exist and were not deleted; they are just unbound. `wrangler.toml` is committed and has no D1 bindings. `functions/_middleware.js` remains for the planned beta subdomain.
 - `/stinkdoku-beta` points at `/beta` via `site/_redirects` (302) and a short fallback page.
-- `beta.brewdadlabs.com` is prepared but not attached. `functions/_middleware.js` will serve `/beta/` at the subdomain root once the domain exists. Do not add the custom domain or DNS until Randy approves.
+- `beta.brewdadlabs.com` is attached to Pages project `brewdadlabs-site` (Randy OK 11:09 PM ET). DNS record `5127a5daaef2499d036d1a463062f50f`: proxied CNAME `beta.brewdadlabs.com` → `brewdadlabs-site.pages.dev`. No other DNS, mail, redirect, or page-rule changes. Pages host verification is active. The Pages Google SSL validation was still pending a few minutes after attach; HTTPS already works because the zone's Universal SSL wildcard covers `*.brewdadlabs.com` (Let's Encrypt, SAN `*.brewdadlabs.com` and `brewdadlabs.com`).
 - play.stinkdoku.com is the live game only. It was not changed. Draft PR #59 stays a draft; a comment notes the move to brewdadlabs.
-- **Live in production** on https://brewdadlabs.com/beta/ and https://www.brewdadlabs.com/beta/ (Randy OK 10:46 PM ET: "make it live and send me a link. I don't need to see it first." Email-removed version only). Production deployment `3123393b-57c7-4bcd-a7fe-113fc3bc2d66` (Pages branch `main`, source `b1b2486`). Preview remains at https://beta-preview.brewdadlabs-site.pages.dev/beta/.
-- `beta.brewdadlabs.com` is still not attached. Do not add the custom domain or DNS until Randy approves.
+- **Live in production** on https://brewdadlabs.com/beta/ and https://www.brewdadlabs.com/beta/ (Randy OK 10:46 PM ET: "make it live and send me a link. I don't need to see it first." Email-removed version only), and on https://beta.brewdadlabs.com/ (HTML at `/`; use `/beta/` until the relative-asset rewrite is fixed). Production deployment `3123393b-57c7-4bcd-a7fe-113fc3bc2d66` (Pages branch `main`, source `b1b2486`). Preview remains at https://beta-preview.brewdadlabs-site.pages.dev/beta/.
+- **Subdomain root caveat:** `functions/_middleware.js` in production (deployment `3123393b`, source `b1b2486`, `uses_functions: true`) rewrites `https://beta.brewdadlabs.com/` to `/beta/` and returns the tester HTML (200, iPhone and Android sections, no email field). The HTML uses relative assets (`tester.js`, `art/*`), so those 404 at the subdomain root (`/tester.js`, `/art/...` fall through to the Gorillas 404). `https://beta.brewdadlabs.com/beta/` and `https://brewdadlabs.com/beta/` load the script and art correctly. Favicon and `/stinkdoku.apk` at the subdomain root work (root-absolute paths). Fixing the root assets needs a production deploy (not done; a preview is in flight on this branch). Meanwhile, share `https://beta.brewdadlabs.com/beta/` or `https://brewdadlabs.com/beta/`.
 - Git: production was a direct Pages upload. The feature branch `feature/android-tester-link` was not merged to `main`; this repo is not git-connected to Pages, and pushing does not deploy.
 
 ## Next
 - Randy reviews the sprite-sheet dragon preview at https://beta-preview.brewdadlabs-site.pages.dev/beta/. Production is unchanged until he OKs a main deploy.
-- Attaching `beta.brewdadlabs.com` is a separate DNS OK (not done).
+- `beta.brewdadlabs.com` is attached. A later production deploy should make relative `/beta/` assets load at the subdomain root (for example a `<base href="/beta/">`, root-absolute `/beta/...` paths, or a redirect of `/` to `/beta/`). Do not deploy until Randy OKs it; do not ship the in-progress sprite-sheet preview as that fix unless he also OKs that change.
 - Gorillas 404 rollout per the rollout doc, one domain at a time with Randy's OK (builds are ready).
 - Workshop log seed entries will be updated by Randy as real work happens.
