@@ -1,6 +1,6 @@
 # AI Handoff
 
-_Last updated: 2026-11-09 (America/New_York): StinkDoku beta tester page live at /stinkdoku-beta_
+_Last updated: 2026-11-10 ~9:45 PM ET (America/New_York): StinkDoku beta page preview adds two-platform feedback; production unchanged_
 
 ## Current state
 - Live: https://brewdadlabs.com and https://www.brewdadlabs.com, served by Cloudflare Pages project `brewdadlabs-site`.
@@ -56,6 +56,7 @@ _Last updated: 2026-11-09 (America/New_York): StinkDoku beta tester page live at
 - Kept at the site root on purpose: `/stinkdoku` and `/stinkdoku/*` are redirect rules to play.stinkdoku.com.
 
 ## StinkDoku beta page → Google Play tester page (PREVIEW ONLY, 2026-11-10)
-- Branch `feature/android-tester-link` (local commit, not pushed). Android card on `site/stinkdoku-beta.html` now sends testers to `https://play.stinkdoku.com/android-tester` (Google Group → Become a tester → install from Play; same Google account; 14 days in a row). The APK download stays as a small "Can't use Google Play?" sideload fallback.
+- Branch `feature/android-tester-link`. Android card on `site/stinkdoku-beta.html` sends testers to `https://play.stinkdoku.com/android-tester` (now a combined iPhone + Android guided page on PR #59; still 404 in production until that PR merges). The APK download stays as a small "Can't use Google Play?" sideload fallback. The iPhone card still has the direct TestFlight link `https://testflight.apple.com/join/M6JnK4b1`, plus a secondary "Open the tester page" link to the same guided page.
+- Added a short two-platform feedback block (matches the existing theme): "We want honest feedback"; iPhone: TestFlight (screenshot or Send Beta Feedback); Android: Google Play; or email support@brewdadlabs.com; plus "Tell us what's fun, what's confusing, and what breaks."
 - Preview: https://android-tester.brewdadlabs-site.pages.dev/stinkdoku-beta (Pages branch preview `android-tester`). Production (`main`, live `/stinkdoku-beta`) is unchanged.
-- **Ship order:** the play.stinkdoku.com tester page (stinky-dragons branch `feature/android-tester-page`) must be live first, otherwise this button 404s. Then, with Randy's OK, merge this branch and deploy `--branch main`.
+- **Ship order:** the play.stinkdoku.com tester page (stinky-dragons branch `feature/android-tester-page`, PR #59) must be live first, otherwise the guided-page buttons 404. Then, with Randy's OK, merge this branch and deploy `--branch main`.

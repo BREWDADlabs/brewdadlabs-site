@@ -82,3 +82,10 @@
 - **Summary:** Android card now says ANDROID // GOOGLE PLAY with a "BECOME AN ANDROID TESTER" button to `https://play.stinkdoku.com/android-tester`; the APK link is kept as a one-line sideload fallback. Meta description updated. No CSP or header change.
 - **Deploy:** Pages branch preview `android-tester` only. Production not deployed; `main` not pushed.
 - **Rollback:** drop the branch.
+
+## 2026-11-10 ~9:45 PM ET, Websites bot (beta page feedback ask, preview only)
+- **Goal:** add a short two-platform feedback ask to the StinkDoku beta page, and a secondary iPhone link to the combined tester page (Randy, 9:33 PM ET). Preview only.
+- **Files:** site/stinkdoku-beta.html; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md.
+- **Summary:** new "We want honest feedback" block under the install cards: iPhone → TestFlight feedback (screenshot or Send Beta Feedback); Android → Google Play feedback; or email support@brewdadlabs.com; plus "Tell us what's fun, what's confusing, and what breaks." iPhone card keeps the direct TestFlight join link and adds a secondary "Open the tester page" link to `https://play.stinkdoku.com/android-tester`. Theme, TestFlight URL, Android Play button, and APK fallback unchanged.
+- **Deploy:** Pages branch preview `android-tester` only (`wrangler pages deploy --branch android-tester`). Production not deployed; `main` not pushed.
+- **Rollback:** redeploy the previous `android-tester` preview, or drop the branch.
