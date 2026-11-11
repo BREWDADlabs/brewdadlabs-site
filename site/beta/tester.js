@@ -1,15 +1,19 @@
 // StinkDoku beta tester page (site/beta/index.html → /beta/).
-// Flow: retro terminal boot (always plays; there is no button to skip the
-// boot animation; prefers-reduced-motion prints instantly) -> BOTH iPhone
-// and Android sections on the same page, in that fixed order, with equal
-// weight. Each section has its own big buttons and its own per-step
-// localStorage progress, so a tester can finish both. The page never
-// reorders by phone type.
+// Flow: StinkDoku Design's animated dragon intro (v1.2) plays at the top
+// (prefers-reduced-motion shows the composed still). The intro's Skip
+// button is kept for this preview; Randy earlier said he did not want a
+// skip-animation control. The intro's "Become a tester" button scrolls
+// to the iPhone and Android sections on this same page. There is no
+// terminal boot animation and no email signup.
+// BOTH iPhone and Android sections are on the same page, in that fixed
+// order, with equal weight. Each section has its own big buttons and its
+// own per-step localStorage progress, so a tester can finish both. The
+// page never reorders by phone type.
 // A click on a step button arms an auto-advance on visibilitychange or focus
 // once this tab has been hidden. "I did this, next" is the fallback.
 // Testers must join the group, tap "Become a tester", and accept TestFlight
 // themselves; this page only opens the official pages and never tries to join
-// or opt in for them. There is no email signup.
+// or opt in for them.
 (() => {
   'use strict';
   const $ = (id) => document.getElementById(id);
@@ -57,15 +61,6 @@
     await wait(reduceMotion ? 0 : 450);
   }
 
-  const bootScript = [
-    { text: 'BREWDAD LABS // STINKDOKU TEST UNIT', pause: 220 },
-    { text: 'POWER ON ................ OK' },
-    { text: 'WAKING DRAGONS .......... 10 FOUND' },
-    { text: 'IPHONE + ANDROID ........ READY' },
-    { text: '>> OPTICAL SENSOR ONLINE', cls: 'red', pause: 260 },
-    { text: 'LOADING TESTER STEPS .... OK' },
-    { text: '> BOTH TRACKS ONLINE', pause: 200 },
-  ];
 
   function readProgress() {
     const empty = { ios: 1, android: 1 };
@@ -98,7 +93,7 @@
   }
 
   function revealTerminal() {
-    $('intro').hidden = true;
+    $('loading').hidden = true;
     const term = $('term');
     term.hidden = false;
     term.setAttribute('aria-hidden', 'false');
@@ -188,22 +183,39 @@
     }, 300);
   }
 
-  async function startHandoff() {
-    revealTerminal();
-    $('step-panel').hidden = true;
-    $('term').classList.remove('ready');
-    $('term-label').textContent = 'STINKDOKU TEST UNIT';
-    await playTerminal(bootScript, 'Starting the tester steps');
-    showTracks();
-    playDragonMoment('pop');
-  }
-
-  async function startOver() {
+  function startOver() {
     if (moving) return;
     clearProgress();
     lastPlatform = '';
     $('back').hidden = true;
-    await startHandoff();
+    showTracks();
+    playDragonMoment('pop');
+    const intro = window.SD_INTRO;
+    if (!intro) return;
+    if (reduceMotion && typeof intro.showStill === 'function') intro.showStill();
+    else if (typeof intro.replay === 'function') intro.replay();
+  }
+
+  function mountIntro() {
+    if (typeof StinkDokuIntro === 'undefined' || !document.getElementById('stinkdoku-intro')) return;
+    const intro = StinkDokuIntro.mount('#stinkdoku-intro', {
+      assetBase: 'assets/',
+      ctaHref: '#tester-steps',
+      onCta: function (e) {
+        const target = $('tester-steps') || $('term');
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      },
+    });
+    window.SD_INTRO = intro;
+    // Returning testers already have the steps in view; jump the intro to
+    // its settled still so they are not made to watch it again.
+    if (hasSavedProgress() && intro && intro.ready) {
+      intro.ready.then(function () {
+        if (typeof intro.skip === 'function') intro.skip();
+      }).catch(function () { /* intro assets failed; steps still work */ });
+    }
   }
 
 
@@ -340,14 +352,8 @@
     window.addEventListener('focus', onMaybeReturn);
 
     $('loading').hidden = true;
-
-    if (hasSavedProgress()) {
-      lastPlatform = '';
-      showTracks();
-      return;
-    }
-
-    startHandoff();
+    showTracks();
+    mountIntro();
   }
 
   init();

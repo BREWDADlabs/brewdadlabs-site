@@ -1,11 +1,11 @@
 # AI Handoff
 
-_Last updated: 2026-11-10 ~10:45 PM ET (America/New_York): /beta/ preview has no email signup; production unchanged_
+_Last updated: 2026-11-11 ~1:10 AM ET (America/New_York): preview of Design's v1.2 dragon intro on /beta/ (production unchanged)_
 
 ## Current state
 - Live: https://brewdadlabs.com and https://www.brewdadlabs.com, served by Cloudflare Pages project `brewdadlabs-site`.
 - Preview: https://preview.brewdadlabs-site.pages.dev (noindex).
-- DNS: apex and `www` are proxied CNAMEs to the Pages project. Before this, the apex was a placeholder record used only so the `/stinkdoku` redirect rules work; `www` did not exist.
+- DNS: apex, `www`, and `beta` are proxied CNAMEs to the Pages project (`brewdadlabs-site.pages.dev`). Before this, the apex was a placeholder record used only so the `/stinkdoku` redirect rules work; `www` did not exist.
 - The `/stinkdoku`, `/stinkdoku/privacy`, `/stinkdoku/support` redirects to play.stinkdoku.com still work.
 - Deploy: direct upload with Wrangler from `site/`. Not git-connected.
 
@@ -44,37 +44,46 @@ _Last updated: 2026-11-10 ~10:45 PM ET (America/New_York): /beta/ preview has no
 - Favicon is live (Randy thumbs-upped the draft 2026-11-05).
 - Workshop log seed entries will be updated by Randy as real work happens.
 
-## StinkDoku beta tester page (LIVE)
-- Path: `/stinkdoku-beta` → `site/stinkdoku-beta.html` (Cloudflare Pages pretty URL). Does not collide with `/stinkdoku` (still 302 → play.stinkdoku.com).
-- Content: short beta intro; iOS TestFlight `https://testflight.apple.com/join/M6JnK4b1`; Android download `/stinkdoku.apk` with install-unknown-apps steps. Matches homepage CSS (Share Tech Mono, `#00ff9c`, grid background, card layout). `noindex` meta.
-- APK at `/stinkdoku.apk` unchanged and still live in production.
-- **Live in production** on brewdadlabs.com and www (Randy OK 2026-11-09 ~7:38 PM ET). Preview still at https://preview.brewdadlabs-site.pages.dev/stinkdoku-beta.
+## StinkDoku beta tester page (LIVE, moved to /beta/)
+- Path: `/beta/` → `site/beta/index.html`. `/stinkdoku-beta` 302s to `/beta` (already live on the apex and www; the domain did not serve a stale copy). Does not collide with `/stinkdoku` (still 302 → play.stinkdoku.com).
+- APK at `/stinkdoku.apk` unchanged and still live in production (9,817,282 bytes).
 
 ## StinkDoku Android APK (LIVE)
 - https://brewdadlabs.com/stinkdoku.apk (also on www): `site/stinkdoku.apk`, served as `application/vnd.android.package-archive` with `Content-Disposition: attachment; filename="StinkDoku.apk"` via `site/_headers`.
 - To ship a new build, replace `site/stinkdoku.apk` (keep the name), deploy preview then `main`, and recheck the headers with curl.
 - Kept at the site root on purpose: `/stinkdoku` and `/stinkdoku/*` are redirect rules to play.stinkdoku.com.
 
-## StinkDoku tester page at /beta/ (PREVIEW ONLY, 2026-11-10 ~10:30 PM ET)
-- Path: `/beta/` → `site/beta/index.html`, plus `site/beta/tester.js` and `site/beta/art/`. The terminal look from draft PR geekdadteach/stinky-dragons#59 is kept (CRT chrome, scanlines, red eye, boot animation that always plays, reduced motion honored). There is no email signup and no skip-animation button. The page goes straight to the boot animation, then the iPhone and Android sections.
-- After the boot animation, iPhone and Android are both on the same page, in that fixed order, with equal weight. Each section has its own big buttons and its own per-step localStorage progress, so a tester can do both. The page does not guess or reorder by phone type, and there are no switch-platform buttons.
+## StinkDoku tester page at /beta/ (LIVE, 2026-11-10 ~10:47 PM ET)
+- Path: `/beta/` → `site/beta/index.html`, plus `site/beta/tester.js` and `site/beta/art/`. The terminal look from draft PR geekdadteach/stinky-dragons#59 is kept (CRT chrome, scanlines, red eye). There is no email signup. Production still plays the original terminal boot animation (no skip button; reduced motion prints instantly), then the iPhone and Android sections.
+- After the boot (production) or under the dragon intro (this preview), iPhone and Android are both on the same page, in that fixed order, with equal weight. Each section has its own big buttons and its own per-step localStorage progress, so a tester can do both. The page does not guess or reorder by phone type, and there are no switch-platform buttons.
 - iPhone: install TestFlight, open https://testflight.apple.com/join/M6JnK4b1, open StinkDoku.
 - Android: join https://groups.google.com/g/stinkdoku-testers (address shown), opt in at the Play testing URL, install from the Play store listing. Auto-advance when the tester comes back to the tab, with an "I did this, next" fallback. Same-account / 14-day / 12-tester rules are on the Android section. A small "Can't use Google Play?" link goes to `/stinkdoku.apk`.
 - Feedback: "Tell us what's fun, what's confusing, and what breaks." TestFlight, Google Play, or support@brewdadlabs.com.
 - Privacy lead: "No ads. No in-app purchases. Online features use a random player id and device id." No absolute no-tracking claims.
-- Two small dragon moments (they do not redesign the page, they never block buttons, and they turn off under reduced motion):
-  - `dragon-04-aqua-red-orange.webp` pops up from the bottom and kicks a sudoku tile.
-  - `dragon-06-sky-orange-peach.webp` flies across the top and kicks a tile.
-  - Both are self-hosted copies of the public sprites on `stinky-dragons` `origin/main` (`public/art/dragons/`, landed via #53; not PR #55 draft art). The header mascot is `public/art/mascot-head.webp` from the same main tree.
-- Email signup was removed (Randy, 10:44 PM ET: he doesn't want the email that badly). `functions/api/tester-signup.js` is gone, so `/api/tester-signup` should 404. The D1 databases `stinkdoku-android-testers` and `stinkdoku-android-testers-preview` still exist and were not deleted; they are just unbound. `wrangler.toml` is committed and has no D1 bindings. `functions/_middleware.js` remains for the planned beta subdomain.
+- Production still uses the two static-sprite dragon moments on step changes (`art/dragon-04-aqua-red-orange.webp` pops up and kicks a tile; `art/dragon-06-sky-orange-peach.webp` flies over and kicks a tile). They never block buttons and are off under reduced motion. Header mascot remains `public/art/mascot-head.webp` from `stinky-dragons` `origin/main`.
+- A separate unapproved preview of sprite-sheet moments (`694ec5f`, `dragon-player.js`) lives only on `feature/android-tester-link` and the `beta-preview` Pages alias. This branch does not include it.
+- Email signup was removed (Randy, 10:44 PM ET: he doesn't want the email that badly). `functions/api/tester-signup.js` is gone, so `/api/tester-signup` should 404. The D1 databases `stinkdoku-android-testers` and `stinkdoku-android-testers-preview` still exist and were not deleted; they are just unbound. `wrangler.toml` is committed and has no D1 bindings. `functions/_middleware.js` 302-redirects `beta.brewdadlabs.com/` to `/beta/`.
 - `/stinkdoku-beta` points at `/beta` via `site/_redirects` (302) and a short fallback page.
-- `beta.brewdadlabs.com` is prepared but not attached. `functions/_middleware.js` will serve `/beta/` at the subdomain root once the domain exists. Do not add the custom domain or DNS until Randy approves.
+- `beta.brewdadlabs.com` is attached to Pages project `brewdadlabs-site` (Randy OK 11:09 PM ET). DNS record `5127a5daaef2499d036d1a463062f50f`: proxied CNAME `beta.brewdadlabs.com` → `brewdadlabs-site.pages.dev`. No other DNS, mail, redirect, or page-rule changes. Pages domain status is `active`; host verification and Google SSL validation are both `active`.
 - play.stinkdoku.com is the live game only. It was not changed. Draft PR #59 stays a draft; a comment notes the move to brewdadlabs.
-- Preview: `wrangler pages deploy --project-name brewdadlabs-site --branch beta-preview` (never `main`). Expected URL: https://beta-preview.brewdadlabs-site.pages.dev/beta/
-- Production (`main`, live `/stinkdoku-beta`) is unchanged until Randy OKs a main deploy.
+- **Live in production** on https://brewdadlabs.com/beta/, https://www.brewdadlabs.com/beta/, and https://beta.brewdadlabs.com/ (Randy OK 10:46 PM ET to publish `/beta/`; 11:09 PM ET to attach the subdomain, including a later hotfix so the root works). Current production deployment `db6a4412-dacb-489c-acff-c4a9fdf737cd` (Pages branch `main`, source hotfix commit `829b9fb`, which is `b1b2486` plus the root redirect). The live tester page is still the terminal-boot + static-sprite build; `tester.js` sha256 `c332e3fa8ed301e2a64383898feddcb4e8b436d8b7375f9d5980dce9be95226f`.
+- **Subdomain root (fixed 11:15 PM ET):** `functions/_middleware.js` now 302-redirects `https://beta.brewdadlabs.com/` (and `/?…`) to `/beta/` (query string kept). That was a rewrite before, which left relative `tester.js` and `art/*` 404ing at the root. Share https://beta.brewdadlabs.com/ — it lands on `/beta/` with the script and the old static dragon sprites loading. The hotfix was committed on `hotfix/beta-subdomain-root` (`829b9fb`) from a worktree of `b1b2486` only; it does not include the unapproved sprite-sheet preview (`694ec5f`).
+- Git: production was a direct Pages upload. Neither `feature/android-tester-link` nor `feature/beta-dragon-intro` is merged to `main`; this repo is not git-connected to Pages, and pushing does not deploy.
+
+## StinkDoku /beta/ animated dragon intro (PREVIEW ONLY, 2026-11-11 ~1:10 AM ET)
+- Branch `feature/beta-dragon-intro`, started from production commit `829b9fb` in a separate worktree. It does not include `694ec5f`.
+- Replaces only the terminal boot animation at the top of `/beta/` with StinkDoku Design's v1.2 intro. Files: `site/beta/intro.css`, `site/beta/intro.js`, and `site/beta/assets/` (1,255,727 bytes / 1.198 MB). Design's files were copied unchanged (no `preview.mp4` or `stills/`).
+- The intro mounts in `#stinkdoku-intro` under the header. Its "Become a tester" button scrolls to `#tester-steps`, the existing iPhone and Android sections on the same page. There is no signup endpoint and no email step.
+- Those sections stay visible in the existing terminal chrome while the intro plays. "Start over" replays the intro and resets step progress. Returning testers with saved progress jump the intro to its settled state.
+- `prefers-reduced-motion: reduce` shows `assets/reduced-motion.webp` (the family scene with the five dragons on the frame) with the StinkDoku mark and CTA already visible.
+- Design's Skip button (and Escape) is kept in this preview, even though Randy earlier said he did not want a skip-animation button. It is easy to remove later: the button is one line of markup inside `StinkDokuIntro.mount` in `intro.js`, plus the Escape key listener in the same file, plus the `.sd-intro-skip` rules in `intro.css`. No other page files need to change.
+- The small static-sprite pop/fly moments on step changes are unchanged from production.
+- Preview deploy: `npx wrangler pages deploy site --project-name brewdadlabs-site --branch dragon-intro-preview` (never `main`).
+  - Branch alias: https://dragon-intro-preview.brewdadlabs-site.pages.dev/beta/
+  - Hash URL: https://7ba5acf3.brewdadlabs-site.pages.dev/beta/
 
 ## Next
-- Randy reviews the `/beta/` preview (no email signup, both phones on one page, terminal unchanged, two dragon moments).
-- If he OKs it, deploy production with `--branch main` (commands are in the changelog). Attaching `beta.brewdadlabs.com` is a separate DNS OK.
+- Randy reviews the v1.2 dragon intro preview. Do not deploy `--branch main` until he explicitly OKs it. The heart on an earlier message was not approval to publish.
+- The older sprite-sheet moment preview (`694ec5f`) remains on `feature/android-tester-link` / https://beta-preview.brewdadlabs-site.pages.dev/beta/ and is also not for production until he OKs it.
 - Gorillas 404 rollout per the rollout doc, one domain at a time with Randy's OK (builds are ready).
 - Workshop log seed entries will be updated by Randy as real work happens.
