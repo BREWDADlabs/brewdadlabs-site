@@ -1,0 +1,5 @@
+# Cloudflare Pages project. Deploy is direct upload from this repo.
+# Do not deploy --branch main without Randy's OK.
+name = "brewdadlabs-site"
+pages_build_output_dir = "site"
+compatibility_date = "2026-11-04"

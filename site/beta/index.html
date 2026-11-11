@@ -25,21 +25,12 @@
   h2{font-size:18px;margin:0 0 8px;color:#fff}
   p,li{line-height:1.55;font-size:15px;margin:0 0 10px}
   .muted{color:var(--muted);font-size:14px}
-  label{display:block;font-weight:800;margin:0 0 6px}
-  input[type=email]{width:100%;font:inherit;font-size:16px;padding:13px 14px;border-radius:14px;border:1.5px solid var(--line);background:#10231f;color:var(--ink)}
-  .check{display:flex;gap:10px;align-items:flex-start;margin:12px 0 4px;font-weight:600;font-size:14px;line-height:1.45}
-  .check input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--accent)}
   .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
   .row{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 18px;border-radius:16px;border:0;font:inherit;font-weight:900;font-size:16px;text-decoration:none;cursor:pointer;background:var(--go);color:var(--on-go)}
   .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
-  .btn[aria-disabled=true]{opacity:.55;cursor:default}
   a{color:var(--go)}
   :focus-visible{outline:3px solid var(--focus);outline-offset:2px}
-  .msg{min-height:1.4em;margin:10px 0 0;font-size:14px;font-weight:700}
-  .msg.err{color:#ffb4a8}
-  .msg.ok{color:var(--go)}
-  .consent{background:#132a25;border:1.5px solid var(--line);border-radius:14px;padding:11px 13px;margin:12px 0 0;font-size:13.5px;color:var(--muted);line-height:1.5}
   /* Retro handset terminal */
   .term{position:relative;background:var(--crt);border:3px solid #2b2f2d;border-radius:18px;padding:16px 16px 14px;box-shadow:inset 0 0 0 2px #0b130e,inset 0 0 40px rgba(93,255,138,.08),0 14px 38px rgba(0,0,0,.45);overflow:hidden;margin:0 0 16px}
   .term::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0 2px,rgba(0,0,0,.28) 2px 3px)}
@@ -121,24 +112,6 @@
     <p class="muted" id="loading">Loading…</p>
   </section>
 
-  <section class="card" id="email-step" hidden aria-labelledby="email-h">
-    <h2 id="email-h">Want a reminder? (optional)</h2>
-    <form id="email-form" novalidate>
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="you@example.com">
-      <div class="hp" aria-hidden="true">
-        <label for="website">Leave this empty</label>
-        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-      </div>
-      <label class="check"><input type="checkbox" id="consent" name="consent"> <span>It's OK to email me about StinkDoku testing.</span></label>
-      <p class="consent">Optional. We'll only store your email and the time you signed up, on Cloudflare, and only use it for StinkDoku tester reminders. No automatic emails, no marketing, never shared or sold. It's deleted when testing ends, or sooner if you ask: email <a href="mailto:support@brewdadlabs.com">support@brewdadlabs.com</a>.</p>
-      <div class="row">
-        <button class="btn" type="submit" id="save">Save and continue</button>
-        <button class="btn ghost" type="button" id="skip-email">Skip, no email</button>
-      </div>
-      <p class="msg" id="email-msg" role="status" aria-live="polite"></p>
-    </form>
-  </section>
 
   <section class="term" id="term" hidden aria-hidden="true">
     <div class="term-top"><span id="term-label">STINKDOKU TEST UNIT</span><span class="eye"></span></div>

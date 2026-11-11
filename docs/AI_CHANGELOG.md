@@ -1,5 +1,15 @@
 # AI Changelog
 
+## 2026-11-10 ~10:45 PM ET, Websites bot (remove tester email signup from /beta/, preview only)
+- **Goal:** Randy (10:44 PM ET): take the extra email step off; he doesn't want the email that badly.
+- **Files:** site/beta/index.html, site/beta/tester.js; functions/api/tester-signup.js (deleted); wrangler.toml (committed, no D1 bindings); wrangler.toml.example (removed); .gitignore; AGENTS.md; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md. `functions/_middleware.js` unchanged.
+- **Summary:** `/beta/` now goes straight to the boot animation, then the iPhone and Android sections. Signup UI, consent text, tester-signup privacy note, and the signup Function are gone, so a later production deploy will not expose `/api/tester-signup`. The unused tester D1 databases were left in place and only unbound. Terminal look, dragons, both phone sections, feedback line, rules, APK fallback, privacy lead, and the `/stinkdoku-beta` redirect are unchanged.
+- **Tests:** preview `/beta/` has no email field; preview `/api/tester-signup` is 404; production https://brewdadlabs.com and https://play.stinkdoku.com confirmed unchanged.
+- **Deploy:** Pages branch preview `beta-preview` only (`wrangler pages deploy site --project-name brewdadlabs-site --branch beta-preview`). Production not deployed; `main` not merged.
+- **Rollback:** redeploy the previous `beta-preview` preview, or revert this commit and redeploy the preview. Production is untouched.
+- **Production publish (do not run until Randy OKs):** from `/Users/test/sites/brewdadlabs-site`, `npx wrangler pages deploy site --project-name brewdadlabs-site --branch main`. Then curl https://brewdadlabs.com/beta/ (200, tester page, no email field), https://brewdadlabs.com/api/tester-signup (404), https://brewdadlabs.com/stinkdoku-beta (302 to /beta), https://brewdadlabs.com/stinkdoku.apk (unchanged), https://play.stinkdoku.com/ (unchanged). Attaching beta.brewdadlabs.com is a separate DNS step and still needs his OK.
+
+
 ## 2026-11-10 ~10:30 PM ET, Websites bot (StinkDoku tester page → /beta/ on brewdadlabs, preview only)
 - **Goal:** Move the full tester flow (email signup on, iPhone + Android on one page, terminal look kept, two small dragon moments) to brewdadlabs.com/beta, plus a planned beta.brewdadlabs.com subdomain. play.stinkdoku.com stays the live game and is not touched. Preview only.
 - **Files:** site/beta/index.html, site/beta/tester.js, site/beta/art/{dragon-04-aqua-red-orange.webp,dragon-06-sky-orange-peach.webp,mascot-head.webp} (new); functions/api/tester-signup.js, functions/_middleware.js (new); site/_redirects (new); site/_headers; site/stinkdoku-beta.html; wrangler.toml.example (new); .gitignore; AGENTS.md; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md. Local gitignored wrangler.toml holds the D1 bindings.

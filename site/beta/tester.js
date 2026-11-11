@@ -1,15 +1,15 @@
 // StinkDoku beta tester page (site/beta/index.html → /beta/).
-// Flow: optional email (always offered; testers can skip) -> retro terminal
-// boot (always plays; there is no button to skip the boot animation;
-// prefers-reduced-motion prints instantly) -> BOTH iPhone and Android
-// sections on the same page, in that fixed order, with equal weight.
-// Each section has its own big buttons and its own per-step localStorage
-// progress, so a tester can finish both. The page never reorders by phone type.
+// Flow: retro terminal boot (always plays; there is no button to skip the
+// boot animation; prefers-reduced-motion prints instantly) -> BOTH iPhone
+// and Android sections on the same page, in that fixed order, with equal
+// weight. Each section has its own big buttons and its own per-step
+// localStorage progress, so a tester can finish both. The page never
+// reorders by phone type.
 // A click on a step button arms an auto-advance on visibilitychange or focus
 // once this tab has been hidden. "I did this, next" is the fallback.
 // Testers must join the group, tap "Become a tester", and accept TestFlight
 // themselves; this page only opens the official pages and never tries to join
-// or opt in for them. Nothing here sends email.
+// or opt in for them. There is no email signup.
 (() => {
   'use strict';
   const $ = (id) => document.getElementById(id);
@@ -99,7 +99,6 @@
 
   function revealTerminal() {
     $('intro').hidden = true;
-    $('email-step').hidden = true;
     const term = $('term');
     term.hidden = false;
     term.setAttribute('aria-hidden', 'false');
@@ -207,47 +206,6 @@
     await startHandoff();
   }
 
-  function setupEmail() {
-    const form = $('email-form');
-    const msg = $('email-msg');
-    let busy = false;
-    $('skip-email').addEventListener('click', () => { startHandoff(); });
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      if (busy) return;
-      const email = $('email').value.trim();
-      msg.className = 'msg';
-      if (!email) { msg.textContent = 'Type an email, or tap "Skip, no email".'; msg.classList.add('err'); return; }
-      if (!$('consent').checked) { msg.textContent = 'Please tick the box so we know it is OK to email you.'; msg.classList.add('err'); return; }
-      busy = true;
-      $('save').setAttribute('aria-disabled', 'true');
-      msg.textContent = 'Saving…';
-      try {
-        const res = await fetch('/api/tester-signup', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, consent: true, website: $('website').value }),
-        });
-        if (res.ok) {
-          msg.textContent = 'Saved. Thank you!';
-          msg.classList.add('ok');
-          setTimeout(startHandoff, 500);
-          return;
-        }
-        const data = await res.json().catch(() => ({}));
-        msg.textContent = data.error === 'bad_email' ? "That email doesn't look right. Check it, or skip."
-          : data.error === 'rate_limited' ? 'Too many tries. Wait a minute, or skip.'
-          : "Couldn't save right now. You can skip and keep going.";
-        msg.classList.add('err');
-      } catch {
-        msg.textContent = "Couldn't reach the server. You can skip and keep going.";
-        msg.classList.add('err');
-      } finally {
-        busy = false;
-        $('save').removeAttribute('aria-disabled');
-      }
-    });
-  }
 
   function setupDragons() {
     const layer = $('dragon-layer');
@@ -389,8 +347,7 @@
       return;
     }
 
-    $('email-step').hidden = false;
-    setupEmail();
+    startHandoff();
   }
 
   init();

@@ -1,6 +1,6 @@
 # AI Handoff
 
-_Last updated: 2026-11-10 ~10:30 PM ET (America/New_York): StinkDoku tester flow preview at /beta/ on brewdadlabs-site; production unchanged_
+_Last updated: 2026-11-10 ~10:45 PM ET (America/New_York): /beta/ preview has no email signup; production unchanged_
 
 ## Current state
 - Live: https://brewdadlabs.com and https://www.brewdadlabs.com, served by Cloudflare Pages project `brewdadlabs-site`.
@@ -56,8 +56,8 @@ _Last updated: 2026-11-10 ~10:30 PM ET (America/New_York): StinkDoku tester flow
 - Kept at the site root on purpose: `/stinkdoku` and `/stinkdoku/*` are redirect rules to play.stinkdoku.com.
 
 ## StinkDoku tester page at /beta/ (PREVIEW ONLY, 2026-11-10 ~10:30 PM ET)
-- Path: `/beta/` → `site/beta/index.html`, plus `site/beta/tester.js` and `site/beta/art/`. The terminal look from draft PR geekdadteach/stinky-dragons#59 is kept (CRT chrome, scanlines, red eye, boot animation that always plays, reduced motion honored). Email signup stays on. There is no skip-animation button.
-- After the optional email step and the boot animation, iPhone and Android are both on the same page, in that fixed order, with equal weight. Each section has its own big buttons and its own per-step localStorage progress, so a tester can do both. The page does not guess or reorder by phone type, and there are no switch-platform buttons.
+- Path: `/beta/` → `site/beta/index.html`, plus `site/beta/tester.js` and `site/beta/art/`. The terminal look from draft PR geekdadteach/stinky-dragons#59 is kept (CRT chrome, scanlines, red eye, boot animation that always plays, reduced motion honored). There is no email signup and no skip-animation button. The page goes straight to the boot animation, then the iPhone and Android sections.
+- After the boot animation, iPhone and Android are both on the same page, in that fixed order, with equal weight. Each section has its own big buttons and its own per-step localStorage progress, so a tester can do both. The page does not guess or reorder by phone type, and there are no switch-platform buttons.
 - iPhone: install TestFlight, open https://testflight.apple.com/join/M6JnK4b1, open StinkDoku.
 - Android: join https://groups.google.com/g/stinkdoku-testers (address shown), opt in at the Play testing URL, install from the Play store listing. Auto-advance when the tester comes back to the tab, with an "I did this, next" fallback. Same-account / 14-day / 12-tester rules are on the Android section. A small "Can't use Google Play?" link goes to `/stinkdoku.apk`.
 - Feedback: "Tell us what's fun, what's confusing, and what breaks." TestFlight, Google Play, or support@brewdadlabs.com.
@@ -66,7 +66,7 @@ _Last updated: 2026-11-10 ~10:30 PM ET (America/New_York): StinkDoku tester flow
   - `dragon-04-aqua-red-orange.webp` pops up from the bottom and kicks a sudoku tile.
   - `dragon-06-sky-orange-peach.webp` flies across the top and kicks a tile.
   - Both are self-hosted copies of the public sprites on `stinky-dragons` `origin/main` (`public/art/dragons/`, landed via #53; not PR #55 draft art). The header mascot is `public/art/mascot-head.webp` from the same main tree.
-- Email backend: Pages Function `functions/api/tester-signup.js` (POST `/api/tester-signup`). Requires consent, validates the email, has a honeypot, and uses a simple in-memory rate limit keyed by IP. Only the email and a timestamp are stored. No IP is written to the database. Preview bindings use D1 `stinkdoku-android-testers-preview`; a later production deploy would use `stinkdoku-android-testers`. The local `wrangler.toml` (gitignored; see `wrangler.toml.example`) is how those bindings are set. The preview must never write to the production testers database.
+- Email signup was removed (Randy, 10:44 PM ET: he doesn't want the email that badly). `functions/api/tester-signup.js` is gone, so `/api/tester-signup` should 404. The D1 databases `stinkdoku-android-testers` and `stinkdoku-android-testers-preview` still exist and were not deleted; they are just unbound. `wrangler.toml` is committed and has no D1 bindings. `functions/_middleware.js` remains for the planned beta subdomain.
 - `/stinkdoku-beta` points at `/beta` via `site/_redirects` (302) and a short fallback page.
 - `beta.brewdadlabs.com` is prepared but not attached. `functions/_middleware.js` will serve `/beta/` at the subdomain root once the domain exists. Do not add the custom domain or DNS until Randy approves.
 - play.stinkdoku.com is the live game only. It was not changed. Draft PR #59 stays a draft; a comment notes the move to brewdadlabs.
@@ -74,7 +74,7 @@ _Last updated: 2026-11-10 ~10:30 PM ET (America/New_York): StinkDoku tester flow
 - Production (`main`, live `/stinkdoku-beta`) is unchanged until Randy OKs a main deploy.
 
 ## Next
-- Randy reviews the `/beta/` preview (email on, both phones on one page, terminal unchanged, two dragon moments).
+- Randy reviews the `/beta/` preview (no email signup, both phones on one page, terminal unchanged, two dragon moments).
 - If he OKs it, deploy production with `--branch main` (commands are in the changelog). Attaching `beta.brewdadlabs.com` is a separate DNS OK.
 - Gorillas 404 rollout per the rollout doc, one domain at a time with Randy's OK (builds are ready).
 - Workshop log seed entries will be updated by Randy as real work happens.
