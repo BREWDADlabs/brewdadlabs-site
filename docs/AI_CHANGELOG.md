@@ -1,5 +1,14 @@
 # AI Changelog
 
+## 2026-11-10 ~11:16 PM ET, Websites bot (hotfix: beta.brewdadlabs.com / → /beta/)
+- **Goal:** Finish Randy's approved beta.brewdadlabs.com setup by fixing broken relative assets at the subdomain root. Counts as part of his OK to point the subdomain at the same tester page.
+- **Files:** functions/_middleware.js (hotfix commit `829b9fb` on `hotfix/beta-subdomain-root`, cherry-picked to `feature/android-tester-link`). docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md (this branch only).
+- **Summary:** In a separate worktree based exactly on production commit `b1b2486` (no `694ec5f` sprite-sheet preview), changed the beta-host `/` handler from an internal rewrite to a 302 redirect to `/beta/`, keeping any query string. Nothing else in that tree differed from `b1b2486`. `wrangler.toml` has no D1 bindings (the email signup Function was already removed). Deployed production from that worktree with `npx wrangler pages deploy site --project-name brewdadlabs-site --branch main`.
+- **Tests:** `https://beta.brewdadlabs.com/` 302 Location `https://beta.brewdadlabs.com/beta/` (`/?foo=bar` → `/beta/?foo=bar`). `/beta/` 200, title "StinkDoku — Become a tester", iPhone and Android sections, no email field; `tester.js` and the static dragon/mascot art 200 under `/beta/` (`tester.js` sha256 `c332e3fa8ed301e2a64383898feddcb4e8b436d8b7375f9d5980dce9be95226f`, matches `b1b2486` and `https://brewdadlabs.com/beta/tester.js`). Apex `/` still the workshop homepage; `/beta/` unchanged; `/stinkdoku-beta` 302 to `/beta`; `/stinkdoku.apk` 200, 9,817,282 bytes, sha256 `b908b8276d9ba4e8e3a55905d9a3f5f03a71e9ac86b0839f76879debaf6ea565`. Old sprites `dragon-04` and `dragon-06` still 200; preview `dragon-03` sheets and `dragon-player.js` 404 on production. play.stinkdoku.com untouched. Pages domain `beta.brewdadlabs.com` is now `active` (verification and Google SSL validation both `active`).
+- **Deploy:** production (`main`), deployment `db6a4412-dacb-489c-acff-c4a9fdf737cd`, source `829b9fb`. The `beta-preview` branch was not redeployed from this hotfix.
+- **Rollback:** redeploy previous production deployment `3123393b-57c7-4bcd-a7fe-113fc3bc2d66` from the Pages dashboard.
+- **Git:** pushed `hotfix/beta-subdomain-root` (`829b9fb`). Rebased local docs commit `f62442f` onto `origin/feature/android-tester-link` (already up to date), cherry-picked the hotfix, updated these docs, and pushed `feature/android-tester-link`.
+
 ## 2026-11-10 ~11:13 PM ET, Websites bot (attach beta.brewdadlabs.com)
 - **Goal:** Randy approved (11:09 PM ET) adding `beta.brewdadlabs.com` pointing at the live StinkDoku tester page.
 - **Files:** docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md. No site, Function, or production deploy.
