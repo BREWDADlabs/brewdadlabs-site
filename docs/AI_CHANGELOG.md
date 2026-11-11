@@ -89,3 +89,12 @@
 - **Summary:** new "We want honest feedback" block under the install cards: iPhone → TestFlight feedback (screenshot or Send Beta Feedback); Android → Google Play feedback; or email support@brewdadlabs.com; plus "Tell us what's fun, what's confusing, and what breaks." iPhone card keeps the direct TestFlight join link and adds a secondary "Open the tester page" link to `https://play.stinkdoku.com/android-tester`. Theme, TestFlight URL, Android Play button, and APK fallback unchanged.
 - **Deploy:** Pages branch preview `android-tester` only (`wrangler pages deploy --branch android-tester`). Production not deployed; `main` not pushed.
 - **Rollback:** redeploy the previous `android-tester` preview, or drop the branch.
+
+## 2026-11-10 ~9:45 PM ET, Websites bot (soften beta-page privacy wording, preview only)
+- **Goal:** separate wording change for Randy to approve. The beta page lead made an absolute privacy claim ("no trackers, no accounts"). Soften it; do not claim no tracking or no telemetry.
+- **Files:** site/stinkdoku-beta.html; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md.
+- **Before:** "This page is for beta testers. Pick your phone, install the build, and play. No ads, no trackers, no accounts."
+- **After:** "This page is for beta testers. Pick your phone, install the build, and play. No ads. No in-app purchases. Online features use a random player id and device id."
+- **Checked:** that was the only absolute no-tracking / no-telemetry / no-accounts claim on `/stinkdoku-beta`. The Google Play card's "Google account" line is about using the same Play account for the test, and was left alone. No changes to play.stinkdoku.com / PR #59.
+- **Deploy:** Pages branch preview `android-tester` only. Production not deployed; `main` not pushed.
+- **Rollback:** revert this commit and redeploy the `android-tester` preview.
