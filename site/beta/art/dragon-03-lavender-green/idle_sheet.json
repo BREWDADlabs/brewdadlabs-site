@@ -1,0 +1,99 @@
+{
+ "frames": {
+  "idle_01": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "idle_02": {
+   "frame": {
+    "x": 256,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "idle_03": {
+   "frame": {
+    "x": 512,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "idle_04": {
+   "frame": {
+    "x": 768,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  }
+ },
+ "meta": {
+  "image": "idle_sheet.webp",
+  "size": {
+   "w": 1024,
+   "h": 256
+  },
+  "frameSize": {
+   "w": 256,
+   "h": 256
+  },
+  "anchor": {
+   "x": 128,
+   "y": 248,
+   "note": "feet baseline centre; place this point on the cell floor"
+  },
+  "fps": 8,
+  "loop": true,
+  "sequence": [
+   {
+    "frame": 0,
+    "ms": 500
+   },
+   {
+    "frame": 1,
+    "ms": 180
+   },
+   {
+    "frame": 2,
+    "ms": 420
+   },
+   {
+    "frame": 1,
+    "ms": 180
+   },
+   {
+    "frame": 0,
+    "ms": 600
+   },
+   {
+    "frame": 3,
+    "ms": 120
+   },
+   {
+    "frame": 0,
+    "ms": 500
+   },
+   {
+    "frame": 1,
+    "ms": 180
+   },
+   {
+    "frame": 2,
+    "ms": 420
+   },
+   {
+    "frame": 1,
+    "ms": 180
+   }
+  ],
+  "durationMs": 3280,
+  "scaleFromMaster": 0.5,
+  "reducedMotionStill": "idle_still.webp"
+ }
+}

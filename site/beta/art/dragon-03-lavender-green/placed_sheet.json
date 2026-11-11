@@ -1,0 +1,124 @@
+{
+ "frames": {
+  "placed_01": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "placed_02": {
+   "frame": {
+    "x": 256,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "placed_03": {
+   "frame": {
+    "x": 512,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "placed_04": {
+   "frame": {
+    "x": 768,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "placed_05": {
+   "frame": {
+    "x": 1024,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "placed_06": {
+   "frame": {
+    "x": 1280,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "placed_07": {
+   "frame": {
+    "x": 1536,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "placed_08": {
+   "frame": {
+    "x": 1792,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  }
+ },
+ "meta": {
+  "image": "placed_sheet.webp",
+  "size": {
+   "w": 2048,
+   "h": 256
+  },
+  "frameSize": {
+   "w": 256,
+   "h": 256
+  },
+  "anchor": {
+   "x": 128,
+   "y": 248,
+   "note": "feet baseline centre; place this point on the cell floor"
+  },
+  "fps": 16,
+  "loop": false,
+  "sequence": [
+   {
+    "frame": 0,
+    "ms": 62
+   },
+   {
+    "frame": 1,
+    "ms": 62
+   },
+   {
+    "frame": 2,
+    "ms": 62
+   },
+   {
+    "frame": 3,
+    "ms": 62
+   },
+   {
+    "frame": 4,
+    "ms": 62
+   },
+   {
+    "frame": 5,
+    "ms": 62
+   },
+   {
+    "frame": 6,
+    "ms": 62
+   },
+   {
+    "frame": 7,
+    "ms": 62
+   }
+  ],
+  "durationMs": 496,
+  "notes": "Ends on idle-f01; hand off to the idle loop.",
+  "scaleFromMaster": 0.5,
+  "reducedMotionStill": "placed_still.webp"
+ }
+}

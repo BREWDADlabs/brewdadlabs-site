@@ -1,0 +1,133 @@
+{
+ "frames": {
+  "stink-puff_01": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "stink-puff_02": {
+   "frame": {
+    "x": 256,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "stink-puff_03": {
+   "frame": {
+    "x": 512,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "stink-puff_04": {
+   "frame": {
+    "x": 768,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "stink-puff_05": {
+   "frame": {
+    "x": 1024,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "stink-puff_06": {
+   "frame": {
+    "x": 1280,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "stink-puff_07": {
+   "frame": {
+    "x": 1536,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "stink-puff_08": {
+   "frame": {
+    "x": 1792,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  }
+ },
+ "meta": {
+  "image": "stink-puff_sheet.webp",
+  "size": {
+   "w": 2048,
+   "h": 256
+  },
+  "frameSize": {
+   "w": 256,
+   "h": 256
+  },
+  "anchor": {
+   "x": 128,
+   "y": 248,
+   "note": "feet baseline centre; place this point on the cell floor"
+  },
+  "fps": 10,
+  "loop": false,
+  "sequence": [
+   {
+    "frame": 0,
+    "ms": 70
+   },
+   {
+    "frame": 1,
+    "ms": 100
+   },
+   {
+    "frame": 2,
+    "ms": 80
+   },
+   {
+    "frame": 3,
+    "ms": 100
+   },
+   {
+    "frame": 4,
+    "ms": 80
+   },
+   {
+    "frame": 5,
+    "ms": 110
+   },
+   {
+    "frame": 6,
+    "ms": 220
+   },
+   {
+    "frame": 7,
+    "ms": 200
+   },
+   {
+    "frame": 0,
+    "ms": 120
+   }
+  ],
+  "durationMs": 1080,
+  "notes": "Wrong move: from the sitting idle the dragon winces, hops, and green-cream gas puffs out from under the tail (a fart). Never fire, never from the mouth. Cloud is baked in; stink-puff-cloud has the cloud alone on the same canvas.",
+  "cloudOrigin": {
+   "x": 80,
+   "y": 226,
+   "note": "under-tail point where the gas starts"
+  },
+  "scaleFromMaster": 0.5,
+  "reducedMotionStill": "stink-puff_still.webp"
+ }
+}

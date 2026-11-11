@@ -1,0 +1,296 @@
+{
+ "frames": {
+  "fly-in_01": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_02": {
+   "frame": {
+    "x": 224,
+    "y": 0,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_03": {
+   "frame": {
+    "x": 448,
+    "y": 0,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_04": {
+   "frame": {
+    "x": 672,
+    "y": 0,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_05": {
+   "frame": {
+    "x": 896,
+    "y": 0,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_06": {
+   "frame": {
+    "x": 1120,
+    "y": 0,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_07": {
+   "frame": {
+    "x": 1344,
+    "y": 0,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_08": {
+   "frame": {
+    "x": 1568,
+    "y": 0,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_09": {
+   "frame": {
+    "x": 0,
+    "y": 224,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_10": {
+   "frame": {
+    "x": 224,
+    "y": 224,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_11": {
+   "frame": {
+    "x": 448,
+    "y": 224,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_12": {
+   "frame": {
+    "x": 672,
+    "y": 224,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_13": {
+   "frame": {
+    "x": 896,
+    "y": 224,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_14": {
+   "frame": {
+    "x": 1120,
+    "y": 224,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_15": {
+   "frame": {
+    "x": 1344,
+    "y": 224,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_16": {
+   "frame": {
+    "x": 1568,
+    "y": 224,
+    "w": 224,
+    "h": 224
+   }
+  },
+  "fly-in_17": {
+   "frame": {
+    "x": 0,
+    "y": 448,
+    "w": 224,
+    "h": 224
+   }
+  }
+ },
+ "meta": {
+  "image": "fly-in_sheet.webp",
+  "size": {
+   "w": 1792,
+   "h": 672
+  },
+  "frameSize": {
+   "w": 224,
+   "h": 224
+  },
+  "anchor": {
+   "x": 112,
+   "y": 217,
+   "note": "feet baseline centre; place this point on the cell floor"
+  },
+  "fps": 12,
+  "loop": false,
+  "sequence": [
+   {
+    "frame": 3,
+    "ms": 83
+   },
+   {
+    "frame": 4,
+    "ms": 83
+   },
+   {
+    "frame": 5,
+    "ms": 83
+   },
+   {
+    "frame": 6,
+    "ms": 83
+   },
+   {
+    "frame": 7,
+    "ms": 83
+   },
+   {
+    "frame": 8,
+    "ms": 83
+   },
+   {
+    "frame": 3,
+    "ms": 83
+   },
+   {
+    "frame": 4,
+    "ms": 83
+   },
+   {
+    "frame": 5,
+    "ms": 83
+   },
+   {
+    "frame": 6,
+    "ms": 83
+   },
+   {
+    "frame": 7,
+    "ms": 83
+   },
+   {
+    "frame": 8,
+    "ms": 83
+   },
+   {
+    "frame": 9,
+    "ms": 300
+   },
+   {
+    "frame": 10,
+    "ms": 110
+   },
+   {
+    "frame": 11,
+    "ms": 110
+   },
+   {
+    "frame": 12,
+    "ms": 110
+   },
+   {
+    "frame": 13,
+    "ms": 150
+   },
+   {
+    "frame": 14,
+    "ms": 130
+   },
+   {
+    "frame": 15,
+    "ms": 170
+   },
+   {
+    "frame": 16,
+    "ms": 130
+   },
+   {
+    "frame": 13,
+    "ms": 150
+   }
+  ],
+  "durationMs": 2356,
+  "tags": [
+   {
+    "name": "takeoff",
+    "from": 0,
+    "to": 2,
+    "fps": 10,
+    "loop": false
+   },
+   {
+    "name": "flap",
+    "from": 3,
+    "to": 8,
+    "fps": 12,
+    "loop": true
+   },
+   {
+    "name": "glide",
+    "from": 9,
+    "to": 9,
+    "fps": 1,
+    "loop": false
+   },
+   {
+    "name": "land",
+    "from": 10,
+    "to": 13,
+    "fps": 10,
+    "loop": false
+   },
+   {
+    "name": "kick",
+    "from": 14,
+    "to": 16,
+    "fps": 10,
+    "loop": false,
+    "impactFrame": 15,
+    "impactPoint": {
+     "x": 14,
+     "y": 152
+    },
+    "note": "Mule kick backward (to the LEFT when facing right). Start the tile flip on impactFrame; the foot tip is impactPoint. End on land-f03 (frame 13), then play sit-down."
+   }
+  ],
+  "notes": "Faces right: enter from the left, fly past the target tile, land one cell to its right, mule-kick it backward. Mirror (scaleX -1 about anchor) for the other direction.",
+  "impactFrame": 15,
+  "impactPoint": {
+   "x": 14,
+   "y": 152
+  },
+  "scaleFromMaster": 0.4375,
+  "reducedMotionStill": "fly-in_still.webp"
+ }
+}

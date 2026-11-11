@@ -161,7 +161,7 @@
     card.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
     $('term-status').textContent = `${platform === 'ios' ? 'iPhone' : 'Android'} step ${n} of 3`;
     moving = false;
-    if (transition) playDragonMoment(n === 3 ? 'fly' : 'pop');
+    if (transition) playDragonMoment(n === 3 ? 'cheer' : (n === 2 ? 'fly' : 'pop'));
   }
 
   function armReturn(platform, fromStep) {
@@ -195,7 +195,7 @@
     $('term-label').textContent = 'STINKDOKU TEST UNIT';
     await playTerminal(bootScript, 'Starting the tester steps');
     showTracks();
-    playDragonMoment('pop');
+    ensureDragonAssets().then(() => playDragonMoment('pop'));
   }
 
   async function startOver() {
@@ -209,9 +209,16 @@
 
   function setupDragons() {
     const layer = $('dragon-layer');
-    if (!layer || reduceMotion) return;
+    window.playDragonMoment = function () { /* no-op until assets load, or when reduced motion */ };
+    window.ensureDragonAssets = function () { return Promise.resolve(); };
+    if (!layer || reduceMotion || !window.StinkDokuSprites) return;
+
+    const SCALE = 0.5;
+    let clips = null;
+    let loading = null;
     let busy = false;
     let idleTimer = null;
+    const spritesLib = window.StinkDokuSprites;
 
     function makeTile(text) {
       const tile = document.createElement('div');
@@ -221,79 +228,144 @@
       return tile;
     }
 
-    function makeDragon(src) {
-      const img = document.createElement('img');
-      img.className = 'dragon';
-      img.src = src;
-      img.alt = '';
-      img.setAttribute('aria-hidden', 'true');
-      return img;
+    function clearLayer() {
+      layer.replaceChildren();
     }
 
-    function clearLayer() { layer.replaceChildren(); }
-
-    function popKick() {
-      const dragon = makeDragon('art/dragon-04-aqua-red-orange.webp');
-      const tile = makeTile('7');
-      const x = Math.round(window.innerWidth * (0.18 + Math.random() * 0.5));
-      dragon.style.left = `${x}px`;
-      dragon.style.bottom = '-120px';
-      tile.style.left = `${x + 78}px`;
-      tile.style.bottom = '28px';
-      layer.append(dragon, tile);
-      const rise = dragon.animate([
-        { transform: 'translateY(0) rotate(-8deg)' },
-        { transform: 'translateY(-150px) rotate(0deg)', offset: 0.45 },
-        { transform: 'translateY(-158px) rotate(18deg)', offset: 0.58 },
-        { transform: 'translateY(-150px) rotate(0deg)', offset: 0.7 },
-        { transform: 'translateY(20px) rotate(-6deg)' },
-      ], { duration: 1800, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' });
-      tile.animate([
-        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-        { transform: 'translateY(0) rotate(0deg)', opacity: 1, offset: 0.5 },
-        { transform: 'translate(42px, -88px) rotate(220deg)', opacity: 1, offset: 0.78 },
-        { transform: 'translate(70px, 40px) rotate(340deg)', opacity: 0 },
-      ], { duration: 1800, easing: 'cubic-bezier(.15,.8,.25,1)', fill: 'forwards' });
-      return rise.finished;
+    function wait(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
     }
 
-    function flyKick() {
-      const dragon = makeDragon('art/dragon-06-sky-orange-peach.webp');
+    async function flyKick() {
+      const fly = spritesLib.makeSprite(clips['fly-in'], SCALE);
+      const fx = spritesLib.makeSprite(clips['kick-impact-fx'], SCALE);
       const tile = makeTile('5');
-      const y = Math.round(window.innerHeight * (0.08 + Math.random() * 0.08));
       const tileX = Math.round(window.innerWidth * 0.62);
-      dragon.style.top = `${y}px`;
-      dragon.style.left = '-130px';
-      tile.style.top = `${y + 28}px`;
+      const tileY = Math.round(window.innerHeight * (0.10 + Math.random() * 0.08));
       tile.style.left = `${tileX}px`;
-      layer.append(dragon, tile);
-      const flight = dragon.animate([
-        { transform: 'translateX(0) rotate(-12deg)' },
-        { transform: `translateX(${tileX + 20}px) rotate(8deg)`, offset: 0.55 },
-        { transform: `translateX(${tileX + 36}px) rotate(16deg)`, offset: 0.62 },
-        { transform: `translateX(${window.innerWidth + 160}px) rotate(-6deg)` },
-      ], { duration: 2200, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'forwards' });
-      tile.animate([
-        { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
-        { transform: 'translate(0,0) rotate(0deg)', opacity: 1, offset: 0.55 },
-        { transform: 'translate(36px, 18px) rotate(40deg)', offset: 0.64 },
-        { transform: 'translate(110px, 90px) rotate(300deg)', opacity: 0 },
-      ], { duration: 2200, easing: 'cubic-bezier(.15,.75,.3,1)', fill: 'forwards' });
-      return flight.finished;
+      tile.style.top = `${tileY}px`;
+      const tileCx = tileX + 18;
+      const tileCy = tileY + 18;
+      const impact = fly.clip.meta.impactPoint;
+      // Land so the mule-kick impactPoint hits the tile; dragon faces right, tile is to its left.
+      const landLeft = Math.round(tileCx - impact.x * SCALE);
+      const landTop = Math.round(tileCy - impact.y * SCALE);
+      fly.el.style.top = `${landTop}px`;
+      fly.el.style.left = `${-fly.clip.meta.frameSize.w * SCALE - 20}px`;
+      fx.el.style.opacity = '0';
+      layer.append(tile, fly.el, fx.el);
+
+      const impactAt = fly.clip.timeToImpact || 1906;
+      const flight = fly.el.animate([
+        { transform: `translateX(0)` },
+        { transform: `translateX(${landLeft + fly.clip.meta.frameSize.w * SCALE + 20}px)` },
+      ], { duration: impactAt, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'forwards' });
+
+      let kicked = false;
+      function onImpact() {
+        if (kicked) return;
+        kicked = true;
+        spritesLib.pin(fx, tileCx, tileCy, fx.clip.meta.anchor);
+        fx.el.style.opacity = '1';
+        fx.play({ loop: false }).then(() => { fx.el.style.opacity = '0'; });
+        tile.animate([
+          { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
+          { transform: 'translate(-36px, 8px) rotate(-50deg)', offset: 0.35 },
+          { transform: 'translate(-120px, 80px) rotate(-300deg)', opacity: 0 },
+        ], { duration: 700, easing: 'cubic-bezier(.15,.75,.3,1)', fill: 'forwards' });
+      }
+      const hit = setTimeout(onImpact, impactAt);
+      await fly.play({ loop: false });
+      clearTimeout(hit);
+      if (!kicked) onImpact();
+      try { await flight.finished; } catch { /* cancelled */ }
+      await wait(200);
+    }
+
+    async function popPuff() {
+      const placed = spritesLib.makeSprite(clips.placed, SCALE);
+      const idle = spritesLib.makeSprite(clips.idle, SCALE);
+      const puff = spritesLib.makeSprite(clips['stink-puff'], SCALE);
+      const cloud = spritesLib.makeSprite(clips['stink-puff-cloud'], SCALE);
+      const x = Math.round(window.innerWidth * (0.22 + Math.random() * 0.45));
+      const floorY = window.innerHeight - 28;
+      const sprites = [placed, idle, puff, cloud];
+      sprites.forEach((sprite) => {
+        spritesLib.pin(sprite, x, floorY);
+        sprite.el.style.transform = `translateY(${Math.round(sprite.clip.meta.frameSize.h * SCALE + 20)}px)`;
+      });
+      // Cloud sits above the dragon body (same canvas/anchor, same frame index).
+      cloud.el.style.zIndex = '2';
+      puff.el.style.zIndex = '1';
+      idle.el.hidden = true;
+      puff.el.hidden = true;
+      cloud.el.hidden = true;
+      layer.append(placed.el, idle.el, puff.el, cloud.el);
+
+      const rise = placed.el.animate([
+        { transform: `translateY(${Math.round(placed.clip.meta.frameSize.h * SCALE + 20)}px)` },
+        { transform: 'translateY(0)' },
+      ], { duration: 420, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' });
+      await placed.play({ loop: false });
+      try { await rise.finished; } catch { /* cancelled */ }
+
+      placed.el.hidden = true;
+      idle.el.hidden = false;
+      idle.el.style.transform = 'translateY(0)';
+      const idleOnce = idle.play({ loop: false });
+      await Promise.race([idleOnce, wait(900)]);
+      idle.stop();
+      idle.el.hidden = true;
+
+      puff.el.hidden = false;
+      cloud.el.hidden = false;
+      puff.el.style.transform = 'translateY(0)';
+      cloud.el.style.transform = 'translateY(0)';
+      await Promise.all([puff.play({ loop: false }), cloud.play({ loop: false })]);
+
+      const dropSprites = [puff, cloud];
+      await Promise.all(dropSprites.map((sprite) => sprite.el.animate([
+        { transform: 'translateY(0)', opacity: 1 },
+        { transform: `translateY(${Math.round(sprite.clip.meta.frameSize.h * SCALE + 24)}px)`, opacity: 0 },
+      ], { duration: 380, easing: 'cubic-bezier(.5,0,.7,1)', fill: 'forwards' }).finished.catch(() => {})));
+    }
+
+    async function cheer() {
+      const sprite = spritesLib.makeSprite(clips.cheer, SCALE);
+      const x = Math.round(window.innerWidth * 0.5);
+      const floorY = window.innerHeight - 28;
+      spritesLib.pin(sprite, x, floorY);
+      sprite.el.style.transform = `translateY(${Math.round(sprite.clip.meta.frameSize.h * SCALE + 20)}px)`;
+      layer.append(sprite.el);
+      await sprite.el.animate([
+        { transform: `translateY(${Math.round(sprite.clip.meta.frameSize.h * SCALE + 20)}px)` },
+        { transform: 'translateY(0)' },
+      ], { duration: 360, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' }).finished.catch(() => {});
+      // Sequence already contains two cycles; do not loop forever.
+      await sprite.play({ loop: false });
+      await sprite.el.animate([
+        { transform: 'translateY(0)', opacity: 1 },
+        { transform: `translateY(${Math.round(sprite.clip.meta.frameSize.h * SCALE + 24)}px)`, opacity: 0 },
+      ], { duration: 360, easing: 'cubic-bezier(.5,0,.7,1)', fill: 'forwards' }).finished.catch(() => {});
     }
 
     async function play(kind) {
-      if (reduceMotion || busy || document.hidden) return;
+      if (reduceMotion || busy || document.hidden || !clips) return;
       busy = true;
       try {
-        await (kind === 'fly' ? flyKick() : popKick());
+        if (kind === 'cheer') await cheer();
+        else if (kind === 'fly') await flyKick();
+        else await popPuff();
       } catch { /* animation cancelled */ }
       clearLayer();
       busy = false;
     }
 
     window.playDragonMoment = function (kind) {
-      play(kind === 'fly' || kind === 'pop' ? kind : (Math.random() < 0.5 ? 'pop' : 'fly'));
+      const pick = kind === 'cheer' || kind === 'fly' || kind === 'pop'
+        ? kind
+        : (Math.random() < 0.5 ? 'pop' : 'fly');
+      ensureDragonAssets().then(() => play(pick));
     };
 
     function scheduleIdle() {
@@ -303,14 +375,25 @@
         scheduleIdle();
       }, 18000 + Math.random() * 14000);
     }
+
+    window.ensureDragonAssets = function () {
+      if (clips) return Promise.resolve();
+      if (loading) return loading;
+      loading = spritesLib.loadAll().then((map) => {
+        clips = map;
+        scheduleIdle();
+      }).catch((err) => {
+        loading = null;
+        console.warn('Dragon animations could not load', err);
+      });
+      return loading;
+    };
+
     document.addEventListener('visibilitychange', () => {
       if (document.hidden && idleTimer) { clearTimeout(idleTimer); idleTimer = null; }
-      else if (!document.hidden) scheduleIdle();
+      else if (!document.hidden && clips) scheduleIdle();
     });
-    scheduleIdle();
   }
-
-  window.playDragonMoment = function () { /* no-op until setupDragons runs, or when reduced motion */ };
 
   async function init() {
     setupDragons();
@@ -344,6 +427,7 @@
     if (hasSavedProgress()) {
       lastPlatform = '';
       showTracks();
+      ensureDragonAssets();
       return;
     }
 

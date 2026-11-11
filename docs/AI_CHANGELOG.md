@@ -1,5 +1,14 @@
 # AI Changelog
 
+## 2026-11-10 ~11:10 PM ET, Websites bot (sprite-sheet dragon moments on /beta/, preview only)
+- **Goal:** Replace the two static-sprite dragon moments on `/beta/` with StinkDoku Design's web-animations-v1 sheets, without changing the page or the terminal boot intro.
+- **Files:** site/beta/dragon-player.js (new); site/beta/tester.js; site/beta/index.html; site/beta/art/dragon-03-lavender-green/{fly-in,kick-impact-fx,stink-puff,stink-puff-cloud,cheer,idle,placed}_{sheet.webp,sheet.json} (new, 434,947 bytes); site/beta/art/dragon-04-aqua-red-orange.webp and dragon-06-sky-orange-peach.webp (removed, 92,714 bytes); docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md.
+- **Summary:** After the existing terminal boot, the page lazy-loads the green dragon sheets and plays them with a CSS background sprite player driven by JSON timing. Fly-in kicks a tile at impactFrame with kick-impact-fx; the bottom pop-up uses placed, idle, and a stink-puff + cloud (under-tail fart, never fire); cheer plays when an iPhone or Android section is finished. pointer-events stay none. Reduced motion turns the moments off. Unused still PNGs/WebPs and the other eight dragons' idle/placed sheets were not copied.
+- **Tests:** preview `/beta/` curl-checked; every new art file 200 with the expected size; production https://brewdadlabs.com/beta/ confirmed unchanged (still the static-sprite build).
+- **Deploy:** Pages branch preview `beta-preview` only (`npx wrangler pages deploy site --project-name brewdadlabs-site --branch beta-preview`). Production not deployed; `main` not merged.
+- **Rollback:** redeploy the previous `beta-preview` preview, or revert this commit and redeploy the preview. Production is untouched.
+
+
 ## 2026-11-10 ~10:47 PM ET, Websites bot (StinkDoku /beta/ tester page → production)
 - **Goal:** Randy (10:46 PM ET): "make it live and send me a link. I don't need to see it first." Publish the email-removed tester page.
 - **Files:** docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md (mark live). Site files unchanged from `b1b2486`.

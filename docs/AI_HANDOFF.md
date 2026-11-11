@@ -60,10 +60,10 @@ _Last updated: 2026-11-10 ~10:47 PM ET (America/New_York): StinkDoku tester page
 - Android: join https://groups.google.com/g/stinkdoku-testers (address shown), opt in at the Play testing URL, install from the Play store listing. Auto-advance when the tester comes back to the tab, with an "I did this, next" fallback. Same-account / 14-day / 12-tester rules are on the Android section. A small "Can't use Google Play?" link goes to `/stinkdoku.apk`.
 - Feedback: "Tell us what's fun, what's confusing, and what breaks." TestFlight, Google Play, or support@brewdadlabs.com.
 - Privacy lead: "No ads. No in-app purchases. Online features use a random player id and device id." No absolute no-tracking claims.
-- Two small dragon moments (they do not redesign the page, they never block buttons, and they turn off under reduced motion):
-  - `dragon-04-aqua-red-orange.webp` pops up from the bottom and kicks a sudoku tile.
-  - `dragon-06-sky-orange-peach.webp` flies across the top and kicks a tile.
-  - Both are self-hosted copies of the public sprites on `stinky-dragons` `origin/main` (`public/art/dragons/`, landed via #53; not PR #55 draft art). The header mascot is `public/art/mascot-head.webp` from the same main tree.
+- Dragon moments use StinkDoku Design's web-animations-v1 WebP sprite sheets (green `dragon-03-lavender-green` only; idle, placed, fly-in, kick-impact-fx, stink-puff, stink-puff-cloud, cheer). A small vanilla JS/CSS player in `site/beta/dragon-player.js` follows each clip's JSON `meta.sequence`. Sheets lazy-load after the terminal boot. They never block buttons (`pointer-events: none`). Under `prefers-reduced-motion` they are off (no stills). The terminal boot intro is unchanged (a separate intro scene is coming later).
+  - **Preview only (this change):** fly-in kicks a sudoku tile at `impactFrame` with `kick-impact-fx`; a bottom pop-up plays placed → idle → stink-puff + stink-puff-cloud (a fart puff from under the tail, never fire); green cheer plays when a tester finishes the iPhone or Android section.
+  - Production (deployment `3123393b-57c7-4bcd-a7fe-113fc3bc2d66`, source `b1b2486`) still has the two old static-sprite moments until Randy OKs a main deploy.
+  - Header mascot remains `public/art/mascot-head.webp` from `stinky-dragons` `origin/main`. The old static `dragon-04` / `dragon-06` files were removed from `/beta/` on this branch.
 - Email signup was removed (Randy, 10:44 PM ET: he doesn't want the email that badly). `functions/api/tester-signup.js` is gone, so `/api/tester-signup` should 404. The D1 databases `stinkdoku-android-testers` and `stinkdoku-android-testers-preview` still exist and were not deleted; they are just unbound. `wrangler.toml` is committed and has no D1 bindings. `functions/_middleware.js` remains for the planned beta subdomain.
 - `/stinkdoku-beta` points at `/beta` via `site/_redirects` (302) and a short fallback page.
 - `beta.brewdadlabs.com` is prepared but not attached. `functions/_middleware.js` will serve `/beta/` at the subdomain root once the domain exists. Do not add the custom domain or DNS until Randy approves.
@@ -73,6 +73,7 @@ _Last updated: 2026-11-10 ~10:47 PM ET (America/New_York): StinkDoku tester page
 - Git: production was a direct Pages upload. The feature branch `feature/android-tester-link` was not merged to `main`; this repo is not git-connected to Pages, and pushing does not deploy.
 
 ## Next
+- Randy reviews the sprite-sheet dragon preview at https://beta-preview.brewdadlabs-site.pages.dev/beta/. Production is unchanged until he OKs a main deploy.
 - Attaching `beta.brewdadlabs.com` is a separate DNS OK (not done).
 - Gorillas 404 rollout per the rollout doc, one domain at a time with Randy's OK (builds are ready).
 - Workshop log seed entries will be updated by Randy as real work happens.

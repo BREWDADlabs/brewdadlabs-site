@@ -1,0 +1,75 @@
+{
+ "frames": {
+  "kick-impact-fx_01": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 128,
+    "h": 128
+   }
+  },
+  "kick-impact-fx_02": {
+   "frame": {
+    "x": 128,
+    "y": 0,
+    "w": 128,
+    "h": 128
+   }
+  },
+  "kick-impact-fx_03": {
+   "frame": {
+    "x": 256,
+    "y": 0,
+    "w": 128,
+    "h": 128
+   }
+  },
+  "kick-impact-fx_04": {
+   "frame": {
+    "x": 384,
+    "y": 0,
+    "w": 128,
+    "h": 128
+   }
+  }
+ },
+ "meta": {
+  "image": "kick-impact-fx_sheet.webp",
+  "frameSize": {
+   "w": 128,
+   "h": 128
+  },
+  "anchor": {
+   "x": 64,
+   "y": 64,
+   "note": "centre; place on the fly-in impactPoint (scaled with the dragon)"
+  },
+  "fps": 16,
+  "loop": false,
+  "sequence": [
+   {
+    "frame": 0,
+    "ms": 60
+   },
+   {
+    "frame": 1,
+    "ms": 80
+   },
+   {
+    "frame": 2,
+    "ms": 70
+   },
+   {
+    "frame": 3,
+    "ms": 60
+   }
+  ],
+  "notes": "Optional comic impact star, starts on the kick impactFrame.",
+  "size": {
+   "w": 512,
+   "h": 128
+  },
+  "scaleFromMaster": 1.0,
+  "reducedMotionStill": "kick-impact-fx_still.webp"
+ }
+}

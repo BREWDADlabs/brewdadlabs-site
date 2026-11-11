@@ -1,0 +1,124 @@
+{
+ "frames": {
+  "cheer_01": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "cheer_02": {
+   "frame": {
+    "x": 256,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "cheer_03": {
+   "frame": {
+    "x": 512,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "cheer_04": {
+   "frame": {
+    "x": 768,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "cheer_05": {
+   "frame": {
+    "x": 1024,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  },
+  "cheer_06": {
+   "frame": {
+    "x": 1280,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   }
+  }
+ },
+ "meta": {
+  "image": "cheer_sheet.webp",
+  "size": {
+   "w": 1536,
+   "h": 256
+  },
+  "frameSize": {
+   "w": 256,
+   "h": 256
+  },
+  "anchor": {
+   "x": 128,
+   "y": 248,
+   "note": "feet baseline centre; place this point on the cell floor"
+  },
+  "fps": 10,
+  "loop": true,
+  "sequence": [
+   {
+    "frame": 0,
+    "ms": 100
+   },
+   {
+    "frame": 1,
+    "ms": 90
+   },
+   {
+    "frame": 2,
+    "ms": 90
+   },
+   {
+    "frame": 3,
+    "ms": 150
+   },
+   {
+    "frame": 4,
+    "ms": 90
+   },
+   {
+    "frame": 5,
+    "ms": 120
+   },
+   {
+    "frame": 0,
+    "ms": 100
+   },
+   {
+    "frame": 1,
+    "ms": 90
+   },
+   {
+    "frame": 2,
+    "ms": 90
+   },
+   {
+    "frame": 3,
+    "ms": 150
+   },
+   {
+    "frame": 4,
+    "ms": 90
+   },
+   {
+    "frame": 5,
+    "ms": 170
+   }
+  ],
+  "durationMs": 1330,
+  "notes": "Ends standing; play sit-down (from frame 2) to return to the sitting idle.",
+  "scaleFromMaster": 0.5,
+  "reducedMotionStill": "cheer_still.webp"
+ }
+}
