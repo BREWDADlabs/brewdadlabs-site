@@ -1,6 +1,6 @@
 # AI Handoff
 
-_Last updated: 2026-11-10 ~9:45 PM ET (America/New_York): StinkDoku beta page preview adds two-platform feedback; production unchanged_
+_Last updated: 2026-11-10 ~10:30 PM ET (America/New_York): StinkDoku tester flow preview at /beta/ on brewdadlabs-site; production unchanged_
 
 ## Current state
 - Live: https://brewdadlabs.com and https://www.brewdadlabs.com, served by Cloudflare Pages project `brewdadlabs-site`.
@@ -55,9 +55,26 @@ _Last updated: 2026-11-10 ~9:45 PM ET (America/New_York): StinkDoku beta page pr
 - To ship a new build, replace `site/stinkdoku.apk` (keep the name), deploy preview then `main`, and recheck the headers with curl.
 - Kept at the site root on purpose: `/stinkdoku` and `/stinkdoku/*` are redirect rules to play.stinkdoku.com.
 
-## StinkDoku beta page → Google Play tester page (PREVIEW ONLY, 2026-11-10)
-- Branch `feature/android-tester-link`. Android card on `site/stinkdoku-beta.html` sends testers to `https://play.stinkdoku.com/android-tester` (now a combined iPhone + Android guided page on PR #59; still 404 in production until that PR merges). The APK download stays as a small "Can't use Google Play?" sideload fallback. The iPhone card still has the direct TestFlight link `https://testflight.apple.com/join/M6JnK4b1`, plus a secondary "Open the tester page" link to the same guided page.
-- Added a short two-platform feedback block (matches the existing theme): "We want honest feedback"; iPhone: TestFlight (screenshot or Send Beta Feedback); Android: Google Play; or email support@brewdadlabs.com; plus "Tell us what's fun, what's confusing, and what breaks."
-- Preview: https://android-tester.brewdadlabs-site.pages.dev/stinkdoku-beta (Pages branch preview `android-tester`). Production (`main`, live `/stinkdoku-beta`) is unchanged.
-- **Wording for Randy to approve (separate change):** the beta-page lead no longer says "No ads, no trackers, no accounts." It now says "No ads. No in-app purchases. Online features use a random player id and device id." That was the only absolute no-tracking / no-accounts claim on this page. Production is unchanged until he OKs a main deploy.
-- **Ship order:** the play.stinkdoku.com tester page (stinky-dragons branch `feature/android-tester-page`, PR #59) must be live first, otherwise the guided-page buttons 404. Then, with Randy's OK, merge this branch and deploy `--branch main`.
+## StinkDoku tester page at /beta/ (PREVIEW ONLY, 2026-11-10 ~10:30 PM ET)
+- Path: `/beta/` → `site/beta/index.html`, plus `site/beta/tester.js` and `site/beta/art/`. The terminal look from draft PR geekdadteach/stinky-dragons#59 is kept (CRT chrome, scanlines, red eye, boot animation that always plays, reduced motion honored). Email signup stays on. There is no skip-animation button.
+- After the optional email step and the boot animation, iPhone and Android are both on the same page, in that fixed order, with equal weight. Each section has its own big buttons and its own per-step localStorage progress, so a tester can do both. The page does not guess or reorder by phone type, and there are no switch-platform buttons.
+- iPhone: install TestFlight, open https://testflight.apple.com/join/M6JnK4b1, open StinkDoku.
+- Android: join https://groups.google.com/g/stinkdoku-testers (address shown), opt in at the Play testing URL, install from the Play store listing. Auto-advance when the tester comes back to the tab, with an "I did this, next" fallback. Same-account / 14-day / 12-tester rules are on the Android section. A small "Can't use Google Play?" link goes to `/stinkdoku.apk`.
+- Feedback: "Tell us what's fun, what's confusing, and what breaks." TestFlight, Google Play, or support@brewdadlabs.com.
+- Privacy lead: "No ads. No in-app purchases. Online features use a random player id and device id." No absolute no-tracking claims.
+- Two small dragon moments (they do not redesign the page, they never block buttons, and they turn off under reduced motion):
+  - `dragon-04-aqua-red-orange.webp` pops up from the bottom and kicks a sudoku tile.
+  - `dragon-06-sky-orange-peach.webp` flies across the top and kicks a tile.
+  - Both are self-hosted copies of the public sprites on `stinky-dragons` `origin/main` (`public/art/dragons/`, landed via #53; not PR #55 draft art). The header mascot is `public/art/mascot-head.webp` from the same main tree.
+- Email backend: Pages Function `functions/api/tester-signup.js` (POST `/api/tester-signup`). Requires consent, validates the email, has a honeypot, and uses a simple in-memory rate limit keyed by IP. Only the email and a timestamp are stored. No IP is written to the database. Preview bindings use D1 `stinkdoku-android-testers-preview`; a later production deploy would use `stinkdoku-android-testers`. The local `wrangler.toml` (gitignored; see `wrangler.toml.example`) is how those bindings are set. The preview must never write to the production testers database.
+- `/stinkdoku-beta` points at `/beta` via `site/_redirects` (302) and a short fallback page.
+- `beta.brewdadlabs.com` is prepared but not attached. `functions/_middleware.js` will serve `/beta/` at the subdomain root once the domain exists. Do not add the custom domain or DNS until Randy approves.
+- play.stinkdoku.com is the live game only. It was not changed. Draft PR #59 stays a draft; a comment notes the move to brewdadlabs.
+- Preview: `wrangler pages deploy --project-name brewdadlabs-site --branch beta-preview` (never `main`). Expected URL: https://beta-preview.brewdadlabs-site.pages.dev/beta/
+- Production (`main`, live `/stinkdoku-beta`) is unchanged until Randy OKs a main deploy.
+
+## Next
+- Randy reviews the `/beta/` preview (email on, both phones on one page, terminal unchanged, two dragon moments).
+- If he OKs it, deploy production with `--branch main` (commands are in the changelog). Attaching `beta.brewdadlabs.com` is a separate DNS OK.
+- Gorillas 404 rollout per the rollout doc, one domain at a time with Randy's OK (builds are ready).
+- Workshop log seed entries will be updated by Randy as real work happens.

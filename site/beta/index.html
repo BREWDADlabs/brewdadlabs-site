@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#173c39">
+<meta name="color-scheme" content="dark">
+<title>StinkDoku — Become a tester</title>
+<meta name="description" content="Help test StinkDoku on iPhone with TestFlight or on Android through Google Play.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  :root{--bg:#0f1f1c;--forest:#173c39;--card:#1d332e;--card2:#24332e;--line:#3a5248;--ink:#e8f5e9;--muted:#a9c4b8;--go:#8ed5a4;--on-go:#1d4a38;--accent:#6cc79c;--focus:#ff9d3c;--crt:#050b07;--crt-ink:#5dff8a;--crt-dim:#2f9c54;--eye:#ff3b30;font-family:ui-rounded,"SF Pro Rounded","Avenir Next",Nunito,system-ui,-apple-system,sans-serif}
+  *{box-sizing:border-box}
+  html{background:var(--bg)}
+  body{margin:0;min-height:100vh;color:var(--ink);background:radial-gradient(circle at 14% 10%,rgba(108,199,156,.20) 0 12%,transparent 38%),radial-gradient(circle at 84% 6%,rgba(143,217,189,.14) 0 14%,transparent 40%),linear-gradient(170deg,#173c39,#0f2a27 52%,#0f1f1c);padding:22px 16px 56px}
+  .wrap{max-width:620px;margin:0 auto}
+  header{display:flex;align-items:center;gap:14px;margin:0 0 18px}
+  header img{width:64px;height:64px;border-radius:18px;background:#24453f;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+  h1{font-size:26px;line-height:1.15;margin:0;color:#fff}
+  .brand{margin:3px 0 0;color:var(--muted);font-size:14px;font-weight:700;letter-spacing:.02em}
+  .card{background:var(--card);border:1.5px solid var(--line);border-radius:22px;padding:20px;margin:0 0 16px;box-shadow:0 14px 38px rgba(0,0,0,.32)}
+  h2{font-size:18px;margin:0 0 8px;color:#fff}
+  p,li{line-height:1.55;font-size:15px;margin:0 0 10px}
+  .muted{color:var(--muted);font-size:14px}
+  label{display:block;font-weight:800;margin:0 0 6px}
+  input[type=email]{width:100%;font:inherit;font-size:16px;padding:13px 14px;border-radius:14px;border:1.5px solid var(--line);background:#10231f;color:var(--ink)}
+  .check{display:flex;gap:10px;align-items:flex-start;margin:12px 0 4px;font-weight:600;font-size:14px;line-height:1.45}
+  .check input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--accent)}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .row{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 18px;border-radius:16px;border:0;font:inherit;font-weight:900;font-size:16px;text-decoration:none;cursor:pointer;background:var(--go);color:var(--on-go)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+  .btn[aria-disabled=true]{opacity:.55;cursor:default}
+  a{color:var(--go)}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+  .msg{min-height:1.4em;margin:10px 0 0;font-size:14px;font-weight:700}
+  .msg.err{color:#ffb4a8}
+  .msg.ok{color:var(--go)}
+  .consent{background:#132a25;border:1.5px solid var(--line);border-radius:14px;padding:11px 13px;margin:12px 0 0;font-size:13.5px;color:var(--muted);line-height:1.5}
+  /* Retro handset terminal */
+  .term{position:relative;background:var(--crt);border:3px solid #2b2f2d;border-radius:18px;padding:16px 16px 14px;box-shadow:inset 0 0 0 2px #0b130e,inset 0 0 40px rgba(93,255,138,.08),0 14px 38px rgba(0,0,0,.45);overflow:hidden;margin:0 0 16px}
+  .term::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0 2px,rgba(0,0,0,.28) 2px 3px)}
+  .term-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 10px;font:700 12px/1 ui-monospace,Menlo,Consolas,monospace;color:var(--crt-dim);letter-spacing:.12em}
+  .eye{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#ffb3ad,var(--eye) 45%,#7a0d08);box-shadow:0 0 10px 3px rgba(255,59,48,.55);animation:eye 1.6s ease-in-out infinite;flex:none}
+  @keyframes eye{50%{box-shadow:0 0 18px 7px rgba(255,59,48,.8)}}
+  .screen{margin:0;min-height:9.5em;white-space:pre-wrap;word-break:break-word;font:15px/1.5 ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;color:var(--crt-ink);text-shadow:0 0 6px rgba(93,255,138,.55)}
+  .term.ready .screen{min-height:0}
+  .screen .red{color:#ff6b61;text-shadow:0 0 6px rgba(255,59,48,.6)}
+  .cursor{display:inline-block;width:.6em;height:1.05em;vertical-align:-2px;background:var(--crt-ink);animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .term-step{position:relative;z-index:1;margin:12px 0 0}
+  .term-step h2{font:800 17px/1.25 ui-monospace,Menlo,Consolas,monospace;color:var(--crt-ink);text-shadow:0 0 6px rgba(93,255,138,.45);margin:0 0 10px}
+  .term-step p,.term-step li{color:#b8ffcc;font-size:14.5px;line-height:1.5}
+  .term-step .muted{color:var(--crt-dim)}
+  .term-step a{color:var(--crt-ink)}
+  .term .btn-big{position:relative;z-index:1;width:100%;min-height:64px;padding:16px 18px;border-radius:12px;font-size:16px;text-align:center}
+  .term .btn.ghost{position:relative;z-index:1;width:100%;background:transparent;color:var(--crt-ink);border:1.5px solid var(--crt-dim)}
+  .term .row{margin-top:12px}
+  .tracks{position:relative;z-index:1;display:grid;gap:14px;margin:12px 0 0}
+  .track{border:1.5px solid var(--crt-dim);border-radius:12px;padding:14px 14px 12px;background:rgba(15,40,24,.35)}
+  .track > h2{margin:0 0 4px}
+  .track-progress{margin:0 0 10px;font:700 12px/1.3 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.08em;color:var(--crt-dim)}
+  .steps{list-style:none;margin:0;padding:0}
+  .steps .term-step{margin:0 0 12px;padding:12px 0 0;border-top:1px solid rgba(47,156,84,.35)}
+  .steps .term-step:first-child{border-top:0;padding-top:0;margin-top:0}
+  .step-n{font:700 11px/1.2 ui-monospace,Menlo,Consolas,monospace;color:var(--crt-dim);letter-spacing:.1em;margin:0 0 8px}
+  .steps .term-step.is-done .step-n{color:var(--crt-ink)}
+  .steps .term-step.is-future{opacity:.55}
+  .steps .term-step.is-future .btn, .steps .term-step.is-future .row{display:none}
+  .term-nav{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px 16px;margin:14px 0 0}
+  .term-nav button{background:transparent;border:0;padding:8px 0;color:var(--crt-dim);font:700 13px ui-monospace,Menlo,Consolas,monospace;cursor:pointer;text-decoration:underline}
+  .term .rules{background:rgba(15,40,24,.55);border:1.5px solid var(--crt-dim);border-radius:12px;padding:12px 14px;margin:14px 0 0}
+  .term .rules h2{margin-bottom:8px}
+  .term .rules ul{margin:0;padding-left:20px}
+  footer{text-align:center;color:var(--muted);font-size:13px;margin:22px 0 0}
+  footer a{color:var(--muted)}
+  .term-step:focus{outline:none}
+  [hidden]{display:none!important}
+  .dragon-layer{position:fixed;inset:0;pointer-events:none;z-index:40;overflow:hidden}
+  .dragon-layer .dragon{position:absolute;width:112px;height:112px;object-fit:contain;filter:drop-shadow(0 8px 16px rgba(0,0,0,.45))}
+  .dragon-layer .sudoku-tile{position:absolute;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:#10231f;border:2px solid var(--crt-ink);color:var(--crt-ink);font:800 18px/1 ui-monospace,Menlo,Consolas,monospace;border-radius:4px;box-shadow:0 0 10px rgba(93,255,138,.35)}
+  @media (prefers-reduced-motion: reduce){
+    .eye,.cursor{animation:none}
+    .dragon-layer{display:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="dragon-layer" id="dragon-layer" aria-hidden="true"></div>
+<div class="wrap">
+  <header>
+    <img src="art/mascot-head.webp" alt="" width="64" height="64">
+    <div>
+      <h1>Become a tester</h1>
+      <p class="brand">StinkDoku · BREWDad Labs</p>
+    </div>
+  </header>
+
+  <noscript>
+    <div class="card">
+      <h2>iPhone</h2>
+      <p>1. Install Apple's TestFlight app from the <a href="https://apps.apple.com/app/testflight/id899247664">App Store</a>.</p>
+      <p>2. Open the <a href="https://testflight.apple.com/join/M6JnK4b1">StinkDoku TestFlight invite</a> and tap <strong>Accept</strong>, then <strong>Install</strong>.</p>
+      <p>3. Open StinkDoku. Send feedback with TestFlight (a screenshot, or Send Beta Feedback) or to <a href="mailto:support@brewdadlabs.com">support@brewdadlabs.com</a>.</p>
+      <h2>Android</h2>
+      <p>1. Join the StinkDoku testers Google Group with the Google account on your Android phone: <a href="https://groups.google.com/g/stinkdoku-testers">https://groups.google.com/g/stinkdoku-testers</a> (stinkdoku-testers@googlegroups.com).</p>
+      <p>2. Open <a href="https://play.google.com/apps/testing/com.brewdadlabs.stinkdoku">the Google Play testing link</a> and tap <strong>Become a tester</strong>, using that same Google account.</p>
+      <p>3. Install StinkDoku from <a href="https://play.google.com/store/apps/details?id=com.brewdadlabs.stinkdoku">Google Play</a>. Please stay opted in and play for 14 days in a row.</p>
+      <p>Testers can send feedback through Google Play or to <a href="mailto:support@brewdadlabs.com">support@brewdadlabs.com</a>.</p>
+      <p>Tell us what's fun, what's confusing, and what breaks.</p>
+      <p>Can't use Google Play? <a href="/stinkdoku.apk">Download the APK</a>.</p>
+    </div>
+  </noscript>
+
+  <section class="card" id="intro">
+    <p>StinkDoku is on TestFlight for iPhone and in a closed test on Google Play for Android. Thank you for helping!</p>
+    <p>No ads. No in-app purchases. Online features use a random player id and device id.</p>
+    <p class="muted" id="loading">Loading…</p>
+  </section>
+
+  <section class="card" id="email-step" hidden aria-labelledby="email-h">
+    <h2 id="email-h">Want a reminder? (optional)</h2>
+    <form id="email-form" novalidate>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="you@example.com">
+      <div class="hp" aria-hidden="true">
+        <label for="website">Leave this empty</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <label class="check"><input type="checkbox" id="consent" name="consent"> <span>It's OK to email me about StinkDoku testing.</span></label>
+      <p class="consent">Optional. We'll only store your email and the time you signed up, on Cloudflare, and only use it for StinkDoku tester reminders. No automatic emails, no marketing, never shared or sold. It's deleted when testing ends, or sooner if you ask: email <a href="mailto:support@brewdadlabs.com">support@brewdadlabs.com</a>.</p>
+      <div class="row">
+        <button class="btn" type="submit" id="save">Save and continue</button>
+        <button class="btn ghost" type="button" id="skip-email">Skip, no email</button>
+      </div>
+      <p class="msg" id="email-msg" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="term" id="term" hidden aria-hidden="true">
+    <div class="term-top"><span id="term-label">STINKDOKU TEST UNIT</span><span class="eye"></span></div>
+    <pre class="screen" id="screen"></pre>
+
+    <div id="step-panel" hidden>
+      <div class="tracks">
+        <section class="track" id="track-ios" aria-labelledby="ios-h">
+          <h2 id="ios-h">iPhone</h2>
+          <p class="track-progress" id="ios-progress">Step 1 of 3</p>
+          <ol class="steps">
+            <li class="term-step is-current" id="ios-1" tabindex="-1" aria-labelledby="i1-h">
+              <p class="step-n">STEP 1 OF 3</p>
+              <h2 id="i1-h">Install TestFlight</h2>
+              <p>First install Apple's TestFlight app from the App Store, if you don't already have it.</p>
+              <div class="row">
+                <a class="btn btn-big" id="testflight-app-link" href="https://apps.apple.com/app/testflight/id899247664" target="_blank" rel="noopener">Install TestFlight from the App Store</a>
+                <button class="btn ghost next" type="button" data-platform="ios" data-next="2">I did this, next</button>
+              </div>
+            </li>
+            <li class="term-step is-future" id="ios-2" tabindex="-1" aria-labelledby="i2-h">
+              <p class="step-n">STEP 2 OF 3</p>
+              <h2 id="i2-h">Accept the invite</h2>
+              <p>Open the TestFlight invite on this iPhone or iPad, then tap <strong>Accept</strong> and <strong>Install</strong>.</p>
+              <div class="row">
+                <a class="btn btn-big" id="testflight-join-link" href="https://testflight.apple.com/join/M6JnK4b1" target="_blank" rel="noopener">Join the StinkDoku TestFlight</a>
+                <button class="btn ghost next" type="button" data-platform="ios" data-next="3">I did this, next</button>
+              </div>
+            </li>
+            <li class="term-step is-future" id="ios-3" tabindex="-1" aria-labelledby="i3-h">
+              <p class="step-n">STEP 3 OF 3</p>
+              <h2 id="i3-h">Open StinkDoku</h2>
+              <p>Open StinkDoku on your iPhone or iPad. New builds arrive through TestFlight.</p>
+              <p>Send feedback with TestFlight (a screenshot, or the Send Beta Feedback option in TestFlight) or to <a href="mailto:support@brewdadlabs.com">support@brewdadlabs.com</a>.</p>
+              <p>Tell us what's fun, what's confusing, and what breaks.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="track" id="track-android" aria-labelledby="android-h">
+          <h2 id="android-h">Android</h2>
+          <p class="track-progress" id="android-progress">Step 1 of 3</p>
+          <ol class="steps">
+            <li class="term-step is-current" id="android-1" tabindex="-1" aria-labelledby="a1-h">
+              <p class="step-n">STEP 1 OF 3</p>
+              <h2 id="a1-h">Join the testers Google Group</h2>
+              <p>Use the Google account that's signed in to the Play Store on your Android phone. This button opens the group page — Google will ask you to join it yourself.</p>
+              <p class="muted" id="group-email">Group address: <span id="group-email-addr">stinkdoku-testers@googlegroups.com</span></p>
+              <div class="row">
+                <a class="btn btn-big" id="group-link" href="https://groups.google.com/g/stinkdoku-testers" target="_blank" rel="noopener">Join with the Google account on your Android phone</a>
+                <button class="btn ghost next" type="button" data-platform="android" data-next="2">I did this, next</button>
+              </div>
+            </li>
+            <li class="term-step is-future" id="android-2" tabindex="-1" aria-labelledby="a2-h">
+              <p class="step-n">STEP 2 OF 3</p>
+              <h2 id="a2-h">Tap "Become a tester"</h2>
+              <p>Open the Google Play testing page, signed in with that same Google account, and tap <strong>Become a tester</strong>.</p>
+              <div class="row">
+                <a class="btn btn-big" id="optin-link" href="https://play.google.com/apps/testing/com.brewdadlabs.stinkdoku" target="_blank" rel="noopener">Open the Play testing page</a>
+                <button class="btn ghost next" type="button" data-platform="android" data-next="3">I did this, next</button>
+              </div>
+            </li>
+            <li class="term-step is-future" id="android-3" tabindex="-1" aria-labelledby="a3-h">
+              <p class="step-n">STEP 3 OF 3</p>
+              <h2 id="a3-h">Install StinkDoku from Google Play</h2>
+              <p>After you become a tester, install StinkDoku from Google Play on your phone, again with the same Google account. From then on, updates arrive automatically through Play.</p>
+              <div class="row">
+                <a class="btn btn-big" id="play-link" href="https://play.google.com/store/apps/details?id=com.brewdadlabs.stinkdoku" target="_blank" rel="noopener">Install StinkDoku from Google Play</a>
+              </div>
+              <p>Testers can send feedback through Google Play or to <a href="mailto:support@brewdadlabs.com">support@brewdadlabs.com</a>.</p>
+              <p>Tell us what's fun, what's confusing, and what breaks.</p>
+            </li>
+          </ol>
+          <div class="rules" aria-labelledby="rules-h">
+            <h2 id="rules-h">Please keep in mind</h2>
+            <ul>
+              <li><strong>One Google account for everything.</strong> Use the same account for the Group, the Play testing page and the install.</li>
+              <li><strong>Stay opted in and play for 14 days in a row.</strong> Google needs at least 12 testers opted in for 14 days before StinkDoku can go public on Google Play. If you leave the test, your 14 days start over.</li>
+              <li>Already have an older StinkDoku tester app from a direct download? The Google Play version installs next to it. To keep your progress, use Settings → Link a device on both.</li>
+            </ul>
+          </div>
+          <p class="muted" style="margin:12px 0 0">Can't use Google Play? <a href="/stinkdoku.apk">Download the APK</a>.</p>
+        </section>
+      </div>
+
+      <nav class="term-nav" aria-label="Tester steps">
+        <button type="button" id="back" hidden>Back</button>
+        <button type="button" id="start-over">Start over</button>
+      </nav>
+    </div>
+  </section>
+  <p class="hp" id="term-status" role="status" aria-live="polite"></p>
+
+  <footer>
+    <a href="/">BrewDadLabs</a> · <a href="https://play.stinkdoku.com">Play StinkDoku on the web</a> · <a href="mailto:support@brewdadlabs.com">Support</a><br>
+    StinkDoku, by BREWDad Labs.
+  </footer>
+</div>
+<script src="tester.js" defer></script>
+</body>
+</html>

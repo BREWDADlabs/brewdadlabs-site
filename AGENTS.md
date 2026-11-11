@@ -10,3 +10,5 @@ Notes for AI agents and helpers working in this repo.
 - Never commit API tokens, account IDs, zone IDs, DNS record IDs or other infrastructure identifiers. This repo is public.
 - Do not touch mail-related DNS records or the existing redirect rules when working on this site.
 - Update `docs/AI_HANDOFF.md` and `docs/AI_CHANGELOG.md` with every change.
+
+- The StinkDoku tester page lives at `site/beta/` (served as `/beta/`). Email sign-up is a Pages Function in `functions/`. `wrangler.toml` is gitignored because it has D1 database IDs; copy `wrangler.toml.example` on the Mac mini deploy machine. Preview deploys use `--branch beta-preview` (or another non-`main` branch). Never deploy `--branch main` without Randy's OK. Do not attach `beta.brewdadlabs.com` or change DNS without his OK. Do not change play.stinkdoku.com (that host is the live game only).

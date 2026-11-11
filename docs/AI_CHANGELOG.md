@@ -1,5 +1,15 @@
 # AI Changelog
 
+## 2026-11-10 ~10:30 PM ET, Websites bot (StinkDoku tester page → /beta/ on brewdadlabs, preview only)
+- **Goal:** Move the full tester flow (email signup on, iPhone + Android on one page, terminal look kept, two small dragon moments) to brewdadlabs.com/beta, plus a planned beta.brewdadlabs.com subdomain. play.stinkdoku.com stays the live game and is not touched. Preview only.
+- **Files:** site/beta/index.html, site/beta/tester.js, site/beta/art/{dragon-04-aqua-red-orange.webp,dragon-06-sky-orange-peach.webp,mascot-head.webp} (new); functions/api/tester-signup.js, functions/_middleware.js (new); site/_redirects (new); site/_headers; site/stinkdoku-beta.html; wrangler.toml.example (new); .gitignore; AGENTS.md; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md. Local gitignored wrangler.toml holds the D1 bindings.
+- **Summary:** `/beta/` is a self-contained copy of the PR #59 terminal tester page, with both phone sections always visible in a fixed order after the boot animation, per-step progress, auto-advance + "I did this, next", the 14-day rules, APK fallback, feedback line, and softened privacy wording. Optional emails go to the preview D1 testers database via a Pages Function (consent, validation, honeypot, rate limit; email + timestamp only). `/stinkdoku-beta` 302s to `/beta`. The beta subdomain is coded (host rewrite at `/`) but DNS is not changed. Two playful dragon animations use public main-branch sprites and never block buttons; they are off under reduced motion.
+- **Tests:** preview `/beta/` curl-checked; one signup POST into the preview D1, then that row deleted; production https://brewdadlabs.com/stinkdoku-beta and https://play.stinkdoku.com confirmed unchanged.
+- **Deploy:** Pages branch preview `beta-preview` only (`wrangler pages deploy --project-name brewdadlabs-site --branch beta-preview`). Production not deployed; `main` not merged.
+- **Rollback:** redeploy the previous `beta-preview` preview, or drop the branch. Production is untouched.
+- **Production publish (do not run until Randy OKs):** from `/Users/test/sites/brewdadlabs-site` on a checkout that includes this branch, `npx wrangler pages deploy --project-name brewdadlabs-site --branch main`. Then curl https://brewdadlabs.com/beta/ (200, tester page), https://brewdadlabs.com/stinkdoku-beta (302 to /beta), https://brewdadlabs.com/stinkdoku.apk (unchanged), https://play.stinkdoku.com/ (unchanged). Attaching beta.brewdadlabs.com is a separate DNS step (see the handoff) and still needs his OK.
+
+
 ## 2026-11-09 7:38 PM ET, Websites bot (StinkDoku beta page → production)
 - **Goal:** Randy approved ("Perfect, go") — ship `/stinkdoku-beta` to production.
 - **Files:** docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md (mark live); site unchanged from preview `5f23e84`.

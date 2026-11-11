@@ -3,3 +3,5 @@ node_modules/
 .DS_Store
 backups/
 arcade/
+# Local Pages deploy config (has D1 database IDs). See wrangler.toml.example.
+wrangler.toml
