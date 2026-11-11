@@ -1,5 +1,15 @@
 # AI Changelog
 
+## 2026-11-10 ~10:47 PM ET, Websites bot (StinkDoku /beta/ tester page → production)
+- **Goal:** Randy (10:46 PM ET): "make it live and send me a link. I don't need to see it first." Publish the email-removed tester page.
+- **Files:** docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md (mark live). Site files unchanged from `b1b2486`.
+- **Summary:** production-deployed `site/` to Cloudflare Pages `brewdadlabs-site` branch `main`. Live at https://brewdadlabs.com/beta/ and https://www.brewdadlabs.com/beta/. No email signup. `/stinkdoku-beta` 302s to `/beta`. No DNS change; `beta.brewdadlabs.com` was not attached. play.stinkdoku.com untouched.
+- **Tests:** curl live `/beta/` 200 on apex and www (no email field; iPhone and Android sections present; dragon WebPs 200). `/stinkdoku-beta` 302 Location `/beta` on both hosts (no stale cached 200). `/stinkdoku.apk` 200, 9,817,282 bytes, APK content type unchanged. GET `/api/tester-signup` 404; POST to that path 405 with an empty body (no signup Function). play.stinkdoku.com homepage hash unchanged; `/android-tester` still 404.
+- **Deploy:** production (`main`), deployment `3123393b-57c7-4bcd-a7fe-113fc3bc2d66`. No DNS/redirect-rule or other-site changes.
+- **Rollback:** redeploy the previous production deployment `e85e861a-c64e-42d2-b670-f563a6804b9d` from the Pages dashboard, or redeploy the prior `site/` from `main`.
+- **Git:** left `feature/android-tester-link` unmerged. This Pages project is not git-connected; pushing does not deploy, and the docs do not require git `main` to mirror production.
+
+
 ## 2026-11-10 ~10:45 PM ET, Websites bot (remove tester email signup from /beta/, preview only)
 - **Goal:** Randy (10:44 PM ET): take the extra email step off; he doesn't want the email that badly.
 - **Files:** site/beta/index.html, site/beta/tester.js; functions/api/tester-signup.js (deleted); wrangler.toml (committed, no D1 bindings); wrangler.toml.example (removed); .gitignore; AGENTS.md; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md. `functions/_middleware.js` unchanged.

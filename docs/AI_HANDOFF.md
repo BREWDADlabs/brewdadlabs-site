@@ -1,6 +1,6 @@
 # AI Handoff
 
-_Last updated: 2026-11-10 ~10:45 PM ET (America/New_York): /beta/ preview has no email signup; production unchanged_
+_Last updated: 2026-11-10 ~10:47 PM ET (America/New_York): StinkDoku tester page is live at https://brewdadlabs.com/beta/
 
 ## Current state
 - Live: https://brewdadlabs.com and https://www.brewdadlabs.com, served by Cloudflare Pages project `brewdadlabs-site`.
@@ -44,18 +44,16 @@ _Last updated: 2026-11-10 ~10:45 PM ET (America/New_York): /beta/ preview has no
 - Favicon is live (Randy thumbs-upped the draft 2026-11-05).
 - Workshop log seed entries will be updated by Randy as real work happens.
 
-## StinkDoku beta tester page (LIVE)
-- Path: `/stinkdoku-beta` → `site/stinkdoku-beta.html` (Cloudflare Pages pretty URL). Does not collide with `/stinkdoku` (still 302 → play.stinkdoku.com).
-- Content: short beta intro; iOS TestFlight `https://testflight.apple.com/join/M6JnK4b1`; Android download `/stinkdoku.apk` with install-unknown-apps steps. Matches homepage CSS (Share Tech Mono, `#00ff9c`, grid background, card layout). `noindex` meta.
-- APK at `/stinkdoku.apk` unchanged and still live in production.
-- **Live in production** on brewdadlabs.com and www (Randy OK 2026-11-09 ~7:38 PM ET). Preview still at https://preview.brewdadlabs-site.pages.dev/stinkdoku-beta.
+## StinkDoku beta tester page (LIVE, moved to /beta/)
+- Path: `/beta/` → `site/beta/index.html`. `/stinkdoku-beta` 302s to `/beta` (already live on the apex and www; the domain did not serve a stale copy). Does not collide with `/stinkdoku` (still 302 → play.stinkdoku.com).
+- APK at `/stinkdoku.apk` unchanged and still live in production (9,817,282 bytes).
 
 ## StinkDoku Android APK (LIVE)
 - https://brewdadlabs.com/stinkdoku.apk (also on www): `site/stinkdoku.apk`, served as `application/vnd.android.package-archive` with `Content-Disposition: attachment; filename="StinkDoku.apk"` via `site/_headers`.
 - To ship a new build, replace `site/stinkdoku.apk` (keep the name), deploy preview then `main`, and recheck the headers with curl.
 - Kept at the site root on purpose: `/stinkdoku` and `/stinkdoku/*` are redirect rules to play.stinkdoku.com.
 
-## StinkDoku tester page at /beta/ (PREVIEW ONLY, 2026-11-10 ~10:30 PM ET)
+## StinkDoku tester page at /beta/ (LIVE, 2026-11-10 ~10:47 PM ET)
 - Path: `/beta/` → `site/beta/index.html`, plus `site/beta/tester.js` and `site/beta/art/`. The terminal look from draft PR geekdadteach/stinky-dragons#59 is kept (CRT chrome, scanlines, red eye, boot animation that always plays, reduced motion honored). There is no email signup and no skip-animation button. The page goes straight to the boot animation, then the iPhone and Android sections.
 - After the boot animation, iPhone and Android are both on the same page, in that fixed order, with equal weight. Each section has its own big buttons and its own per-step localStorage progress, so a tester can do both. The page does not guess or reorder by phone type, and there are no switch-platform buttons.
 - iPhone: install TestFlight, open https://testflight.apple.com/join/M6JnK4b1, open StinkDoku.
@@ -70,11 +68,11 @@ _Last updated: 2026-11-10 ~10:45 PM ET (America/New_York): /beta/ preview has no
 - `/stinkdoku-beta` points at `/beta` via `site/_redirects` (302) and a short fallback page.
 - `beta.brewdadlabs.com` is prepared but not attached. `functions/_middleware.js` will serve `/beta/` at the subdomain root once the domain exists. Do not add the custom domain or DNS until Randy approves.
 - play.stinkdoku.com is the live game only. It was not changed. Draft PR #59 stays a draft; a comment notes the move to brewdadlabs.
-- Preview: `wrangler pages deploy --project-name brewdadlabs-site --branch beta-preview` (never `main`). Expected URL: https://beta-preview.brewdadlabs-site.pages.dev/beta/
-- Production (`main`, live `/stinkdoku-beta`) is unchanged until Randy OKs a main deploy.
+- **Live in production** on https://brewdadlabs.com/beta/ and https://www.brewdadlabs.com/beta/ (Randy OK 10:46 PM ET: "make it live and send me a link. I don't need to see it first." Email-removed version only). Production deployment `3123393b-57c7-4bcd-a7fe-113fc3bc2d66` (Pages branch `main`, source `b1b2486`). Preview remains at https://beta-preview.brewdadlabs-site.pages.dev/beta/.
+- `beta.brewdadlabs.com` is still not attached. Do not add the custom domain or DNS until Randy approves.
+- Git: production was a direct Pages upload. The feature branch `feature/android-tester-link` was not merged to `main`; this repo is not git-connected to Pages, and pushing does not deploy.
 
 ## Next
-- Randy reviews the `/beta/` preview (no email signup, both phones on one page, terminal unchanged, two dragon moments).
-- If he OKs it, deploy production with `--branch main` (commands are in the changelog). Attaching `beta.brewdadlabs.com` is a separate DNS OK.
+- Attaching `beta.brewdadlabs.com` is a separate DNS OK (not done).
 - Gorillas 404 rollout per the rollout doc, one domain at a time with Randy's OK (builds are ready).
 - Workshop log seed entries will be updated by Randy as real work happens.
