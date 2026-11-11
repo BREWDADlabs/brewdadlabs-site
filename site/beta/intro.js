@@ -182,7 +182,6 @@
         '<div class="sd-intro-loading">Loading…</div>' +
         '<canvas width="620" height="548" aria-hidden="true"></canvas>' +
         '<img class="sd-intro-still" alt="' + STILL_ALT + '" width="620" height="548">' +
-        '<button type="button" class="sd-intro-skip">Skip</button>' +
         '<p class="sd-intro-bubble" hidden></p>' +
         '<div class="sd-intro-end">' +
           '<img alt="" width="56" height="56">' +
@@ -198,7 +197,6 @@
     const canvas = el.querySelector('canvas');
     const ctx = canvas.getContext('2d', { alpha: true });
     const stillImg = el.querySelector('.sd-intro-still');
-    const skipBtn = el.querySelector('.sd-intro-skip');
     const bubble = el.querySelector('.sd-intro-bubble');
     const endEl = el.querySelector('.sd-intro-end');
     const cta = el.querySelector('.sd-intro-cta');
@@ -235,10 +233,6 @@
       endEl.style.opacity = String(p);
       endEl.style.transform = p >= 1 ? 'none' : 'translateY(' + ((1 - p) * 10) + 'px)';
       endEl.style.pointerEvents = (!social && p >= 0.85) ? 'auto' : 'none';
-      const skipFade = social ? 0 : (typeof t === 'number' ? 1 - clamp((t - T_LOGO) / 0.25, 0, 1) : (t ? 0 : 1));
-      skipBtn.style.opacity = String(skipFade);
-      skipBtn.style.visibility = skipFade <= 0 ? 'hidden' : 'visible';
-      skipBtn.style.pointerEvents = skipFade <= 0 ? 'none' : 'auto';
     }
 
     function setBubble(text) {
@@ -1195,15 +1189,6 @@
       fireDone();
     }
 
-    skipBtn.addEventListener('click', skip);
-    function onKey(e) {
-      if (e.key === 'Escape' && el.dataset.state === 'playing') {
-        e.preventDefault();
-        skip();
-      }
-    }
-    document.addEventListener('keydown', onKey);
-
     cta.addEventListener('click', function (e) {
       if (typeof opts.onCta === 'function') opts.onCta(e);
     });
@@ -1235,7 +1220,6 @@
       T_IMPACT: T_IMPACT,
       destroy: function () {
         if (raf) cancelAnimationFrame(raf);
-        document.removeEventListener('keydown', onKey);
         if (ro) ro.disconnect();
         el.innerHTML = '';
       },
