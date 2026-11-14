@@ -1,5 +1,7 @@
 # Gorillas 404 rollout plan
 
+> **Status update (2026-11-13, Websites bot; live curl check):** the Gorillas 404 is **live** on brewdadlabs.com, arcade.brewdadlabs.com (Pages `30ab07cc`), newearth.graphitenerd.com (Pages production now `4d668b0c`), stinkdoku.com (`a76e708a`), www.stinkydragon.com (Stinky Dragon theme, prod `fdbaeefa`) and dixhome.com (the original). Still **not** done: play.stinkdoku.com, which is the Stinkdoku bot's Worker (patch in `/Users/test/sites/handoff/gorillas-404/play-stinkdoku/`). The table below is the 2026-11-05 snapshot. Correction: graphitenerd.com and www now **serve the NewEarth site directly (200)** instead of redirecting with a 301. There is no redirect rule on that zone.
+
 The reusable page lives in `shared/gorillas-404/` (see its README). This is the status and ship checklist for each of our domains.
 
 **Every deploy below needs Randy's OK.** Builds are prepared and tested locally; nothing new has been deployed. Built copies are on the Mac at `/Users/test/sites/handoff/gorillas-404/` and on the box at `/workspace/handoff/gorillas-404/`.
