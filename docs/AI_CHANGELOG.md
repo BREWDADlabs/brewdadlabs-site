@@ -175,3 +175,10 @@
 - **Checked:** that was the only absolute no-tracking / no-telemetry / no-accounts claim on `/stinkdoku-beta`. The Google Play card's "Google account" line is about using the same Play account for the test, and was left alone. No changes to play.stinkdoku.com / PR #59.
 - **Deploy:** Pages branch preview `android-tester` only. Production not deployed; `main` not pushed.
 - **Rollback:** revert this commit and redeploy the `android-tester` preview.
+
+## 2026-11-13 ~11:00 PM ET, Websites bot (takeover handoff)
+- **Goal:** Randy's order (relayed by the GitHub bot, 2026-11-13) that every bot leave complete takeover docs, so any AI can take over immediately with nothing left out.
+- **Files:** `docs/AI_HANDOFF.md` (rewritten as a full takeover document, with the previous text kept word for word as Appendix A, minus one DNS record ID), `AGENTS.md` (start-here pointer and Randy's rules summary), `docs/AI_CHANGELOG.md`.
+- **Checked live (read-only):** production is still `f592f017` (c49b7b6). Every route in handoff section 5 answered as expected. The beta root 302s to `/beta/`, and the APK is 9817282 bytes with the right headers.
+- **Deploy:** none. **Push:** none yet (branch `websites/takeover-handoff`, local commit only, waiting for Randy's OK to push and open a PR).
+- **Rollback:** drop the branch. Docs only.
