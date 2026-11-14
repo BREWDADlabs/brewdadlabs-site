@@ -175,3 +175,9 @@
 - **Checked:** that was the only absolute no-tracking / no-telemetry / no-accounts claim on `/stinkdoku-beta`. The Google Play card's "Google account" line is about using the same Play account for the test, and was left alone. No changes to play.stinkdoku.com / PR #59.
 - **Deploy:** Pages branch preview `android-tester` only. Production not deployed; `main` not pushed.
 - **Rollback:** revert this commit and redeploy the `android-tester` preview.
+
+## 2026-11-14, Websites takeover bot (review fixes, preview only)
+- **Goal:** apply the site review: refresh the stale Workshop Log, remove family/wife wording from `/projects`, add SEO basics, HSTS and a sitemap (Randy: "fix it all", log list approved with the Dix Homeschool refresh line dropped).
+- **Files:** site/index.html, site/projects.json, site/_headers, site/sitemap.xml; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md.
+- **Deploy:** Pages branch preview `beta-preview` only. Production not deployed; nothing pushed.
+- **Rollback:** drop the preview branch; production is unchanged. To undo after a later production deploy, redeploy Pages deployment `f592f017-9cf2-448f-9162-4ccb5f483f36`.

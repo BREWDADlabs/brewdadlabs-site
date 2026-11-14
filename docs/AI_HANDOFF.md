@@ -1,6 +1,6 @@
 # AI Handoff
 
-_Last updated: 2026-11-11 ~1:21 AM ET (America/New_York): Design's v1.2 dragon intro is live on /beta/, with no Skip button_
+_Last updated: 2026-11-14 (America/New_York): workshop log refreshed, wording and SEO fixes, HSTS, sitemap; PREVIEW ONLY, not in production_
 
 ## Current state
 - Live: https://brewdadlabs.com and https://www.brewdadlabs.com, served by Cloudflare Pages project `brewdadlabs-site`.
@@ -84,3 +84,11 @@ _Last updated: 2026-11-11 ~1:21 AM ET (America/New_York): Design's v1.2 dragon i
 - The older sprite-sheet moment preview (`694ec5f`) remains on `feature/android-tester-link` / https://beta-preview.brewdadlabs-site.pages.dev/beta/ and is not for production until Randy OKs it.
 - Gorillas 404 rollout per the rollout doc, one domain at a time with Randy's OK (builds are ready).
 - Workshop log seed entries will be updated by Randy as real work happens.
+
+## 2026-11-14 review fixes (preview only, not in production)
+- Branch `feature/beta-dragon-intro`. Preview: https://beta-preview.brewdadlabs-site.pages.dev (noindex). Production is still the Nov 11 deployment.
+- Homepage Workshop Log: replaced the two stale Nov 4 lines with nine real, dated entries (newest first). Dix Homeschool refresh line left out by Randy's choice. Tux's Revenge is not in the log.
+- `site/projects.json`: removed "a gift for my wife", "Our family Minecraft server", "Our family homeschool learning site"; plug-in blurb now says "the NewEarth Minecraft server". Genealogy blurb ("family history research") unchanged on purpose.
+- `site/index.html`: added meta description, canonical, Open Graph tags. `site/sitemap.xml` added (`/` and `/projects`; `/beta/` is noindex). `robots.txt` is Cloudflare-managed at the edge, so no file was added.
+- `site/_headers`: added `Strict-Transport-Security: max-age=31536000` (no includeSubDomains, no preload).
+- Still open: /beta Dix Homeschool credit line (needs wording placement from Randy); merge to `main` and production deploy need Randy's OK.
