@@ -181,3 +181,5 @@
 - **Files:** site/index.html, site/projects.json, site/_headers, site/sitemap.xml; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md.
 - **Deploy:** Pages branch preview `beta-preview` only. Production not deployed; nothing pushed.
 - **Rollback:** drop the preview branch; production is unchanged. To undo after a later production deploy, redeploy Pages deployment `f592f017-9cf2-448f-9162-4ccb5f483f36`.
+
+- 2026-11-15 DEPLOYED to production (Randy: 'if it is the right choice'; Claude judged safe). Deployment 26c8361d. Previous production kept for rollback in Cloudflare.
