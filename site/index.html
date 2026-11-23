@@ -5,13 +5,13 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>BrewDadLabs — The Workshop</title>
-<meta name="description" content="BrewDadLabs is a home workshop for code, games, experiments and things worth building. Free browser games, no ads, no trackers, no accounts.">
+<title>BrewDadLabs</title>
+<meta name="description" content="Games, tools and things worth building. Free browser games. No ads, no trackers, no accounts.">
 <link rel="canonical" href="https://brewdadlabs.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BrewDadLabs">
-<meta property="og:title" content="BrewDadLabs — The Workshop">
-<meta property="og:description" content="A home workshop for code, games, experiments and things worth building. No ads, no trackers, no accounts.">
+<meta property="og:title" content="BrewDadLabs">
+<meta property="og:description" content="Games, tools and things worth building. No ads, no trackers, no accounts.">
 <meta property="og:url" content="https://brewdadlabs.com/">
 <style>@font-face{font-family:'Share Tech Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/ShareTechMono-Regular.woff2) format('woff2')}</style>
 <style>
@@ -63,11 +63,11 @@ footer{display:flex;flex-wrap:wrap;gap:12px 24px;font-size:14px;color:var(--mute
 <section class="hero">
 <span class="on m"><i></i>online</span>
 <h1 class="m">brewdadlabs</h1>
-<p class="sub m">a home workshop. est. by curiosity.</p>
+<p class="sub m">est. by curiosity.</p>
 <p class="tl">We put the whole world in everyone’s pocket. Then we sold the pocket.</p>
-<p class="lead">This is a small workshop for building things that respect you. No ads. No trackers. No accounts. Life is short, and so is this page.</p>
+<p class="lead">Things built to respect you. No ads. No trackers. No accounts. Life is short, and so is this page.</p>
 </section>
-<h2 class="m">// pick a bench. time is short.</h2>
+<h2 class="m">// pick one. time is short.</h2>
 <div class="grid">
 <a class="card" href="https://arcade.brewdadlabs.com"><span class="tag">[live]</span><h3 class="m">the arcade</h3><p>Games. No ads. No accounts. Nobody counting your minutes.</p><span class="go m">enter →</span></a>
 <a class="card" href="/projects"><span class="tag">[growing]</span><h3 class="m">projects</h3><p>Built in the open. Take what is useful.</p><span class="go m">open the map →</span></a>
@@ -95,7 +95,7 @@ Go outside. While the air is still free. It won’t stay that way.</pre>
 (()=>{
 const $=s=>document.querySelector(s),RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 // boot
-const L=["brewdadlabs // ohio","initializing workshop...","<span class=ok>[ok]</span> ads: none","<span class=ok>[ok]</span> trackers: none","<span class=ok>[ok]</span> accounts: none","<span class=ok>[ok]</span> your attention: not for sale","<span class=ok>[ok]</span> engagement metrics: none","<span class=ok>[ok]</span> ego: minimal","<span class=ok>[ok]</span> meaning of life: unknown","<span class=wn>[ok] coffee: unknown</span>","welcome."];
+const L=["brewdadlabs // ohio","initializing...","<span class=ok>[ok]</span> ads: none","<span class=ok>[ok]</span> trackers: none","<span class=ok>[ok]</span> accounts: none","<span class=ok>[ok]</span> your attention: not for sale","<span class=ok>[ok]</span> engagement metrics: none","<span class=ok>[ok]</span> ego: minimal","<span class=ok>[ok]</span> meaning of life: unknown","<span class=wn>[ok] coffee: unknown</span>","welcome."];
 const b=$('#boot');let i=0,t;
 const done=()=>{clearTimeout(t);b.classList.add('out');try{sessionStorage.setItem('bdl-boot','1')}catch(e){}setTimeout(()=>b.remove(),600)};
 let seen=false;try{seen=sessionStorage.getItem('bdl-boot')}catch(e){}
