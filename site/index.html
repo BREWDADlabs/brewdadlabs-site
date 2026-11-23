@@ -67,15 +67,15 @@ footer{display:flex;flex-wrap:wrap;gap:12px 24px;font-size:14px;color:var(--mute
 <span class="on m"><i></i>online</span>
 <h1 class="m">brewdadlabs</h1>
 <p class="sub m">a home workshop. est. by curiosity.</p>
-<p class="tl">We put the whole world in everyone’s pocket. Then we sold the pocket.</p>
-<p class="lead">This is a small workshop. No ads. No trackers. No accounts. Nothing here is for sale, including you.</p>
+<p class="tl">We carry all of human knowledge in our pockets. Mostly we use it to be sold things.</p>
+<p class="lead">This is a small workshop for building things that respect you. No ads. No trackers. No accounts. Life is short, and so is this page.</p>
 </section>
-<h2 class="m">// pick a bench</h2>
+<h2 class="m">// pick a bench. time is short.</h2>
 <div class="grid">
-<a class="card" href="https://arcade.brewdadlabs.com"><span class="tag">[live]</span><h3 class="m">the arcade</h3><p>Games. No ads. No accounts. Nobody watching you play.</p><span class="go m">enter →</span></a>
-<a class="card" href="/projects"><span class="tag">[growing]</span><h3 class="m">projects</h3><p>Built in the open. Every project with its source.</p><span class="go m">open the map →</span></a>
-<div class="card soon"><span class="tag">[booting]</span><h3 class="m">the lab</h3><p>Self-host it. Local AI, home servers, hardware hacks. Your box, your rules.</p><span class="go m">coming soon_</span></div>
-<div class="card soon"><span class="tag">[compiling]</span><h3 class="m">learn</h3><p>Free lessons. No paywall. No signup. No cookie banner.</p><span class="go m">coming soon_</span></div>
+<a class="card" href="https://arcade.brewdadlabs.com"><span class="tag">[live]</span><h3 class="m">the arcade</h3><p>Games. No ads. No accounts. Nobody counting your minutes.</p><span class="go m">enter →</span></a>
+<a class="card" href="/projects"><span class="tag">[growing]</span><h3 class="m">projects</h3><p>Built in the open. Take what is useful.</p><span class="go m">open the map →</span></a>
+<div class="card soon"><span class="tag">[booting]</span><h3 class="m">the lab</h3><p>Self-host it. Local AI, home servers, hardware hacks. Own the box. Own the mistakes.</p><span class="go m">coming soon_</span></div>
+<div class="card soon"><span class="tag">[compiling]</span><h3 class="m">learn</h3><p>Free lessons. No paywall. No signup. Learn it, then go outside.</p><span class="go m">coming soon_</span></div>
 </div>
 <h2 class="m">// readme.txt</h2>
 <pre class="readme">We learned to make fire.
@@ -91,20 +91,22 @@ It was never about the machine.
 It was about who holds the <b>leash</b>.
 
 This place is smaller.
-It asks for <b>nothing</b>.</pre>
-<h2 class="m">// workshop log</h2>
+It asks for <b>nothing</b>.
+
+Go outside afterwards.</pre>
+<h2 class="m">// workshop log. things that actually happened.</h2>
 <div id="feed"></div>
-<p class="msg">I don’t need to sell your attention to make something worth your time.</p>
-<footer class="m"><a href="https://arcade.brewdadlabs.com">arcade</a><a href="/projects">projects</a><a href="https://github.com/BrewDadLabs" rel="noopener">github</a><span>people before profit.</span></footer>
+<p class="msg">Your time is finite. We will try not to waste it.</p>
+<footer class="m"><a href="https://arcade.brewdadlabs.com">arcade</a><a href="/projects">projects</a><a href="https://github.com/BrewDadLabs" rel="noopener">github</a><span>people before profit. go outside.</span></footer>
 </main>
 <script>
 (()=>{
 const $=s=>document.querySelector(s),RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 // Workshop log: edit by hand. Real events only, no simulated telemetry.
 const LOG=[["2026-11-14","StinkDoku tester signup is live at stinkdoku.com/beta (iPhone and Android)"],["2026-11-14","play.stinkdoku.com tester links now send people to stinkdoku.com/beta"],["2026-11-14","NewEarth site now credits Dix Homeschool"],["2026-11-14","Bob research noted on dixhome.com: an autonomous AI player in NewEarth, still in progress"],["2026-11-11","Dragon intro added to the StinkDoku tester page at brewdadlabs.com/beta"],["2026-11-09","StinkDoku beta opens on TestFlight and Google Play; APK at brewdadlabs.com/stinkdoku.apk"],["2026-11-05","Gorillas 404 landed on the Arcade and stinkdoku.com"],["2026-11-04","Arcade shipped: Terminal Snake, Matrix Terminal, Circuit Breaker, System Defender"],["2026-11-04","Workshop homepage went live at brewdadlabs.com"]];
-$('#feed').innerHTML=LOG.map(e=>`<div><time>${e[0]}</time><span>${e[1]}</span></div>`).join('')+'<div class="w">_ awaiting next experiment <span class="cur"></span></div>';
+$('#feed').innerHTML=LOG.map(e=>`<div><time>${e[0]}</time><span>${e[1]}</span></div>`).join('')+'<div class="w">_ the next thing is being built. no hurry. <span class="cur"></span></div>';
 // boot
-const L=["brewdadlabs // ohio","initializing workshop...","<span class=ok>[ok]</span> ads: none","<span class=ok>[ok]</span> trackers: none","<span class=ok>[ok]</span> accounts: none","<span class=ok>[ok]</span> your attention: not for sale","<span class=ok>[ok]</span> engagement metrics: none","<span class=wn>[ok] coffee: unknown</span>","welcome."];
+const L=["brewdadlabs // ohio","initializing workshop...","<span class=ok>[ok]</span> ads: none","<span class=ok>[ok]</span> trackers: none","<span class=ok>[ok]</span> accounts: none","<span class=ok>[ok]</span> your attention: not for sale","<span class=ok>[ok]</span> engagement metrics: none","<span class=ok>[ok]</span> ego: minimal","<span class=ok>[ok]</span> meaning of life: unknown","<span class=wn>[ok] coffee: unknown</span>","welcome."];
 const b=$('#boot');let i=0,t;
 const done=()=>{clearTimeout(t);b.classList.add('out');try{sessionStorage.setItem('bdl-boot','1')}catch(e){}setTimeout(()=>b.remove(),600)};
 let seen=false;try{seen=sessionStorage.getItem('bdl-boot')}catch(e){}
