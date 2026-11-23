@@ -37,7 +37,7 @@
     {
       "id": "gorillas",
       "name": "Gorillas 404",
-      "description": "A remake of the 1991 QBasic Gorillas game that turns a missing page into a banana fight; it is the 404 page on dixhome.com, and a reusable version for our other sites is on the way.",
+      "description": "A remake of the 1991 QBasic Gorillas game that turns a missing page into a banana fight; it is the 404 page on dixhome.com, and a reusable version for other sites is on the way.",
       "status": "live",
       "links": [
         {
@@ -85,15 +85,8 @@
     {
       "id": "selfhosted",
       "name": "Self-hosted systems",
-      "description": "The home servers and network that run the workshop, including a self-hosted search engine and our own dynamic DNS.",
+      "description": "Home servers and a network built on open tools, including a self-hosted search engine and a dynamic DNS service.",
       "status": "growing",
-      "links": []
-    },
-    {
-      "id": "genealogy",
-      "name": "Genealogy tools",
-      "description": "Scripts that import GEDCOM family-tree files into a local database for our family history research.",
-      "status": "workshop",
       "links": []
     }
   ]
