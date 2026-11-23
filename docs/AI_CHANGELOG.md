@@ -1,5 +1,82 @@
 # AI Changelog
 
+## 2026-11-11 ~1:21 AM ET, Websites bot (Design v1.2 dragon intro → production, no Skip button)
+- **Goal:** Randy (relayed by StinkDoku Design, ~1:17 AM ET): remove the Skip button and put the dragon intro on the live beta page.
+- **Files:** site/beta/intro.js, site/beta/intro.css (Skip button, Escape listener, and `.sd-intro-skip` CSS removed in commit `c49b7b6`; the `skip()` method is kept for returning testers). docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md (this docs commit). No other site files changed in the Skip-removal commit.
+- **Summary:** After a preview of the Skip-removed intro on `dragon-intro-preview` (`6e7c914a`), production-deployed `site/` from exact commit `c49b7b6` (`feature/beta-dragon-intro`, based on `829b9fb` plus the v1.2 intro and the Skip removal) with `npx wrangler pages deploy site --project-name brewdadlabs-site --branch main`. The intro plays at the top of `/beta/`; "Become a tester" scrolls to the existing iPhone and Android steps; reduced-motion still, Start over replay, and the returning-tester `skip()` jump still work. No email signup. Git `main` was not merged or pushed; this Pages project is not git-connected.
+- **Tests:** Preview (1280×800 and 390×844): no Skip button, Escape does not skip, no console errors, no failed requests, CTA scrolls to `#tester-steps`, `skip()` still settles the intro, Start over replays, reduced motion shows the composed still with the CTA. Production: https://brewdadlabs.com/beta/, https://www.brewdadlabs.com/beta/, and https://beta.brewdadlabs.com/beta/ 200 with the intro and no Skip; `https://beta.brewdadlabs.com/` 302 to `/beta/` (`/?foo=bar` → `/beta/?foo=bar`); intro assets 200 on all three hosts (1,254,418 bytes / 1.196 MB). Headless Chrome on all three live hosts at 1280×800 and 390×844: intro ready, no Skip, no console errors, CTA scrolls to the steps. `/stinkdoku-beta` 302 to `/beta` on apex, www, and the beta host. `/stinkdoku.apk` 200, 9,817,282 bytes, sha256 `b908b8276d9ba4e8e3a55905d9a3f5f03a71e9ac86b0839f76879debaf6ea565`, APK content type unchanged. Homepage on apex and www is byte-identical to `site/index.html` (sha256 `0005e749d3afc9efcc079de2ebd374332869abce6ffa19451f13c614dd62f471`). play.stinkdoku.com homepage 200, not the beta page (sha256 `f3f610e679a826ec8de798bbf709550e35c43a2e8931a495cf4cbd468a822476`); `/android-tester` still 404.
+- **Deploy:** production (`main`), deployment `f592f017-9cf2-448f-9162-4ccb5f483f36`, source `c49b7b6`. Preview `dragon-intro-preview` was updated first (`6e7c914a`).
+- **Rollback:** redeploy previous production deployment `db6a4412-dacb-489c-acff-c4a9fdf737cd` from the Pages dashboard.
+- **Git:** commit and push `feature/beta-dragon-intro` only (`c49b7b6` plus this docs commit). Do not merge to `main`.
+
+
+## 2026-11-11 ~1:10 AM ET, Websites bot (Design v1.2 dragon intro on /beta/, preview only)
+- **Goal:** Replace the terminal boot animation at the top of the StinkDoku tester page with StinkDoku Design's v1.2 animated dragon intro. Preview only.
+- **Files:** site/beta/intro.css, site/beta/intro.js, site/beta/assets/** (new, 1,255,727 bytes); site/beta/index.html; site/beta/tester.js; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md. Design's intro.css, intro.js, and assets/ were copied unchanged. Review-only files (preview.mp4, stills/) were not shipped.
+- **Summary:** New git branch `feature/beta-dragon-intro` from production commit `829b9fb` in a separate worktree (does not include `694ec5f`). The intro mounts in `#stinkdoku-intro` under the header. "Become a tester" scrolls to `#tester-steps`. The iPhone and Android steps stay in the existing terminal chrome and are visible while the intro plays. Reduced-motion still is kept. Design's Skip button is kept for this preview (Randy earlier said he did not want a skip-animation control; it is one button plus an Escape listener in intro.js, plus `.sd-intro-skip` CSS, to remove later). No email signup. Production was not deployed.
+- **Tests:** curl 200 on the preview alias and hash URL for `/beta/` and every intro asset (added weight 1.198 MB). Headless Chrome at 1280×800 and 390×844: intro ready, Skip visible during play, iPhone and Android sections visible, no console errors, no failed requests, no email field. Skip jumps to the settled still and CTA; CTA scrolls to the steps. Reduced motion shows the composed still with the CTA already visible. Production https://brewdadlabs.com/beta/tester.js sha256 `c332e3fa8ed301e2a64383898feddcb4e8b436d8b7375f9d5980dce9be95226f` unchanged; production `/beta/intro.css`, `intro.js`, `assets/manifest.js`, and `dragon-player.js` are 404.
+- **Deploy:** Pages branch preview `dragon-intro-preview` only (`npx wrangler pages deploy site --project-name brewdadlabs-site --branch dragon-intro-preview`). Alias https://dragon-intro-preview.brewdadlabs-site.pages.dev/beta/ ; hash https://7ba5acf3.brewdadlabs-site.pages.dev/beta/. Production not deployed; `main` not merged.
+- **Rollback:** leave or delete the `dragon-intro-preview` Pages deployment. Production is untouched.
+- **Git:** commit and push `feature/beta-dragon-intro` only. Do not merge.
+
+
+## 2026-11-10 ~11:16 PM ET, Websites bot (hotfix: beta.brewdadlabs.com / → /beta/)
+- **Goal:** Finish Randy's approved beta.brewdadlabs.com setup by fixing broken relative assets at the subdomain root. Counts as part of his OK to point the subdomain at the same tester page.
+- **Files:** functions/_middleware.js (hotfix commit `829b9fb` on `hotfix/beta-subdomain-root`, cherry-picked to `feature/android-tester-link`). docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md (this branch only).
+- **Summary:** In a separate worktree based exactly on production commit `b1b2486` (no `694ec5f` sprite-sheet preview), changed the beta-host `/` handler from an internal rewrite to a 302 redirect to `/beta/`, keeping any query string. Nothing else in that tree differed from `b1b2486`. `wrangler.toml` has no D1 bindings (the email signup Function was already removed). Deployed production from that worktree with `npx wrangler pages deploy site --project-name brewdadlabs-site --branch main`.
+- **Tests:** `https://beta.brewdadlabs.com/` 302 Location `https://beta.brewdadlabs.com/beta/` (`/?foo=bar` → `/beta/?foo=bar`). `/beta/` 200, title "StinkDoku — Become a tester", iPhone and Android sections, no email field; `tester.js` and the static dragon/mascot art 200 under `/beta/` (`tester.js` sha256 `c332e3fa8ed301e2a64383898feddcb4e8b436d8b7375f9d5980dce9be95226f`, matches `b1b2486` and `https://brewdadlabs.com/beta/tester.js`). Apex `/` still the workshop homepage; `/beta/` unchanged; `/stinkdoku-beta` 302 to `/beta`; `/stinkdoku.apk` 200, 9,817,282 bytes, sha256 `b908b8276d9ba4e8e3a55905d9a3f5f03a71e9ac86b0839f76879debaf6ea565`. Old sprites `dragon-04` and `dragon-06` still 200; preview `dragon-03` sheets and `dragon-player.js` 404 on production. play.stinkdoku.com untouched. Pages domain `beta.brewdadlabs.com` is now `active` (verification and Google SSL validation both `active`).
+- **Deploy:** production (`main`), deployment `db6a4412-dacb-489c-acff-c4a9fdf737cd`, source `829b9fb`. The `beta-preview` branch was not redeployed from this hotfix.
+- **Rollback:** redeploy previous production deployment `3123393b-57c7-4bcd-a7fe-113fc3bc2d66` from the Pages dashboard.
+- **Git:** pushed `hotfix/beta-subdomain-root` (`829b9fb`). Rebased local docs commit `f62442f` onto `origin/feature/android-tester-link` (already up to date), cherry-picked the hotfix, updated these docs, and pushed `feature/android-tester-link`.
+
+## 2026-11-10 ~11:13 PM ET, Websites bot (attach beta.brewdadlabs.com)
+- **Goal:** Randy approved (11:09 PM ET) adding `beta.brewdadlabs.com` pointing at the live StinkDoku tester page.
+- **Files:** docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md. No site, Function, or production deploy.
+- **Summary:** Confirmed production deployment `3123393b-57c7-4bcd-a7fe-113fc3bc2d66` (source `b1b2486`) already includes `functions/_middleware.js` (`uses_functions: true`). Added custom domain `beta.brewdadlabs.com` to Pages project `brewdadlabs-site`. Cloudflare did not auto-create DNS, so a new proxied CNAME was added in zone `0133a73c604aecf068da3b4e4ca6018b`: `beta.brewdadlabs.com` → `brewdadlabs-site.pages.dev` (record `5127a5daaef2499d036d1a463062f50f`). Mail records, existing records, redirect rules, and page rules were not changed. play.stinkdoku.com was not touched. No production redeploy; the `beta-preview` branch was not touched.
+- **Tests:** `https://beta.brewdadlabs.com/` 200, title "StinkDoku — Become a tester", iPhone and Android sections present, no email field. `https://beta.brewdadlabs.com/beta/` 200, same page, and `tester.js` plus dragon/mascot art load. `https://beta.brewdadlabs.com/stinkdoku.apk` 200, `application/vnd.android.package-archive`, `Content-Disposition: attachment; filename="StinkDoku.apk"`, 9,817,282 bytes. `https://brewdadlabs.com/` still the workshop homepage; `https://brewdadlabs.com/beta/` unchanged tester page; play.stinkdoku.com still the live game. HTTPS on the new host is served by the zone Universal SSL wildcard (Let's Encrypt, SAN `*.brewdadlabs.com`).
+- **Unexpected:** The subdomain root rewrite serves the `/beta/` HTML, but relative assets (`tester.js`, `art/*`) 404 at `https://beta.brewdadlabs.com/tester.js` and `/art/...` (Gorillas 404). Share `https://beta.brewdadlabs.com/beta/` or `https://brewdadlabs.com/beta/` until a later production deploy fixes paths. Pages domain status was still `pending` (host verification `active`, Google certificate validation `pending`) a few minutes after attach; the site already answers over HTTPS via the wildcard cert.
+- **Deploy:** none. DNS only.
+- **Rollback:** delete the Pages custom domain `beta.brewdadlabs.com` and DNS record `5127a5daaef2499d036d1a463062f50f`. Do not touch other records.
+
+## 2026-11-10 ~11:10 PM ET, Websites bot (sprite-sheet dragon moments on /beta/, preview only)
+- **Goal:** Replace the two static-sprite dragon moments on `/beta/` with StinkDoku Design's web-animations-v1 sheets, without changing the page or the terminal boot intro.
+- **Files:** site/beta/dragon-player.js (new); site/beta/tester.js; site/beta/index.html; site/beta/art/dragon-03-lavender-green/{fly-in,kick-impact-fx,stink-puff,stink-puff-cloud,cheer,idle,placed}_{sheet.webp,sheet.json} (new, 434,947 bytes); site/beta/art/dragon-04-aqua-red-orange.webp and dragon-06-sky-orange-peach.webp (removed, 92,714 bytes); docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md.
+- **Summary:** After the existing terminal boot, the page lazy-loads the green dragon sheets and plays them with a CSS background sprite player driven by JSON timing. Fly-in kicks a tile at impactFrame with kick-impact-fx; the bottom pop-up uses placed, idle, and a stink-puff + cloud (under-tail fart, never fire); cheer plays when an iPhone or Android section is finished. pointer-events stay none. Reduced motion turns the moments off. Unused still PNGs/WebPs and the other eight dragons' idle/placed sheets were not copied.
+- **Tests:** preview `/beta/` curl-checked; every new art file 200 with the expected size; production https://brewdadlabs.com/beta/ confirmed unchanged (still the static-sprite build).
+- **Deploy:** Pages branch preview `beta-preview` only (`npx wrangler pages deploy site --project-name brewdadlabs-site --branch beta-preview`). Production not deployed; `main` not merged.
+- **Rollback:** redeploy the previous `beta-preview` preview, or revert this commit and redeploy the preview. Production is untouched.
+
+
+## 2026-11-10 ~10:47 PM ET, Websites bot (StinkDoku /beta/ tester page → production)
+- **Goal:** Randy (10:46 PM ET): "make it live and send me a link. I don't need to see it first." Publish the email-removed tester page.
+- **Files:** docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md (mark live). Site files unchanged from `b1b2486`.
+- **Summary:** production-deployed `site/` to Cloudflare Pages `brewdadlabs-site` branch `main`. Live at https://brewdadlabs.com/beta/ and https://www.brewdadlabs.com/beta/. No email signup. `/stinkdoku-beta` 302s to `/beta`. No DNS change; `beta.brewdadlabs.com` was not attached. play.stinkdoku.com untouched.
+- **Tests:** curl live `/beta/` 200 on apex and www (no email field; iPhone and Android sections present; dragon WebPs 200). `/stinkdoku-beta` 302 Location `/beta` on both hosts (no stale cached 200). `/stinkdoku.apk` 200, 9,817,282 bytes, APK content type unchanged. GET `/api/tester-signup` 404; POST to that path 405 with an empty body (no signup Function). play.stinkdoku.com homepage hash unchanged; `/android-tester` still 404.
+- **Deploy:** production (`main`), deployment `3123393b-57c7-4bcd-a7fe-113fc3bc2d66`. No DNS/redirect-rule or other-site changes.
+- **Rollback:** redeploy the previous production deployment `e85e861a-c64e-42d2-b670-f563a6804b9d` from the Pages dashboard, or redeploy the prior `site/` from `main`.
+- **Git:** left `feature/android-tester-link` unmerged. This Pages project is not git-connected; pushing does not deploy, and the docs do not require git `main` to mirror production.
+
+
+## 2026-11-10 ~10:45 PM ET, Websites bot (remove tester email signup from /beta/, preview only)
+- **Goal:** Randy (10:44 PM ET): take the extra email step off; he doesn't want the email that badly.
+- **Files:** site/beta/index.html, site/beta/tester.js; functions/api/tester-signup.js (deleted); wrangler.toml (committed, no D1 bindings); wrangler.toml.example (removed); .gitignore; AGENTS.md; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md. `functions/_middleware.js` unchanged.
+- **Summary:** `/beta/` now goes straight to the boot animation, then the iPhone and Android sections. Signup UI, consent text, tester-signup privacy note, and the signup Function are gone, so a later production deploy will not expose `/api/tester-signup`. The unused tester D1 databases were left in place and only unbound. Terminal look, dragons, both phone sections, feedback line, rules, APK fallback, privacy lead, and the `/stinkdoku-beta` redirect are unchanged.
+- **Tests:** preview `/beta/` has no email field; preview `/api/tester-signup` is 404; production https://brewdadlabs.com and https://play.stinkdoku.com confirmed unchanged.
+- **Deploy:** Pages branch preview `beta-preview` only (`wrangler pages deploy site --project-name brewdadlabs-site --branch beta-preview`). Production not deployed; `main` not merged.
+- **Rollback:** redeploy the previous `beta-preview` preview, or revert this commit and redeploy the preview. Production is untouched.
+- **Production publish (do not run until Randy OKs):** from `/Users/test/sites/brewdadlabs-site`, `npx wrangler pages deploy site --project-name brewdadlabs-site --branch main`. Then curl https://brewdadlabs.com/beta/ (200, tester page, no email field), https://brewdadlabs.com/api/tester-signup (404), https://brewdadlabs.com/stinkdoku-beta (302 to /beta), https://brewdadlabs.com/stinkdoku.apk (unchanged), https://play.stinkdoku.com/ (unchanged). Attaching beta.brewdadlabs.com is a separate DNS step and still needs his OK.
+
+
+## 2026-11-10 ~10:30 PM ET, Websites bot (StinkDoku tester page → /beta/ on brewdadlabs, preview only)
+- **Goal:** Move the full tester flow (email signup on, iPhone + Android on one page, terminal look kept, two small dragon moments) to brewdadlabs.com/beta, plus a planned beta.brewdadlabs.com subdomain. play.stinkdoku.com stays the live game and is not touched. Preview only.
+- **Files:** site/beta/index.html, site/beta/tester.js, site/beta/art/{dragon-04-aqua-red-orange.webp,dragon-06-sky-orange-peach.webp,mascot-head.webp} (new); functions/api/tester-signup.js, functions/_middleware.js (new); site/_redirects (new); site/_headers; site/stinkdoku-beta.html; wrangler.toml.example (new); .gitignore; AGENTS.md; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md. Local gitignored wrangler.toml holds the D1 bindings.
+- **Summary:** `/beta/` is a self-contained copy of the PR #59 terminal tester page, with both phone sections always visible in a fixed order after the boot animation, per-step progress, auto-advance + "I did this, next", the 14-day rules, APK fallback, feedback line, and softened privacy wording. Optional emails go to the preview D1 testers database via a Pages Function (consent, validation, honeypot, rate limit; email + timestamp only). `/stinkdoku-beta` 302s to `/beta`. The beta subdomain is coded (host rewrite at `/`) but DNS is not changed. Two playful dragon animations use public main-branch sprites and never block buttons; they are off under reduced motion.
+- **Tests:** preview `/beta/` curl-checked; one signup POST into the preview D1, then that row deleted; production https://brewdadlabs.com/stinkdoku-beta and https://play.stinkdoku.com confirmed unchanged.
+- **Deploy:** Pages branch preview `beta-preview` only (`wrangler pages deploy --project-name brewdadlabs-site --branch beta-preview`). Production not deployed; `main` not merged.
+- **Rollback:** redeploy the previous `beta-preview` preview, or drop the branch. Production is untouched.
+- **Production publish (do not run until Randy OKs):** from `/Users/test/sites/brewdadlabs-site` on a checkout that includes this branch, `npx wrangler pages deploy --project-name brewdadlabs-site --branch main`. Then curl https://brewdadlabs.com/beta/ (200, tester page), https://brewdadlabs.com/stinkdoku-beta (302 to /beta), https://brewdadlabs.com/stinkdoku.apk (unchanged), https://play.stinkdoku.com/ (unchanged). Attaching beta.brewdadlabs.com is a separate DNS step (see the handoff) and still needs his OK.
+
+
 ## 2026-11-09 7:38 PM ET, Websites bot (StinkDoku beta page → production)
 - **Goal:** Randy approved ("Perfect, go") — ship `/stinkdoku-beta` to production.
 - **Files:** docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md (mark live); site unchanged from preview `5f23e84`.
@@ -75,3 +152,35 @@
 - **Tests:** preview and production: `/stinkdoku.apk` returns 200 with the APK content type, the attachment filename and the full file (hash matches) on brewdadlabs.com and www. `/stinkdoku` still 302s to play.stinkdoku.com; homepage still 200.
 - **Deploy:** preview, then production (`main`). No DNS, redirect-rule or other-site changes.
 - **Rollback:** delete `site/stinkdoku.apk` and its `_headers` block, then redeploy `site/`, or redeploy the previous production deployment from the Pages dashboard.
+
+## 2026-11-10 3:35 PM ET, Websites bot (beta page → Android tester page, preview only)
+- **Goal:** point the StinkDoku beta page's Android card at the new Google Play tester page on play.stinkdoku.com (Randy approved the tester automation; preview only).
+- **Files:** site/stinkdoku-beta.html; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md.
+- **Summary:** Android card now says ANDROID // GOOGLE PLAY with a "BECOME AN ANDROID TESTER" button to `https://play.stinkdoku.com/android-tester`; the APK link is kept as a one-line sideload fallback. Meta description updated. No CSP or header change.
+- **Deploy:** Pages branch preview `android-tester` only. Production not deployed; `main` not pushed.
+- **Rollback:** drop the branch.
+
+## 2026-11-10 ~9:45 PM ET, Websites bot (beta page feedback ask, preview only)
+- **Goal:** add a short two-platform feedback ask to the StinkDoku beta page, and a secondary iPhone link to the combined tester page (Randy, 9:33 PM ET). Preview only.
+- **Files:** site/stinkdoku-beta.html; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md.
+- **Summary:** new "We want honest feedback" block under the install cards: iPhone → TestFlight feedback (screenshot or Send Beta Feedback); Android → Google Play feedback; or email support@brewdadlabs.com; plus "Tell us what's fun, what's confusing, and what breaks." iPhone card keeps the direct TestFlight join link and adds a secondary "Open the tester page" link to `https://play.stinkdoku.com/android-tester`. Theme, TestFlight URL, Android Play button, and APK fallback unchanged.
+- **Deploy:** Pages branch preview `android-tester` only (`wrangler pages deploy --branch android-tester`). Production not deployed; `main` not pushed.
+- **Rollback:** redeploy the previous `android-tester` preview, or drop the branch.
+
+## 2026-11-10 ~9:45 PM ET, Websites bot (soften beta-page privacy wording, preview only)
+- **Goal:** separate wording change for Randy to approve. The beta page lead made an absolute privacy claim ("no trackers, no accounts"). Soften it; do not claim no tracking or no telemetry.
+- **Files:** site/stinkdoku-beta.html; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md.
+- **Before:** "This page is for beta testers. Pick your phone, install the build, and play. No ads, no trackers, no accounts."
+- **After:** "This page is for beta testers. Pick your phone, install the build, and play. No ads. No in-app purchases. Online features use a random player id and device id."
+- **Checked:** that was the only absolute no-tracking / no-telemetry / no-accounts claim on `/stinkdoku-beta`. The Google Play card's "Google account" line is about using the same Play account for the test, and was left alone. No changes to play.stinkdoku.com / PR #59.
+- **Deploy:** Pages branch preview `android-tester` only. Production not deployed; `main` not pushed.
+- **Rollback:** revert this commit and redeploy the `android-tester` preview.
+
+## 2026-11-14, Websites takeover bot (review fixes, preview only)
+- **Goal:** apply the site review: refresh the stale Workshop Log, remove family/wife wording from `/projects`, add SEO basics, HSTS and a sitemap (Randy: "fix it all", log list approved with the Dix Homeschool refresh line dropped).
+- **Files:** site/index.html, site/projects.json, site/_headers, site/sitemap.xml; docs/AI_HANDOFF.md, docs/AI_CHANGELOG.md.
+- **Deploy:** Pages branch preview `beta-preview` only. Production not deployed; nothing pushed.
+- **Rollback:** drop the preview branch; production is unchanged. To undo after a later production deploy, redeploy Pages deployment `f592f017-9cf2-448f-9162-4ccb5f483f36`.
+
+- 2026-11-15 DEPLOYED to production (Randy: 'if it is the right choice'; Claude judged safe). Deployment 26c8361d. Previous production kept for rollback in Cloudflare.
+- 2026-11-23 DEPLOYED to production (Randy: yes). Deployment 3ad218ce. Replaced /stinkdoku.apk with the Android tester debug build 25 (StinkDoku-1.0.0-25-debug.apk, app id com.brewdadlabs.stinkdoku.debug, 16,647,327 bytes, sha256 aff831f1...). Only the APK changed; pages identical to deployment 26c8361d. Verified live: 200, same size and hash. The signed Play .aab is NOT published. Rollback: redeploy 26c8361d (old APK, 9,817,282 bytes); old APK backup kept locally.

@@ -6,6 +6,13 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>BrewDadLabs — The Workshop</title>
+<meta name="description" content="BrewDadLabs is a home workshop for code, games, experiments and things worth building. Free browser games, no ads, no trackers, no accounts.">
+<link rel="canonical" href="https://brewdadlabs.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BrewDadLabs">
+<meta property="og:title" content="BrewDadLabs — The Workshop">
+<meta property="og:description" content="A home workshop for code, games, experiments and things worth building. No ads, no trackers, no accounts.">
+<meta property="og:url" content="https://brewdadlabs.com/">
 <style>@font-face{font-family:'Share Tech Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/ShareTechMono-Regular.woff2) format('woff2')}</style>
 <style>
 :root{--bg:#020303;--panel:#080d0c;--raised:#101816;--border:#18352c;--green:#00ff9c;--gd:#00a878;--cyan:#00d9ff;--amber:#ffb86c;--purple:#bd93f9;--red:#ff5555;--text:#d6e5df;--muted:#81938b;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -77,7 +84,7 @@ footer{display:flex;flex-wrap:wrap;gap:12px 24px;font-size:14px;color:var(--mute
 (()=>{
 const $=s=>document.querySelector(s),RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 // Workshop log: edit by hand. Real events only, no simulated telemetry.
-const LOG=[["2026-11-04","Arcade shipped: 4 games, live at arcade.brewdadlabs.com"],["2026-11-04","Main site homepage drafted"]];
+const LOG=[["2026-11-14","StinkDoku tester signup is live at stinkdoku.com/beta (iPhone and Android)"],["2026-11-14","play.stinkdoku.com tester links now send people to stinkdoku.com/beta"],["2026-11-14","NewEarth site now credits Dix Homeschool"],["2026-11-14","Bob research noted on dixhome.com: an autonomous AI player in NewEarth, still in progress"],["2026-11-11","Dragon intro added to the StinkDoku tester page at brewdadlabs.com/beta"],["2026-11-09","StinkDoku beta opens on TestFlight and Google Play; APK at brewdadlabs.com/stinkdoku.apk"],["2026-11-05","Gorillas 404 landed on the Arcade and stinkdoku.com"],["2026-11-04","Arcade shipped: Terminal Snake, Matrix Terminal, Circuit Breaker, System Defender"],["2026-11-04","Workshop homepage went live at brewdadlabs.com"]];
 $('#feed').innerHTML=LOG.map(e=>`<div><time>${e[0]}</time><span>${e[1]}</span></div>`).join('')+'<div class="w">_ awaiting next experiment <span class="cur"></span></div>';
 // boot
 const L=["BREWDADLABS // OHIO","INITIALIZING WORKSHOP...","<span class=ok>[OK]</span> SYSTEM ONLINE","<span class=ok>[OK]</span> ARCADE AVAILABLE","<span class=ok>[OK]</span> PROJECTS LOADED","<span class=wn>[OK] COFFEE STATUS: UNKNOWN</span>","WELCOME, HUMAN."];

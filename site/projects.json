@@ -21,7 +21,7 @@
     {
       "id": "stinkdoku",
       "name": "StinkDoku",
-      "description": "A logic puzzle game I made as a gift for my wife, free forever and ad-free; it's playable on the web now, and it will be fully open source before it goes live on the App Store, which is coming soon.",
+      "description": "A logic puzzle game, free forever and ad-free; it's playable on the web now, and it will be fully open source before it goes live on the App Store, which is coming soon.",
       "status": "live",
       "links": [
         {
@@ -49,7 +49,7 @@
     {
       "id": "wildlife",
       "name": "NewEarth Wildlife",
-      "description": "A plug-in for our family Minecraft server that brings dinosaurs to the Lost World, starting with the Compsognathus and the Stegosaurus, which roam in small groups, react to nearby players and food, and show up for both Java and Bedrock players; the plug-in will be open and public once it's working.",
+      "description": "A plug-in for the NewEarth Minecraft server that brings dinosaurs to the Lost World, starting with the Compsognathus and the Stegosaurus, which roam in small groups, react to nearby players and food, and show up for both Java and Bedrock players; the plug-in will be open and public once it's working.",
       "status": "growing",
       "links": [
         {
@@ -61,7 +61,7 @@
     {
       "id": "newearth",
       "name": "NewEarth",
-      "description": "Our family Minecraft server and its website.",
+      "description": "The NewEarth Minecraft server and its website, a STEM project of Dix Homeschool.",
       "status": "live",
       "links": [
         {
@@ -73,7 +73,7 @@
     {
       "id": "dixhome",
       "name": "Dix Homeschool",
-      "description": "Our family homeschool learning site.",
+      "description": "The Dix Homeschool STEM site.",
       "status": "live",
       "links": [
         {
