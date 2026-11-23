@@ -183,3 +183,4 @@
 - **Rollback:** drop the preview branch; production is unchanged. To undo after a later production deploy, redeploy Pages deployment `f592f017-9cf2-448f-9162-4ccb5f483f36`.
 
 - 2026-11-15 DEPLOYED to production (Randy: 'if it is the right choice'; Claude judged safe). Deployment 26c8361d. Previous production kept for rollback in Cloudflare.
+- 2026-11-23 DEPLOYED to production (Randy: yes). Deployment 3ad218ce. Replaced /stinkdoku.apk with the Android tester debug build 25 (StinkDoku-1.0.0-25-debug.apk, app id com.brewdadlabs.stinkdoku.debug, 16,647,327 bytes, sha256 aff831f1...). Only the APK changed; pages identical to deployment 26c8361d. Verified live: 200, same size and hash. The signed Play .aab is NOT published. Rollback: redeploy 26c8361d (old APK, 9,817,282 bytes); old APK backup kept locally.
