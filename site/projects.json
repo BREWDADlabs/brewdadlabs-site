@@ -61,24 +61,12 @@
     {
       "id": "newearth",
       "name": "NewEarth",
-      "description": "The NewEarth Minecraft server and its website, a STEM project of Dix Homeschool.",
+      "description": "The NewEarth Minecraft server and its website.",
       "status": "live",
       "links": [
         {
           "label": "Visit",
           "href": "https://newearth.graphitenerd.com"
-        }
-      ]
-    },
-    {
-      "id": "dixhome",
-      "name": "Dix Homeschool",
-      "description": "The Dix Homeschool STEM site.",
-      "status": "live",
-      "links": [
-        {
-          "label": "Visit",
-          "href": "https://dixhome.com"
         }
       ]
     },
