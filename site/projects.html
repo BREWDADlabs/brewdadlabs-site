@@ -17,9 +17,9 @@ body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-ap
 .crt h1,.crt .glow{text-shadow:0 0 12px #00ff9c99}
 .m,button,h1,h2,h3,.tag,input{font-family:'Share Tech Mono',ui-monospace,Menlo,Consolas,monospace}
 main{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 18px 40px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--muted)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border);font-size:15px;color:var(--muted)}
 .top a{color:var(--muted);text-decoration:none}.top a:hover{color:var(--green)}
-.top button{min-height:44px;padding:6px 12px;font-size:13px}
+.top button{min-height:36px;padding:4px 10px;font-size:12px;color:var(--muted);background:transparent}.top button:disabled{opacity:.55;cursor:not-allowed}.modes{margin:0;font-size:13px;color:var(--muted);max-width:60ch}
 button{background:var(--raised);color:var(--text);border:1px solid var(--border);cursor:pointer;border-radius:2px;font-size:15px}
 button:hover,button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 a{color:var(--cyan)}
@@ -35,19 +35,19 @@ h2{font-weight:400;font-size:16px;color:var(--muted);margin:30px 0 12px}
 .bar{height:14px;border:1px solid var(--gd);margin:8px 0 6px;background:#03100b;position:relative;overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:repeating-linear-gradient(90deg,var(--green) 0 10px,var(--gd) 10px 12px);transition:width 1.2s ease-out}
 #perks{display:flex;flex-wrap:wrap;gap:6px 14px;color:var(--muted);font-size:14px;margin-top:4px}
-#perks .u{color:var(--cyan)}#perks .l{color:#4f5f58}
+#perks .u{color:var(--cyan)}#perks .l{color:var(--muted)}
 /* map */
-#map{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:12px;position:relative}
-.node{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:12px 14px 12px 16px;min-height:92px;
+#map{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:12px;position:relative}
+#map li{display:flex}.node{width:100%;position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:12px 14px 12px 16px;min-height:92px;
   background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--ac);color:var(--text);font-size:15px;opacity:.25;transition:opacity .35s,background .2s}
 .node.up{opacity:1}
 .node:hover,.node[aria-current="true"]{background:var(--raised);box-shadow:0 0 18px color-mix(in srgb,var(--ac) 25%,transparent)}
 .node .nm{font-size:18px;line-height:1.25;color:var(--ac)}
-.node .st{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px}
+.node .st{font-size:14px;color:var(--text);display:flex;align-items:center;gap:7px}
 .led{width:8px;height:8px;border-radius:50%;background:var(--ac);box-shadow:0 0 8px var(--ac)}
 .s-live{--ac:var(--green)}.s-growing{--ac:var(--amber)}.s-workshop{--ac:var(--purple)}
 .s-live .led{animation:pl 2.4s ease-in-out infinite}.s-growing .led{animation:pl 1.2s ease-in-out infinite}
-.node .id{margin-top:auto;font-size:11px;color:#4f5f58}
+.node .id{margin-top:auto;font-size:13px;color:var(--muted)}
 @keyframes pl{50%{opacity:.3}}
 /* detail */
 #detail{margin-top:14px;background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--ac);padding:16px}
@@ -71,7 +71,7 @@ h2{font-weight:400;font-size:16px;color:var(--muted);margin:30px 0 12px}
 #plain{list-style:none;margin:0;padding:0;border-top:1px solid var(--border)}
 #plain li{padding:12px 0;border-bottom:1px solid var(--border)}
 #plain .pn{font-family:'Share Tech Mono',ui-monospace,monospace;color:var(--green);font-size:18px}
-#plain .ps{font-family:'Share Tech Mono',ui-monospace,monospace;color:var(--muted);font-size:13px;margin-left:8px}
+#plain .ps{font-family:'Share Tech Mono',ui-monospace,monospace;color:var(--muted);font-size:15px;margin-left:8px}
 #plain p{margin:2px 0 4px}
 #plain .pl{display:flex;flex-wrap:wrap;gap:4px 16px;font-family:'Share Tech Mono',ui-monospace,monospace;font-size:15px}
 .note{color:var(--muted);font-size:15px}
@@ -80,6 +80,7 @@ footer{display:flex;flex-wrap:wrap;gap:12px 24px;font-size:14px;color:var(--mute
 @media(max-width:480px){#sh label{font-size:12px}#out{max-height:300px}}
 body.plain *{animation:none!important;transition:none!important}body.plain.crt::after{display:none}
 .top .btns{display:flex;gap:8px;flex-wrap:wrap}
+@media(max-width:520px){.top{flex-wrap:wrap}.top .btns{width:100%;flex-wrap:nowrap}.top .btns button{flex:1;padding:4px 6px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head><body>
 <main>
@@ -93,14 +94,14 @@ body.plain *{animation:none!important;transition:none!important}body.plain.crt::
 <noscript><p class="note">The interactive map needs JavaScript. The full project list is plain data at <a href="/projects.json">/projects.json</a>, and the arcade is at <a href="https://arcade.brewdadlabs.com">arcade.brewdadlabs.com</a>.</p></noscript>
 
 <div id="lvl" aria-labelledby="lvlh" hidden>
-<div class="row"><span id="lvlh"><b id="lvln">LVL 1</b></span><span id="lvlc"></span></div>
-<div class="bar" role="progressbar" aria-labelledby="lvlh" id="bar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="bari"></i></div>
-<div class="row"><span id="xp"></span><span id="nx"></span></div>
+<div class="row"><span id="lvlh"><b id="lvln">Workshop level 1</b></span><span id="lvlc"></span></div>
+<div class="bar" role="progressbar" aria-labelledby="nx" id="bar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="bari"></i></div>
+<div class="row"><span id="nx"></span><span id="xp"></span></div>
 <div id="perks" aria-label="Unlocked commands"></div>
 </div>
 
 <h2 class="m" id="maph">MAP // PICK A NODE</h2>
-<div id="map" role="list" aria-labelledby="maph"></div>
+<ul id="map" aria-labelledby="maph"></ul>
 <section id="detail" hidden aria-live="polite"></section>
 
 <h2 class="m" id="termh">TERMINAL</h2>
@@ -114,15 +115,23 @@ body.plain *{animation:none!important;transition:none!important}body.plain.crt::
 <h2 class="m" id="plainh">PLAIN LIST</h2>
 <ul id="plain" aria-labelledby="plainh"></ul>
 
+<p class="modes">Display: <b>Plain mode</b> skips animation and turns it all down. <b>CRT mode</b> adds scanlines and a soft glow. If both are on, Plain wins and CRT stays off.</p>
 <footer class="m"><a href="/">HOME</a><a href="https://arcade.brewdadlabs.com">ARCADE</a><a href="https://github.com/BrewDadLabs" rel="noopener">GITHUB</a><span>People before profit.</span></footer>
 </main>
 <script>
 (()=>{
 'use strict';
 const $=s=>document.querySelector(s),RM0=matchMedia('(prefers-reduced-motion:reduce)').matches;
-let PLAIN=false;try{PLAIN=!!localStorage.getItem('bdl-plain')}catch(e){}if(PLAIN)document.body.classList.add('plain');
-const pb=$('#plain-btn');pb.textContent='PLAIN MODE: '+(PLAIN?'ON':'OFF');pb.setAttribute('aria-pressed',PLAIN);pb.onclick=()=>{try{localStorage.setItem('bdl-plain',PLAIN?'':'1')}catch(e){}location.reload()};
-const RM=RM0||PLAIN;
+let PLAIN=false,CRT=false;try{PLAIN=!!localStorage.getItem('bdl-plain');CRT=!!localStorage.getItem('bdl-crt')}catch(e){}
+let RM=RM0||PLAIN;
+const pb=$('#plain-btn'),c=$('#crt');
+function modes(){const crtOn=CRT&&!PLAIN;document.body.classList.toggle('plain',PLAIN);document.body.classList.toggle('crt',crtOn);RM=RM0||PLAIN;
+ pb.textContent='PLAIN MODE: '+(PLAIN?'ON':'OFF');pb.setAttribute('aria-pressed',String(PLAIN));
+ c.textContent='CRT MODE: '+(crtOn?'ON':'OFF');c.setAttribute('aria-pressed',String(crtOn));c.disabled=PLAIN;c.title=PLAIN?'Plain mode is on, so CRT is off. Turn plain mode off to use CRT.':'';
+ try{localStorage.setItem('bdl-plain',PLAIN?'1':'');localStorage.setItem('bdl-crt',CRT?'1':'')}catch(e){}}
+pb.onclick=()=>{PLAIN=!PLAIN;modes()};
+c.onclick=()=>{CRT=!CRT;modes()};
+
 const el=(t,cls,txt)=>{const e=document.createElement(t);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
 const ST={live:{label:'LIVE',boot:'ONLINE',xp:3},growing:{label:'GROWING',boot:'GROWING',xp:2},workshop:{label:'IN PROGRESS',boot:'IN PROGRESS',xp:1}};
 // Levels: each one needs a bit more XP than the last (5, 15, 30, 50, 75 ...). Live = 3 XP, growing = 2, in progress = 1.
@@ -137,23 +146,23 @@ function link(h,t){const a=el('a',null,t||h);a.href=h;return a}
 // ---------- commands ----------
 const C={
  help(){line('Commands:','ok');line('  ls              list everything on the map');line('  cat <name>      read about one project');line('  run <name>      open it (play, visit or read the source)');line('  status / level  level and what it unlocks');line('  privacy         the promise');line('  clear           clear the screen');
-   PERKS.filter(p=>p[0]>1&&LEVEL>=p[0]).forEach(p=>line('  '+p[1].padEnd(16)+'unlocked at LVL '+p[0],'dm'));line('Tip: Tab completes names, Up/Down recalls commands.','dm')},
+   PERKS.filter(p=>p[0]>1&&LEVEL>=p[0]).forEach(p=>line('  '+p[1].padEnd(16)+'unlocked at level '+p[0],'dm'));line('Tip: Tab completes names, Up/Down recalls commands.','dm')},
  ls(a){const w=Math.max(...P.map(p=>p.id.length))+2;P.forEach(p=>{const s=ST[p.status];line([el('span','c',p.id.padEnd(w)),el('span',p.status==='live'?'ok':p.status==='growing'?'wn':'dm',s.label.padEnd(17)),a==='-l'?p.description:p.name])});line(P.length+' projects. Try: cat '+P[0].id,'dm')},
- cat(a){const p=find(a);if(!p)return;show(p,true);line(['# ',el('span','c',p.name),'  [',ST[p.status].label,']']);line(p.description);(p.links||[]).forEach(l=>{const h=safe(l.href);if(h)line(['  ',l.label+': ',link(h)])});if(p.added)line('  added '+p.added,'dm');if(!(p.links||[]).length)line('  (no public link yet)','dm')},
+ cat(a){const p=find(a);if(!p)return;show(p,true);line(['# ',el('span','c',p.name),'  [',ST[p.status].label,']']);line(p.description);(p.links||[]).forEach(l=>{const h=safe(l.href);if(h)line(['  ',l.label+': ',link(h)])});if(p.note)line('  '+p.note,'dm');if(p.added)line('  added '+p.added,'dm');if(!(p.links||[]).length)line('  (no public link yet)','dm')},
  run(a){const p=find(a);if(!p)return;const l=(p.links||[]).map(x=>safe(x.href)).filter(Boolean)[0];if(!l){line(p.name+' has no public link yet. It is still in progress.','wn');return}line(['Opening ',link(l),' ...'],'ok');setTimeout(()=>{location.href=l},RM?0:450)},
- status(){const s=stats();line(['LVL '+s.lvl+' // ',String(P.length),' projects, ',String(s.live),' online, ',String(s.growing),' growing, ',String(s.workshop),' in progress'],'ok');line('XP '+s.xp+(s.next?(' // next level at '+s.next+' XP'):''),'dm');line('Every project adds XP: live 3, growing 2, in progress 1.','dm')},
+ status(){const s=stats();line(['Workshop level '+s.lvl+' // ',String(P.length),' projects, ',String(s.live),' online, ',String(s.growing),' growing, ',String(s.workshop),' in progress'],'ok');line(s.xp+' total XP // '+(s.next-s.xp)+' XP to level '+(s.lvl+1),'dm');line('Every project adds XP: live 3, growing 2, in progress 1.','dm')},
  privacy(){line('No ads. No trackers. No analytics. No accounts.','ok');line('This page loads files from this site only. The CRT setting is saved in your own browser and never sent anywhere.');line('People before profit.','c')},
  clear(){out.textContent=''},
  whoami(){line('visitor. Welcome.','dm')},
  sudo(){line('Nice try. Ask Dad.','wn')},
  coffee(){gate(2)&&line('[OK] COFFEE STATUS: ... still unknown. Brewing anyway. ☕','wn')},
  bananas(){if(!gate(3))return;line(['Kong found a missing page. ',link('/bananas','Play Gorillas 404')],'wn')},
- crt(){if(!gate(4))return;$('#crt').click();line('CRT mode toggled.','dm')},
+ crt(){if(!gate(4))return;if(PLAIN){line('Plain mode is on, so CRT is off. Turn plain mode off first.','wn');return}c.click();line('CRT mode '+(document.body.classList.contains('crt')?'on':'off')+'.','dm')},
  fortune(){if(!gate(5))return;const f=['Ship it small, then make it better.','The best feature is the one people actually use.','If it needs a tracker to be worth it, it is not worth it.'];line(f[Math.floor(Math.random()*f.length)],'c')},
  party(){if(!gate(6))return;document.querySelectorAll('.node').forEach((n,i)=>setTimeout(()=>n.classList.toggle('up'),RM?0:i*60));setTimeout(()=>document.querySelectorAll('.node').forEach(n=>n.classList.add('up')),RM?0:P.length*60+600);line('Lights!','ok')}
 };
 C.dir=C.ls;C.open=C.run;C.level=C.status;C.xp=C.status;C.man=C.help;C['?']=C.help;C.cls=C.clear;C.more=C.cat;C.less=C.cat;
-function gate(n){if(LEVEL>=n)return true;line('Locked. Unlocks at LVL '+n+'. The level goes up as projects are added.','dm');return false}
+function gate(n){if(LEVEL>=n)return true;line('Locked. Unlocks at workshop level '+n+'. The level goes up as projects are added.','dm');return false}
 function find(a){a=(a||'').trim().toLowerCase();if(!a){line('Which one? Try: ls','wn');return null}const p=byId[a]||P.find(p=>p.name.toLowerCase()===a)||P.find(p=>p.id.startsWith(a));if(!p)line('No project called "'+a+'". Try: ls','er');return p||null}
 function exec(raw,echo=true){const s=raw.trim();if(echo)line([el('span','c','visitor@brewdadlabs:~$ '),s]);if(!s)return;const [c,...r]=s.split(/\s+/);const f=C[c.toLowerCase()];
  if(f)f(r.join(' '));else if(byId[c.toLowerCase()])C.cat(c);else line('command not found: '+c+'. Type help.','er')}
@@ -161,32 +170,32 @@ function exec(raw,echo=true){const s=raw.trim();if(echo)line([el('span','c','vis
 // ---------- detail view (#id) ----------
 function show(p,setHash){const d=$('#detail');d.className='s-'+p.status;d.textContent='';d.hidden=false;
  d.append(el('span','meta','~/projects/'+p.id),el('h3','m',p.name),el('p','meta','STATUS: '+ST[p.status].label+(p.added?'  //  ADDED '+p.added:'')),el('p',null,p.description));
- const L=el('div','links');(p.links||[]).forEach(l=>{const h=safe(l.href);if(h)L.appendChild(link(h,l.label+' →'))});if(!L.children.length)L.appendChild(el('span','meta','No public link yet.'));d.appendChild(L);
+ const L=el('div','links');(p.links||[]).forEach(l=>{const h=safe(l.href);if(h)L.appendChild(link(h,l.label+' →'))});if(!L.children.length)L.appendChild(el('span','meta','No public link yet.'));d.appendChild(L);if(p.note)d.appendChild(el('p','meta',p.note));
  const x=el('button','m','CLOSE');x.onclick=()=>{d.hidden=true;history.replaceState(null,'',location.pathname);mark(null);$('#n-'+p.id).focus()};d.appendChild(x);
  mark(p.id);if(setHash&&location.hash!=='#'+p.id)history.replaceState(null,'','#'+p.id)}
 function mark(id){document.querySelectorAll('.node').forEach(n=>n.setAttribute('aria-current',String(n.dataset.id===id)))}
 
 // ---------- level ----------
 function stats(){const s={live:0,growing:0,workshop:0,xp:0};P.forEach(p=>{s[p.status]++;s.xp+=ST[p.status].xp});let l=1;while(s.xp>=need(l+1))l++;s.lvl=l;s.cur=need(l);s.next=need(l+1);return s}
-function renderLevel(){const s=stats();LEVEL=s.lvl;$('#lvl').hidden=false;$('#lvln').textContent='LVL '+s.lvl;
+function renderLevel(){const s=stats();LEVEL=s.lvl;$('#lvl').hidden=false;$('#lvln').textContent='Workshop level '+s.lvl;
  $('#lvlc').textContent=P.length+' projects // '+s.live+' online // '+s.growing+' growing // '+s.workshop+' in progress';
- const pct=Math.round(100*(s.xp-s.cur)/(s.next-s.cur));$('#bar').setAttribute('aria-valuenow',pct);$('#bar').setAttribute('aria-valuetext',s.xp+' XP, '+pct+' percent to level '+(s.lvl+1));
+ const pct=Math.round(100*(s.xp-s.cur)/(s.next-s.cur));$('#bar').setAttribute('aria-valuenow',pct);$('#bar').setAttribute('aria-valuetext',(s.xp-s.cur)+' of '+(s.next-s.cur)+' XP in this level, '+pct+' percent');
  setTimeout(()=>{$('#bari').style.width=pct+'%'},RM?0:200);
- $('#xp').textContent='XP '+s.xp+' / '+s.next;$('#nx').textContent='Next level: '+(s.next-s.xp)+' XP. New projects level it up.';
- const pk=$('#perks');pk.textContent='';pk.appendChild(el('span',null,'UNLOCKED:'));PERKS.forEach(p=>pk.appendChild(el('span',s.lvl>=p[0]?'u':'l',s.lvl>=p[0]?p[1]:'??? (LVL '+p[0]+')')))}
+ $('#nx').textContent='Progress in this level: '+(s.xp-s.cur)+' of '+(s.next-s.cur)+' XP';$('#xp').textContent=s.xp+' total XP · '+(s.next-s.xp)+' XP to level '+(s.lvl+1);
+ const pk=$('#perks');pk.textContent='';pk.appendChild(el('span',null,'UNLOCKED:'));PERKS.forEach(p=>pk.appendChild(el('span',s.lvl>=p[0]?'u':'l',s.lvl>=p[0]?p[1]:'??? (level '+p[0]+')')))}
 
 // ---------- map + plain list ----------
 function render(){const map=$('#map'),pl=$('#plain');
- P.forEach(p=>{const b=el('button','node s-'+p.status);b.id='n-'+p.id;b.dataset.id=p.id;b.setAttribute('role','listitem');b.setAttribute('aria-label',p.name+', '+ST[p.status].label+'. Show details.');
+ P.forEach(p=>{const b=el('button','node s-'+p.status);b.id='n-'+p.id;b.dataset.id=p.id;b.setAttribute('aria-label',p.name+', '+ST[p.status].label+'. Show details.');
   const st=el('span','st m');st.append(el('i','led'),ST[p.status].label);b.append(el('span','nm m',p.name),st,el('span','id m',p.id));
-  b.onclick=()=>{exec('cat '+p.id)};map.appendChild(b);
+  b.onclick=()=>{exec('cat '+p.id)};const mi=el('li');mi.appendChild(b);map.appendChild(mi);
   const li=el('li');const h=el('div');h.append(el('span','pn',p.name),el('span','ps','['+ST[p.status].label+']'));li.append(h,el('p',null,p.description));
-  const L=el('div','pl');(p.links||[]).forEach(l=>{const u=safe(l.href);if(u)L.appendChild(link(u,l.label))});if(L.children.length)li.appendChild(L);pl.appendChild(li)});
+  const L=el('div','pl');(p.links||[]).forEach(l=>{const u=safe(l.href);if(u)L.appendChild(link(u,l.label))});if(L.children.length)li.appendChild(L);if(p.note)li.appendChild(el('p','note',p.note));pl.appendChild(li)});
  ['help','ls','status','privacy','clear'].forEach(c=>{const b=el('button',null,c);b.type='button';b.onclick=()=>exec(c);$('#chips').appendChild(b)})}
 
 // ---------- boot ----------
 function boot(){const nodes=[...document.querySelectorAll('.node')];line('PROJECT MAP v2 // mounting '+P.length+' projects...','dm');
- const step=i=>{if(i>=P.length){const s=stats();line('LVL '+s.lvl+': '+s.live+' of '+P.length+' projects online. Type help, or pick a node.','ok');
+ const step=i=>{if(i>=P.length){const s=stats();line('Workshop level '+s.lvl+': '+s.live+' of '+P.length+' projects online. Type help, or pick a node.','ok');
    if(location.hash.length>1&&byId[location.hash.slice(1)])C.cat(location.hash.slice(1));return}
   const p=P[i],s=ST[p.status];line([el('span',p.status==='live'?'ok':p.status==='growing'?'wn':'dm','['+(p.status==='live'?' OK ':p.status==='growing'?' >> ':' .. ')+'] '),(p.id+' ').padEnd(14,'.')+' '+s.boot]);nodes[i].classList.add('up');
   if(RM)step(i+1);else setTimeout(()=>step(i+1),140)};step(0)}
@@ -200,9 +209,7 @@ cmd.addEventListener('keydown',e=>{if(e.key==='ArrowUp'&&hist.length){e.preventD
   if(hit.length===1){e.preventDefault();cmd.value=pre+hit[0]+' '}else if(hit.length>1){e.preventDefault();line(hit.join('  '),'dm')}}});
 addEventListener('hashchange',()=>{const id=location.hash.slice(1);if(byId[id])C.cat(id)});
 
-// CRT toggle (same as the homepage, saved locally)
-const c=$('#crt');const setC=v=>{document.body.classList.toggle('crt',v);c.textContent='CRT MODE: '+(v?'ON':'OFF');c.setAttribute('aria-pressed',v);try{localStorage.setItem('bdl-crt',v?'1':'')}catch(e){}};
-let sv=false;try{sv=localStorage.getItem('bdl-crt')}catch(e){}setC(!!sv);c.onclick=()=>setC(!document.body.classList.contains('crt'));
+modes();
 
 fetch('/projects.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(d=>{
  P=(d.projects||[]).filter(p=>p&&p.id&&p.name&&ST[p.status]).map(p=>Object.assign({},p,{id:String(p.id).toLowerCase()}));P.forEach(p=>byId[p.id]=p);
