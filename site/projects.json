@@ -1,10 +1,10 @@
 {
-  "about": "BrewDadLabs projects. To add one, add one entry to this list. Status is live, growing or workshop. Links are optional. Keep each line to one plain, true sentence.",
+  "about": "BrewDadLabs projects. To add one, add one entry to this list. Status is live, growing or workshop. Links are optional. Keep the description to what it is and what you can do with it; optional note for what comes next.",
   "projects": [
     {
       "id": "arcade",
       "name": "The Arcade",
-      "description": "Four retro terminal games that run in your browser, free with no ads, trackers or accounts.",
+      "description": "Four terminal-style browser games: Snake, Matrix Terminal, Circuit Breaker and System Defender. Free, with no ads, trackers or accounts.",
       "status": "live",
       "links": [
         {
@@ -21,7 +21,7 @@
     {
       "id": "stinkdoku",
       "name": "StinkDoku",
-      "description": "A logic puzzle game, free forever and ad-free; it's playable on the web now, and it will be fully open source before it goes live on the App Store, which is coming soon.",
+      "description": "Built so someone could play a logic puzzle without sitting through an ad. Play it free in your browser today: no ads, no accounts.",
       "status": "live",
       "links": [
         {
@@ -32,36 +32,39 @@
           "label": "Site",
           "href": "https://stinkdoku.com"
         }
-      ]
+      ],
+      "note": "Next: the source goes public before the App Store release, which is coming soon."
     },
     {
       "id": "gorillas",
       "name": "Gorillas 404",
-      "description": "A remake of the 1991 QBasic Gorillas game that turns a missing page into a banana fight; it is the 404 page on dixhome.com, and a reusable version for our other sites is on the way.",
+      "description": "A remake of the 1991 QBasic Gorillas game: two gorillas, a city skyline and a lot of bananas. It lives on missing pages, so try a broken link on dixhome.com.",
       "status": "live",
       "links": [
         {
           "label": "Play (any missing page on dixhome.com)",
           "href": "https://dixhome.com/bananas"
         }
-      ]
+      ],
+      "note": "A reusable version for other sites is on the way."
     },
     {
       "id": "wildlife",
       "name": "NewEarth Wildlife",
-      "description": "A plug-in for the NewEarth Minecraft server that brings dinosaurs to the Lost World, starting with the Compsognathus and the Stegosaurus, which roam in small groups, react to nearby players and food, and show up for both Java and Bedrock players; the plug-in will be open and public once it's working.",
+      "description": "Dinosaurs for a Minecraft server: small herds of Compsognathus and Stegosaurus that roam the Lost World and react to nearby players and food, for both Java and Bedrock players.",
       "status": "growing",
       "links": [
         {
           "label": "NewEarth",
           "href": "https://newearth.graphitenerd.com"
         }
-      ]
+      ],
+      "note": "The plug-in goes public once it works."
     },
     {
       "id": "newearth",
       "name": "NewEarth",
-      "description": "The NewEarth Minecraft server and its website, a STEM project of Dix Homeschool.",
+      "description": "A Minecraft server and its website, home of the Lost World.",
       "status": "live",
       "links": [
         {
@@ -71,29 +74,10 @@
       ]
     },
     {
-      "id": "dixhome",
-      "name": "Dix Homeschool",
-      "description": "The Dix Homeschool STEM site.",
-      "status": "live",
-      "links": [
-        {
-          "label": "Visit",
-          "href": "https://dixhome.com"
-        }
-      ]
-    },
-    {
       "id": "selfhosted",
       "name": "Self-hosted systems",
-      "description": "The home servers and network that run the workshop, including a self-hosted search engine and our own dynamic DNS.",
+      "description": "Home servers and a network built on open tools: a self-hosted search engine and a dynamic DNS service, with no cloud account required.",
       "status": "growing",
-      "links": []
-    },
-    {
-      "id": "genealogy",
-      "name": "Genealogy tools",
-      "description": "Scripts that import GEDCOM family-tree files into a local database for our family history research.",
-      "status": "workshop",
       "links": []
     }
   ]

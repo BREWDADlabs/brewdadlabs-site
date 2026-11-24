@@ -5,97 +5,126 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>BrewDadLabs — The Workshop</title>
-<meta name="description" content="BrewDadLabs is a home workshop for code, games, experiments and things worth building. Free browser games, no ads, no trackers, no accounts.">
+<title>BrewDadLabs — a home workshop in Ohio</title>
+<meta name="description" content="A home workshop in Ohio. Games and tools built to respect you. No ads, no trackers, no accounts.">
 <link rel="canonical" href="https://brewdadlabs.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BrewDadLabs">
-<meta property="og:title" content="BrewDadLabs — The Workshop">
-<meta property="og:description" content="A home workshop for code, games, experiments and things worth building. No ads, no trackers, no accounts.">
+<meta property="og:title" content="BrewDadLabs — a home workshop in Ohio">
+<meta property="og:description" content="A home workshop in Ohio. Games and tools built to respect you. No ads, no trackers, no accounts.">
 <meta property="og:url" content="https://brewdadlabs.com/">
 <style>@font-face{font-family:'Share Tech Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/ShareTechMono-Regular.woff2) format('woff2')}</style>
 <style>
-:root{--bg:#020303;--panel:#080d0c;--raised:#101816;--border:#18352c;--green:#00ff9c;--gd:#00a878;--cyan:#00d9ff;--amber:#ffb86c;--purple:#bd93f9;--red:#ff5555;--text:#d6e5df;--muted:#81938b;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#0a0b0c;--panel:#0e1011;--raised:#14181a;--border:#23282b;--accent:#8fd9b0;--text:#c9ced1;--muted:#9aa3a8;--dim:#7b858a;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}html{height:auto;scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,sans-serif;overflow-x:hidden;
-background-image:linear-gradient(#0a1a15 1px,transparent 1px),linear-gradient(90deg,#0a1a15 1px,transparent 1px);background-size:44px 44px;background-position:-1px -1px}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 30%,transparent 40%,#020303 95%);z-index:0}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.65 system-ui,-apple-system,sans-serif;overflow-x:hidden}
 .crt::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 1px,transparent 1px 3px)}
-.crt h1,.crt .glow{text-shadow:0 0 12px #00ff9c99}
-.m,button,h1,h2,h3,.tag{font-family:'Share Tech Mono',ui-monospace,Menlo,Consolas,monospace}
-main{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 18px 40px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--muted)}
+.crt h1,.crt .glow{text-shadow:0 0 10px #8fd9b066}
+.m,button,h1,h2,h3,.tag,pre{font-family:'Share Tech Mono',ui-monospace,Menlo,Consolas,monospace}
+main{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 20px 56px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border);font-size:15px;color:var(--muted)}
 .top button{min-height:44px;padding:6px 12px;font-size:13px}
-button{background:var(--raised);color:var(--text);border:1px solid var(--border);cursor:pointer;border-radius:2px;font-size:15px}
-button:hover,button:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
-.hero{padding:44px 0 26px}
-.on{display:inline-flex;align-items:center;gap:8px;color:var(--green);font-size:14px;border:1px solid var(--border);padding:4px 10px;background:var(--panel)}
-.on i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pl 2.4s ease-in-out infinite}
-@keyframes pl{50%{opacity:.3}}
-h1{font-weight:400;font-size:clamp(38px,10vw,84px);line-height:1;margin:18px 0 6px;color:var(--green);letter-spacing:.02em}
-.sub{color:var(--amber);font-size:15px;margin:0 0 18px}
-.tl{font-size:clamp(20px,4.5vw,28px);line-height:1.25;margin:0 0 14px;font-weight:400;color:var(--text)}
-.lead{max-width:52ch;color:var(--muted);margin:0}
-h2{font-weight:400;font-size:16px;color:var(--muted);margin:34px 0 12px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
-.card{display:flex;flex-direction:column;gap:8px;background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--ac);padding:16px;text-decoration:none;color:inherit;min-height:170px}
-.card h3{margin:0;font-weight:400;font-size:20px;color:var(--ac)}
-.card p{margin:0;color:var(--text);font-size:15px;flex:1}
-.go{font-size:15px;color:var(--ac)}
-a.card:hover,a.card:focus-visible{background:var(--raised);box-shadow:0 0 18px color-mix(in srgb,var(--ac) 30%,transparent)}
-.card.soon{opacity:.72}.card.soon .go{color:var(--muted)}
-.tag{font-size:12px;color:var(--muted)}
-#feed{background:var(--panel);border:1px solid var(--border);padding:16px;font:15px/1.8 'Share Tech Mono',ui-monospace,monospace}
-#feed div{display:flex;gap:14px;flex-wrap:wrap}#feed time{color:var(--cyan)}
-#feed .w{color:var(--muted);margin-top:8px}
-.cur{display:inline-block;width:.6em;height:1em;background:var(--green);vertical-align:-2px;animation:bl 1s steps(1) infinite}
+button{background:transparent;color:var(--muted);border:1px solid var(--border);cursor:pointer;border-radius:2px;font-size:15px}
+button:hover{color:var(--text);border-color:var(--muted)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hero{padding:72px 0 40px}
+.on{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:14px}
+.on i{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pl 2.4s ease-in-out infinite}
+@keyframes pl{50%{opacity:.25}}
+h1{font-weight:400;font-size:clamp(34px,9vw,68px);line-height:1;margin:22px 0 8px;color:var(--text);letter-spacing:.01em}
+.sub{color:var(--muted);font-size:15px;margin:0 0 34px}
+.tl{font-size:clamp(20px,4.2vw,28px);line-height:1.3;margin:0 0 16px;font-weight:400;color:var(--text);max-width:30ch}
+.lead{max-width:50ch;color:var(--muted);margin:0}
+h2{font-weight:400;font-size:16px;color:var(--muted);margin:56px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{display:flex;flex-direction:column;gap:8px;background:var(--panel);border:1px solid var(--border);padding:18px;text-decoration:none;color:inherit;min-height:168px}
+.card h3{margin:0;font-weight:400;font-size:19px;color:var(--text)}
+.card p{margin:0;color:var(--muted);font-size:15px;flex:1}
+.go{font-size:16px;color:var(--accent)}
+a.card:hover,a.card:focus-visible{border-color:var(--accent)}
+a.card:hover .go{text-decoration:underline;text-underline-offset:4px}
+.card.soon{opacity:.8}.card.soon .go{color:var(--dim)}
+.tag{font-size:14px;color:var(--muted)}
+.readme{margin:0;padding:22px 20px;background:var(--panel);border:1px solid var(--border);font-size:15px;line-height:1.9;color:var(--muted);white-space:pre-wrap}
+.readme b{font-weight:400;color:var(--text)}
+.cur{display:inline-block;width:.6em;height:1em;background:var(--accent);vertical-align:-2px;animation:bl 1s steps(1) infinite}
 @keyframes bl{50%{opacity:0}}
-.msg{margin:44px 0 0;padding:22px 0;border-top:1px solid var(--border);font-size:clamp(18px,3.6vw,24px);max-width:36ch;color:var(--text)}
-footer{display:flex;flex-wrap:wrap;gap:12px 24px;font-size:14px;color:var(--muted)}footer a{color:var(--cyan)}
-#boot{position:fixed;inset:0;z-index:100;background:var(--bg);color:var(--green);padding:max(24px,env(safe-area-inset-top)) 24px 24px;font:clamp(15px,3.8vw,19px)/1.7 'Share Tech Mono',ui-monospace,monospace;white-space:pre-wrap;transition:opacity .5s}
+.msg{margin:56px 0 0;padding:26px 0;border-top:1px solid var(--border);font-size:clamp(18px,3.4vw,23px);max-width:34ch;color:var(--text)}
+footer{display:flex;flex-wrap:wrap;gap:12px 24px;font-size:15px;margin-top:14px;color:var(--muted)}footer a{color:var(--muted)}footer a:hover{color:var(--accent)}
+#boot{position:fixed;inset:0;z-index:100;background:var(--bg);color:var(--muted);padding:max(24px,env(safe-area-inset-top)) 24px 24px;font:clamp(15px,3.8vw,19px)/1.8 'Share Tech Mono',ui-monospace,monospace;white-space:pre-wrap;transition:opacity .5s}
 #boot.out{opacity:0;pointer-events:none}
 #boot button{position:absolute;right:16px;bottom:max(16px,env(safe-area-inset-bottom));min-height:44px;padding:8px 16px}
-.ok{color:var(--cyan)}.wn{color:var(--amber)}
+.ok{color:var(--accent)}.wn{color:var(--dim)}
+body.plain *{animation:none!important;transition:none!important}body.plain.crt::after{display:none}
+.pull{margin:34px 0 0;padding-left:16px;border-left:2px solid var(--accent);max-width:44ch;color:var(--text);font-size:clamp(17px,3vw,20px);line-height:1.5}
+.top .btns{display:flex;gap:8px;flex-wrap:wrap}
+body.plain *{animation:none!important;transition:none!important}body.plain.crt::after{display:none}
+.top .btns button{min-height:36px;padding:4px 10px;font-size:12px;color:var(--muted);background:transparent}
+.top .btns button:disabled{opacity:.55;cursor:not-allowed}
+.modes{margin:0;font-size:13px;color:var(--muted);max-width:60ch}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 0}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:10px 18px;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-family:'Share Tech Mono',ui-monospace,Menlo,Consolas,monospace;font-size:17px}
+.btn:hover,.btn:focus-visible{background:var(--accent);color:#0a0b0c}
+.why{margin:22px 0 0;max-width:46ch;color:var(--text);font-size:16px;line-height:1.55}.why a{color:var(--accent);white-space:nowrap}
+@media(max-width:520px){.hero{padding:28px 0 28px}h1{margin:14px 0 6px}.sub{margin:0 0 18px}.cta .btn{flex:1 1 100%;justify-content:center}}
+@media(max-width:520px){.top{flex-wrap:wrap}.top .btns{width:100%;flex-wrap:nowrap}.top .btns button{flex:1;padding:4px 6px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head><body>
 <div id="boot" role="status" aria-live="polite"><span id="bt"></span><span class="cur"></span><button id="sk">SKIP</button></div>
 <main>
-<div class="top m"><span>BREWDADLABS // OHIO</span><button id="crt" aria-pressed="false">CRT MODE: OFF</button></div>
+<div class="top m"><span>brewdadlabs // ohio</span><span class="btns"><button id="plain-btn" aria-pressed="false">PLAIN MODE: OFF</button><button id="crt" aria-pressed="false">CRT MODE: OFF</button></span></div>
 <section class="hero">
-<span class="on m"><i></i>ONLINE</span>
-<h1 class="m">BREWDADLABS</h1>
-<p class="sub m">HOME WORKSHOP // EST. BY CURIOSITY</p>
-<p class="tl">Built at home. Tested in the real world.</p>
-<p class="lead">A home workshop for code, games, experiments, and things worth building. No ads, no trackers, no accounts.</p>
+<span class="on m"><i></i>online</span>
+<h1 class="m">brewdadlabs</h1>
+<p class="sub m">a home workshop. est. by curiosity.</p>
+<p class="tl">We put the whole world in everyone’s pocket. Then we sold the pocket.</p>
+<p class="lead">Things built to respect you. No ads. No trackers. No accounts. Life is short, and so is this page.</p>
+<p class="cta"><a class="btn" href="https://arcade.brewdadlabs.com">Play the arcade →</a><a class="btn" href="/projects">Explore the projects →</a></p>
+<p class="why">I built StinkDoku for my wife so she could play a puzzle without sitting through an ad. <a href="https://play.stinkdoku.com">Play StinkDoku →</a></p>
 </section>
-<h2 class="m">WORKSHOP // PICK A BENCH</h2>
+<h2 class="m">// pick a bench. time is short.</h2>
 <div class="grid">
-<a class="card" style="--ac:var(--green)" href="https://arcade.brewdadlabs.com"><span class="tag">STATUS: LIVE</span><h3 class="m">THE ARCADE</h3><p>Play games. No ads. No nonsense.</p><span class="go m">ENTER →</span></a>
-<a class="card" style="--ac:var(--cyan)" href="/projects"><span class="tag">STATUS: GROWING</span><h3 class="m">PROJECTS</h3><p>Things built in the workshop, with source and a link to try each one.</p><span class="go m">OPEN THE MAP →</span></a>
-<div class="card soon" style="--ac:var(--amber)"><span class="tag">STATUS: PLANNED</span><h3 class="m">THE LAB</h3><p>Local AI, home servers, hardware and experiments.</p><span class="go m">COMING SOON</span></div>
-<div class="card soon" style="--ac:var(--purple)"><span class="tag">STATUS: PLANNED</span><h3 class="m">LEARN</h3><p>Code, tutorials and things worth knowing.</p><span class="go m">COMING SOON</span></div>
+<a class="card" href="https://arcade.brewdadlabs.com"><span class="tag">[live]</span><h3 class="m">the arcade</h3><p>Games. No ads. No accounts. Nobody counting your minutes.</p><span class="go m">enter →</span></a>
+<a class="card" href="/projects"><span class="tag">[growing]</span><h3 class="m">projects</h3><p>Built in the open. Take what is useful.</p><span class="go m">open the map →</span></a>
+<div class="card soon"><span class="tag">[booting]</span><h3 class="m">the lab</h3><p>Self-host it. Local AI, home servers, hardware hacks. Own the box. Own the mistakes.</p><span class="go m">coming soon_</span></div>
+<div class="card soon"><span class="tag">[compiling]</span><h3 class="m">learn</h3><p>Free lessons. No paywall. No signup. Learn it, then go outside.</p><span class="go m">coming soon_</span></div>
 </div>
-<h2 class="m">WORKSHOP LOG</h2>
-<div id="feed"></div>
-<p class="msg">I don’t need to sell your attention to make something worth your time.</p>
-<footer class="m"><a href="https://arcade.brewdadlabs.com">ARCADE</a><a href="/projects">PROJECTS</a><a href="https://github.com/BrewDadLabs" rel="noopener">GITHUB</a><span>People before profit.</span></footer>
+<h2 class="m">// readme.txt</h2>
+<pre class="readme">Friend.
+
+Fire. The wheel. The press. The wire. Every one of them started as a way to reach the person across from you. Every one of them ended up as a way to burn him, crush him, or make him pay for the privilege of existing near you.
+
+Now the whole species is on one network. Its favorite question isn’t “what do you have to say?” It’s “what would you pay to stop seeing this?” And if you won’t pay, they’ll just keep showing it until you do.
+
+It was never about the machine. It was about who holds the leash and how much of you they can still sell after the first cut.
+
+Most of humanity will trade the quiet for the noise the second the noise offers a discount.
+
+Go outside. While the air is still free.</pre>
+<p class="msg">Your time is finite. Stop wasting it.</p>
+<p class="modes">Display: <b>Plain mode</b> skips the boot screen and turns off animation. <b>CRT mode</b> adds scanlines and a soft glow. If both are on, Plain wins and CRT stays off.</p>
+<footer class="m"><a href="https://arcade.brewdadlabs.com">arcade</a><a href="/projects">projects</a><a href="https://github.com/BrewDadLabs" rel="noopener">github</a><span>people before profit. go outside.</span></footer>
 </main>
 <script>
 (()=>{
-const $=s=>document.querySelector(s),RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
-// Workshop log: edit by hand. Real events only, no simulated telemetry.
-const LOG=[["2026-11-14","StinkDoku tester signup is live at stinkdoku.com/beta (iPhone and Android)"],["2026-11-14","play.stinkdoku.com tester links now send people to stinkdoku.com/beta"],["2026-11-14","NewEarth site now credits Dix Homeschool"],["2026-11-14","Bob research noted on dixhome.com: an autonomous AI player in NewEarth, still in progress"],["2026-11-11","Dragon intro added to the StinkDoku tester page at brewdadlabs.com/beta"],["2026-11-09","StinkDoku beta opens on TestFlight and Google Play; APK at brewdadlabs.com/stinkdoku.apk"],["2026-11-05","Gorillas 404 landed on the Arcade and stinkdoku.com"],["2026-11-04","Arcade shipped: Terminal Snake, Matrix Terminal, Circuit Breaker, System Defender"],["2026-11-04","Workshop homepage went live at brewdadlabs.com"]];
-$('#feed').innerHTML=LOG.map(e=>`<div><time>${e[0]}</time><span>${e[1]}</span></div>`).join('')+'<div class="w">_ awaiting next experiment <span class="cur"></span></div>';
+const $=s=>document.querySelector(s),RM0=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let PLAIN=false,CRT=false;try{PLAIN=!!localStorage.getItem('bdl-plain');CRT=!!localStorage.getItem('bdl-crt')}catch(e){}
+let RM=RM0||PLAIN;
+const pb=$('#plain-btn'),c=$('#crt');
+function modes(){const crtOn=CRT&&!PLAIN;document.body.classList.toggle('plain',PLAIN);document.body.classList.toggle('crt',crtOn);RM=RM0||PLAIN;
+ pb.textContent='PLAIN MODE: '+(PLAIN?'ON':'OFF');pb.setAttribute('aria-pressed',String(PLAIN));
+ c.textContent='CRT MODE: '+(crtOn?'ON':'OFF');c.setAttribute('aria-pressed',String(crtOn));c.disabled=PLAIN;c.title=PLAIN?'Plain mode is on, so CRT is off. Turn plain mode off to use CRT.':'';
+ try{localStorage.setItem('bdl-plain',PLAIN?'1':'');localStorage.setItem('bdl-crt',CRT?'1':'')}catch(e){}}
+pb.onclick=()=>{PLAIN=!PLAIN;modes();if(PLAIN&&window.__skipBoot)window.__skipBoot()};
+c.onclick=()=>{CRT=!CRT;modes()};
+
 // boot
-const L=["BREWDADLABS // OHIO","INITIALIZING WORKSHOP...","<span class=ok>[OK]</span> SYSTEM ONLINE","<span class=ok>[OK]</span> ARCADE AVAILABLE","<span class=ok>[OK]</span> PROJECTS LOADED","<span class=wn>[OK] COFFEE STATUS: UNKNOWN</span>","WELCOME, HUMAN."];
-const b=$('#boot');let i=0,t;
+const L=["brewdadlabs // ohio","initializing...","<span class=ok>[ok]</span> ads: none","<span class=ok>[ok]</span> trackers: none","<span class=ok>[ok]</span> accounts: none","<span class=ok>[ok]</span> your attention: not for sale","<span class=ok>[ok]</span> engagement metrics: none","<span class=ok>[ok]</span> ego: minimal","<span class=ok>[ok]</span> meaning of life: unknown","<span class=wn>[ok] coffee: unknown</span>","welcome."];
+const b=$('#boot');let i=0,t;window.__skipBoot=()=>{if(b&&b.isConnected){clearTimeout(t);b.remove()}};
 const done=()=>{clearTimeout(t);b.classList.add('out');try{sessionStorage.setItem('bdl-boot','1')}catch(e){}setTimeout(()=>b.remove(),600)};
 let seen=false;try{seen=sessionStorage.getItem('bdl-boot')}catch(e){}
 if(RM||seen)b.remove();else{
 $('#sk').onclick=done;b.addEventListener('keydown',done);addEventListener('keydown',done,{once:true});
 (function n(){$('#bt').innerHTML=L.slice(0,++i).join('\n');t=setTimeout(i<L.length?n:done,i<L.length?330:700)})()}
-// CRT toggle (saved locally)
-const c=$('#crt');const setC=v=>{document.body.classList.toggle('crt',v);c.textContent='CRT MODE: '+(v?'ON':'OFF');c.setAttribute('aria-pressed',v);try{localStorage.setItem('bdl-crt',v?'1':'')}catch(e){}};
-let sv=false;try{sv=localStorage.getItem('bdl-crt')}catch(e){}setC(!!sv);c.onclick=()=>setC(!document.body.classList.contains('crt'));
 })();
 </script></body></html>
