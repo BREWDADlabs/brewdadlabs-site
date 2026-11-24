@@ -9,7 +9,7 @@
 <meta name="description" content="Games, plug-ins, tools and home systems. No ads, no trackers, no accounts.">
 <style>@font-face{font-family:'Share Tech Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/ShareTechMono-Regular.woff2) format('woff2')}</style>
 <style>
-:root{--bg:#0a0b0c;--panel:#0e1011;--raised:#14181a;--border:#23282b;--green:#8fd9b0;--gd:#6fb592;--cyan:#8fd9b0;--amber:#a7aeb2;--purple:#a7aeb2;--red:#d98f8f;--text:#c9ced1;--muted:#6f787d;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#0a0b0c;--panel:#0e1011;--raised:#14181a;--border:#23282b;--green:#8fd9b0;--gd:#6fb592;--cyan:#8fd9b0;--amber:#a7aeb2;--purple:#a7aeb2;--red:#d98f8f;--text:#c9ced1;--muted:#9aa3a8;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}html{height:auto;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,sans-serif;overflow-x:hidden;
 }
@@ -78,10 +78,12 @@ h2{font-weight:400;font-size:16px;color:var(--muted);margin:30px 0 12px}
 footer{display:flex;flex-wrap:wrap;gap:12px 24px;font-size:14px;color:var(--muted);margin-top:34px;padding-top:18px;border-top:1px solid var(--border)}footer a{color:var(--cyan)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media(max-width:480px){#sh label{font-size:12px}#out{max-height:300px}}
+body.plain *{animation:none!important;transition:none!important}body.plain.crt::after{display:none}
+.top .btns{display:flex;gap:8px;flex-wrap:wrap}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head><body>
 <main>
-<div class="top m"><a href="/">← BREWDADLABS // OHIO</a><button id="crt" aria-pressed="false">CRT MODE: OFF</button></div>
+<div class="top m"><a href="/">← BREWDADLABS // OHIO</a><span class="btns"><button id="plain-btn" aria-pressed="false">PLAIN MODE: OFF</button><button id="crt" aria-pressed="false">CRT MODE: OFF</button></span></div>
 <section class="hero">
 <p class="sub m">~/projects</p>
 <h1 class="m">PROJECT MAP</h1>
@@ -117,7 +119,10 @@ footer{display:flex;flex-wrap:wrap;gap:12px 24px;font-size:14px;color:var(--mute
 <script>
 (()=>{
 'use strict';
-const $=s=>document.querySelector(s),RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const $=s=>document.querySelector(s),RM0=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let PLAIN=false;try{PLAIN=!!localStorage.getItem('bdl-plain')}catch(e){}if(PLAIN)document.body.classList.add('plain');
+const pb=$('#plain-btn');pb.textContent='PLAIN MODE: '+(PLAIN?'ON':'OFF');pb.setAttribute('aria-pressed',PLAIN);pb.onclick=()=>{try{localStorage.setItem('bdl-plain',PLAIN?'':'1')}catch(e){}location.reload()};
+const RM=RM0||PLAIN;
 const el=(t,cls,txt)=>{const e=document.createElement(t);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
 const ST={live:{label:'LIVE',boot:'ONLINE',xp:3},growing:{label:'GROWING',boot:'GROWING',xp:2},workshop:{label:'IN PROGRESS',boot:'IN PROGRESS',xp:1}};
 // Levels: each one needs a bit more XP than the last (5, 15, 30, 50, 75 ...). Live = 3 XP, growing = 2, in progress = 1.

@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://brewdadlabs.com/">
 <style>@font-face{font-family:'Share Tech Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/ShareTechMono-Regular.woff2) format('woff2')}</style>
 <style>
-:root{--bg:#0a0b0c;--panel:#0e1011;--raised:#14181a;--border:#23282b;--accent:#8fd9b0;--text:#c9ced1;--muted:#6f787d;--dim:#4a5257;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#0a0b0c;--panel:#0e1011;--raised:#14181a;--border:#23282b;--accent:#8fd9b0;--text:#c9ced1;--muted:#9aa3a8;--dim:#7b858a;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}html{height:auto;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--text);font:17px/1.65 system-ui,-apple-system,sans-serif;overflow-x:hidden}
 .crt::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 1px,transparent 1px 3px)}
@@ -55,17 +55,21 @@ footer{display:flex;flex-wrap:wrap;gap:12px 24px;font-size:14px;color:var(--mute
 #boot.out{opacity:0;pointer-events:none}
 #boot button{position:absolute;right:16px;bottom:max(16px,env(safe-area-inset-bottom));min-height:44px;padding:8px 16px}
 .ok{color:var(--accent)}.wn{color:var(--dim)}
+body.plain *{animation:none!important;transition:none!important}body.plain.crt::after{display:none}
+.pull{margin:34px 0 0;padding-left:16px;border-left:2px solid var(--accent);max-width:44ch;color:var(--text);font-size:clamp(17px,3vw,20px);line-height:1.5}
+.top .btns{display:flex;gap:8px;flex-wrap:wrap}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head><body>
 <div id="boot" role="status" aria-live="polite"><span id="bt"></span><span class="cur"></span><button id="sk">SKIP</button></div>
 <main>
-<div class="top m"><span>brewdadlabs // ohio</span><button id="crt" aria-pressed="false">CRT MODE: OFF</button></div>
+<div class="top m"><span>brewdadlabs // ohio</span><span class="btns"><button id="plain-btn" aria-pressed="false">PLAIN MODE: OFF</button><button id="crt" aria-pressed="false">CRT MODE: OFF</button></span></div>
 <section class="hero">
 <span class="on m"><i></i>online</span>
 <h1 class="m">brewdadlabs</h1>
 <p class="sub m">est. by curiosity.</p>
 <p class="tl">We put the whole world in everyone’s pocket. Then we sold the pocket.</p>
 <p class="lead">Things built to respect you. No ads. No trackers. No accounts. Life is short, and so is this page.</p>
+<p class="pull">It was never about the machine. It was about who holds the leash.</p>
 </section>
 <h2 class="m">// pick one. time is short.</h2>
 <div class="grid">
@@ -93,7 +97,10 @@ Go outside. While the air is still free. It won’t stay that way.</pre>
 </main>
 <script>
 (()=>{
-const $=s=>document.querySelector(s),RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const $=s=>document.querySelector(s),RM0=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let PLAIN=false;try{PLAIN=!!localStorage.getItem('bdl-plain')}catch(e){}if(PLAIN)document.body.classList.add('plain');
+const pb=$('#plain-btn');pb.textContent='PLAIN MODE: '+(PLAIN?'ON':'OFF');pb.setAttribute('aria-pressed',PLAIN);pb.onclick=()=>{try{localStorage.setItem('bdl-plain',PLAIN?'':'1')}catch(e){}location.reload()};
+const RM=RM0||PLAIN;
 // boot
 const L=["brewdadlabs // ohio","initializing...","<span class=ok>[ok]</span> ads: none","<span class=ok>[ok]</span> trackers: none","<span class=ok>[ok]</span> accounts: none","<span class=ok>[ok]</span> your attention: not for sale","<span class=ok>[ok]</span> engagement metrics: none","<span class=ok>[ok]</span> ego: minimal","<span class=ok>[ok]</span> meaning of life: unknown","<span class=wn>[ok] coffee: unknown</span>","welcome."];
 const b=$('#boot');let i=0,t;
